@@ -40,3 +40,12 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+# Ignorar a pasta .vscode
+.vscode/
+
+# Ignorar arquivos específicos
+package-lock.json
+tsconfig.spec.json
+karma.conf.js
+protractor.conf.js
+.gitignore

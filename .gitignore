@@ -1,15 +1,15 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
 # Compiled output
 /dist
 /tmp
 /out-tsc
 /bazel-out
+/.angular/cache
+/coverage
 
 # Node
 /node_modules
-npm-debug.log
-yarn-error.log
+npm-debug.log*
+yarn-error.log*
 
 # IDEs and editors
 .idea/
@@ -19,6 +19,7 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+*.sublime-project
 
 # Visual Studio Code
 .vscode/*
@@ -26,26 +27,16 @@ yarn-error.log
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
 
-# Miscellaneous
-/.angular/cache
+# Misc
 .sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-
-# System files
 .DS_Store
 Thumbs.db
-# Ignorar a pasta .vscode
-.vscode/
+.history/
 
-# Ignorar arquivos específicos
-package-lock.json
-tsconfig.spec.json
-karma.conf.js
-protractor.conf.js
-.gitignore
+# Logs
+*.log
+
+# Optional environment files
+.env
+.env.*

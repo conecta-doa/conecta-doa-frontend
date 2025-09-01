@@ -83,16 +83,24 @@ conecta-doa-frontend/
 ### OBS.: Comando para instalar o angular: 
     npm install -g @angular/cli
 
+1. Clonar o repositório:
+  ```bash
+   git clone https://github.com/conecta-doa/conecta-doa-frontend
+  ```
 
-1. Instale as dependências:
+2. Acessar o diretório:
+ ```bash
+   cd conecta-doa-frontend
+  ```
+3. Instale as dependências:
    ```bash
    npm install
    ```
-2. Inicie o servidor de desenvolvimento:
+4. Inicie o servidor de desenvolvimento:
    ```bash
    npm start ou ng serve
    ```
-3. Acesse em [http://localhost:4200](http://localhost:4200)
+5. Acesse em [http://localhost:4200](http://localhost:4200)
 
 ## Scripts Disponíveis
 

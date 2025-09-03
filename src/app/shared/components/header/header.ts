@@ -3,12 +3,16 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'app-header',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './footer.html',
-  styleUrls: ['./footer.css'] 
+  templateUrl: './header.html',
+  styleUrls: ['./header.css']
 })
-export class FooterComponent {
-  anoAtual: number = new Date().getFullYear();
+export class HeaderComponent {
+  isMenuOpen = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 }

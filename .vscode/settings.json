@@ -1,0 +1,23 @@
+{
+  "emmet.triggerExpansionOnTab": true,
+  "editor.tabCompletion": "on",
+  "editor.snippetSuggestions": "top",
+  "editor.suggest.showEmmetSuggestions": true,
+
+  "emmet.includeLanguages": {
+    "html": "html",
+    "typescript": "html",
+    "javascript": "javascriptreact",
+    "typescriptreact": "javascriptreact"
+  },
+
+  "editor.quickSuggestions": { 
+    "strings": true 
+  },
+
+  "emmet.useInlineCompletions": true,
+
+  "files.associations": {
+    "*.component.html": "html"
+  }
+}

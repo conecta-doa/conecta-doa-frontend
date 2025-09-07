@@ -1,0 +1,241 @@
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h4 class="fw-bold">ConectaDoa</h4>
+    <p class="text-muted">Painel do Doador</p>
+
+    <nav class="nav flex-column mt-4">
+      <a href="#" class="nav-link active"><i class="bi bi-house me-2"></i> Início</a>
+      <a href="#" class="nav-link"><i class="bi bi-box-seam me-2"></i> Doações</a>
+      <a href="#" class="nav-link"><i class="bi bi-bank me-2"></i> Instituições</a>
+      <a href="#" class="nav-link"><i class="bi bi-gift me-2"></i> Recompensas</a>
+      <a href="#" class="nav-link"><i class="bi bi-person me-2"></i> Perfil</a>
+    </nav>
+  </aside>
+
+  <!-- Conteúdo principal -->
+  <main class="content">
+    <h1 class="content-title">Painel do Doador</h1>
+    <p class="content-subtitle">Bem-vindo de volta, Ricardo! Suas contribuições estão fazendo a diferença.</p>
+
+    <!-- Card destaque -->
+    <div class="highlight-card">
+      <p class="highlight-label">Solidar pontos</p>
+      <h2 class="highlight-value">1250</h2>
+    </div>
+
+   <h3 class="impact-title">Seu Impacto</h3>
+   
+<div class="impact-row">
+  <!-- Card Doações -->
+   
+  <div class="impact-card">
+    <div class="impact-body">
+      <p class="impact-label">Doações Acumulativas</p>
+      <h4 class="impact-value">R$ 5.000</h4>
+      <p class="impact-growth">+20% Todo o Tempo</p>
+
+      <!-- Gráfico de barras verticais por mês -->
+      <div class="grafico-mensal">
+        <div class="barra-mensal" *ngFor="let d of doacoesMensais">
+          <div class="barra" [style.height]="calcularAlturaBarra(d.valor)"></div>
+          <div class="mes">{{ d.mes }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Pontos -->
+  <div class="impact-card">
+    <div class="impact-body">
+      <p class="impact-label">Solidar Pontos ao longo do tempo</p>
+      <h4 class="impact-value">R$ 5.000</h4>
+      <p class="impact-growth">+15% Últimos 12 Meses</p>
+      <div class="impact-chart">
+        <svg class="linha-grafico" viewBox="0 0 300 100" preserveAspectRatio="none">
+          <polyline
+            fill="none"
+            stroke="#e74c3c"
+            stroke-width="3"
+            points="0,80 30,60 60,70 90,50 120,55 150,30 180,50 210,75 240,40 270,60 300,45"
+          />
+        </svg>
+        <div class="meses-linha">
+          <span>Jul</span><span>Ago</span><span>Set</span><span>Out</span><span>Nov</span><span>Dez</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- Fecha corretamente a impact-row -->
+    
+
+
+    <!-- Seção: Histórico de Doações -->
+  <section class="painel-historico">
+  <h2 class="section-title">Histórico de Doações</h2>
+
+  <div class="donation-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Instituição</th>
+          <th>Itens Doados</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2024-07-20</td>
+          <td>Abrigo Esperança</td>
+          <td>Roupas, Alimentos</td>
+          <td><span class="status-badge concluido">Concluído</span></td>
+        </tr>
+        <tr>
+          <td>2024-07-15</td>
+          <td>Centro de Apoio Comunitário</td>
+          <td>Brinquedos, Livros</td>
+          <td><span class="status-badge concluido">Concluído</span></td>
+        </tr>
+        <tr>
+          <td>2024-07-05</td>
+          <td>Liga de Resgate Animal</td>
+          <td>Ração, Cobertores</td>
+          <td><span class="status-badge concluido">Concluído</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+   <!-- Seção: Fim de historico de doações -->
+
+
+  <!-- Seção: locais de doações -->
+
+  <section class="locais-doacao">
+  <h2 class="section-title">Locais de doações próximos</h2>
+
+  <div class="cards-container">
+    <!-- Card 1 -->
+    <div class="card-doacao">
+      <img src="bancodealimentos.png" alt="Hospital infantil" style="height: 370px;">
+      <h3>Banco de Alimentos Local</h3>
+      <p>Aceitando alimentos não perecíveis</p>
+    </div>
+
+    <!-- Card 2 -->
+<div class="card-doacao">
+  <img src="hospital.png" alt="Hospital infantil" style="height: 370px;" >
+  <h3>Hospital infantil</h3>
+  <p>Doações para pacientes pediátricos</p>
+</div>
+
+    <!-- Card 3 -->
+    <div class="card-doacao">
+      <img src="cuidadosparaidosos.png" alt="idosos" style="height: 370px;">
+      <h3>Centro de cuidados para idosos</h3>
+      <p>Procurando itens de conforto e livros</p>
+    </div>
+  </div>
+</section>
+
+ <!-- Seção: Fim de locais de doações -->
+
+
+ <!-- Seção: Ranking doadores mensal e semanal -->
+
+<section class="ranking-doadores">
+  <h2>Ranking de doadores</h2>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button
+      [class.active]="abaSelecionada === 'semanal'"
+      (click)="selecionarAba('semanal')">
+      Semanal
+    </button>
+    <button
+      [class.active]="abaSelecionada === 'mensal'"
+      (click)="selecionarAba('mensal')">
+      Mensal
+    </button>
+  </div>
+
+  <!-- Tabela SEMANAL -->
+  <table *ngIf="abaSelecionada === 'semanal'">
+    <thead>
+      <tr>
+        <th>Posição</th>
+        <th>Doador</th>
+        <th>Doações</th>
+        <th>Solidar Pontos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let doador of rankingSemanal; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ doador.nome }}</td>
+        <td>{{ doador.doacoes }}</td>
+        <td><span class="badge">{{ doador.pontos }}</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Tabela MENSAL -->
+  <table *ngIf="abaSelecionada === 'mensal'">
+    <thead>
+      <tr>
+        <th>Posição</th>
+        <th>Doador</th>
+        <th>Doações</th>
+        <th>Solidar Pontos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let doador of rankingMensal; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ doador.nome }}</td>
+        <td>{{ doador.doacoes }}</td>
+        <td><span class="badge">{{ doador.pontos }}</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Seção: fim de Ranking doadores mensal e semanal -->
+
+
+ <!-- Seção: Recompensas -->
+
+  <section class="locais-doacao">
+  <h2 class="section-title">Recompensas</h2>
+
+  <div class="cards-container">
+    <!-- Card 1 -->
+    <div class="card-doacao">
+      <img src="magalu.png" alt="Magalu" style="height: 370px;"> 
+      <h3>Magalu</h3>
+      <p>Aceitando alimentos não perecíveis</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card-doacao">
+      <img src="americanas.jpg" alt="Americanas" style="height: 370px;"> 
+      <h3>Americanas</h3>
+      <p>Doações para pacientes pediátricos</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card-doacao">
+      <img src="amazon.jpg" alt="Amazon" style="height: 370px;">
+      <h3>Amazon</h3>
+      <p>Procurando itens de conforto e livros</p>
+    </div>
+  </div>
+</section>
+
+ <!-- Seção: Fim de Recompensas -->
+
+  </main>
+</div>

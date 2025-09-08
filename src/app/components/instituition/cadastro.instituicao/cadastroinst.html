@@ -5,32 +5,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ConectaDoa</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="cadastroinst.css" />
 </head>
 
 <body>
 
   <header class="header">
-    <div class="menu-icon">☰</div>
+    <div class="menu-icon">☰</div>   
     <div class="logo">ConectaDoa</div>
-
   </header>
 
   <main class="container">
 
-    <div class="form-box">
-
+    <div class="form-box" id="form-cnpj">
       <h1 class="form-title">Cadastrar Instituição</h1>
       <p class="step">Passo 1 de 4</p>
 
       <div class="progress-bar">
-
         <div class="progress" style="width: 25%;"></div>
-
       </div>
 
       <label for="cnpj" class="label">CNPJ</label>
-
       <input type="text" id="cnpj" class="input" placeholder="00.000.000/0000-00" />
 
       <p class="terms">
@@ -38,8 +33,43 @@
         <a href="#">Política de Privacidade</a>.
       </p>
 
-      <button class="btn-next">Próximo</button>
+      <button class="btn-next" id="btn-next">Próximo</button>
+    </div>
 
+    <div class="form-box" id="form-docs" style="display: none;">
+      <h1 class="form-title">Documentos Obrigatórios</h1>
+      <p class="step">Passo 2 de 4</p>
+
+      <div class="progress-bar">
+        <div class="progress" style="width: 50%;"></div>
+      </div>
+
+      <label for="estatuto-social" class="label">Estatuto Social registrado em cartório</label>
+      <input type="file" id="estatuto-social" class="input" />
+
+      <label for="ata-diretoria" class="label">Ata de eleição da diretoria vigente</label>
+      <input type="file" id="ata-diretoria" class="input" />
+
+      <label for="certificado-federal" class="label">Certificado negativa da Receita Federal</label>
+      <input type="file" id="certificado-federal" class="input" />
+
+      <label for="certificado-oscip" class="label">Certificado de OSCIP/ONG</label>
+      <input type="file" id="certificado-oscip" class="input" />
+
+      <label for="alvara-funcionamento" class="label">Alvará de funcionamento</label>
+      <input type="file" id="alvara-funcionamento" class="input" />
+
+      <div class="security">
+        <input type="checkbox" id="assinatura-digital" />
+        <label for="assinatura-digital">Assinatura digital e validação em duas etapas</label>
+      </div>
+
+      <div class="security">
+        <input type="checkbox" id="vinculo-conta" />
+        <label for="vinculo-conta">Vincular conta bancária</label>
+      </div>
+
+      <button class="btn-next" id="btn-submit">Enviar documentos</button>
     </div>
 
   </main>
@@ -59,7 +89,17 @@
 
       e.target.value = value;
     });
+
+    document.getElementById('btn-next').addEventListener('click', function () {
+      document.getElementById('form-cnpj').style.display = 'none';
+      document.getElementById('form-docs').style.display = 'block';
+    });
+
+    document.getElementById('btn-submit').addEventListener('click', function () {
+      
+    });
   </script>
+
 </body>
 
 </html>

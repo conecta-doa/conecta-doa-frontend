@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ConectaDoa</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="menu-icon">☰</div>
+    <div class="logo">ConectaDoa</div>
+
+  </header>
+
+  <main class="container">
+
+    <div class="form-box">
+
+      <h1 class="form-title">Cadastrar Instituição</h1>
+      <p class="step">Passo 1 de 4</p>
+
+      <div class="progress-bar">
+
+        <div class="progress" style="width: 25%;"></div>
+
+      </div>
+
+      <label for="cnpj" class="label">CNPJ</label>
+
+      <input type="text" id="cnpj" class="input" placeholder="00.000.000/0000-00" />
+
+      <p class="terms">
+        Ao prosseguir, você concorda com nossos: <br> <a href="#">Termos de Uso</a> e
+        <a href="#">Política de Privacidade</a>.
+      </p>
+
+      <button class="btn-next">Próximo</button>
+
+    </div>
+
+  </main>
+
+  <script>
+    document.getElementById('cnpj').addEventListener('input', function (e) {
+      let value = e.target.value.replace(/\D/g, '');
+
+      if (value.length > 14) {
+        value = value.slice(0, 14);
+      }
+
+      value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+      value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+      value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+      value = value.replace(/(\d{4})(\d)/, '$1-$2');
+
+      e.target.value = value;
+    });
+  </script>
+</body>
+
+</html>

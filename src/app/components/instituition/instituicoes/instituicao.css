@@ -1,20 +1,25 @@
 .container {
   width: 100%;
   max-width: 1542px;
-  margin: 0 auto; /* Centraliza horizontalmente */
+  margin: 0 auto; 
   padding: 0;
 }
-.instituicoes-text {             /* altura da div que você mencionou */
+
+/* Titulo principal */
+.instituicoes-text {             
   display: flex;
-  align-items: center;        /* centraliza verticalmente */
+  align-items: center;       
   padding-top: 40px; 
   margin-bottom: 15px;
   
+/* Fim do Titulo principal */
+  
 }
 
+/* Barra de Pesquisa */
 
 .busca-box {
-  position: relative; /* necessário para posicionar a imagem */
+  position: relative; 
   width: 100%;
   max-width: 1542px;
   display: flex;
@@ -37,22 +42,26 @@
   left: 16px;
   width: 26px;
   height: 26px;
-  pointer-events: none; /* a imagem não interfere no clique do input */
+  pointer-events: none; /
 }
 .busca-input::placeholder {
     color: #994D52;
     font-size: 24px;
 }
 
-/* Container principal (pode ter vários cards dentro) */
+/*  Fim Barra de Pesquisa */
+
+
+/* Container principal  */
 .board {
   display: flex;
   flex-direction: column;
   gap: 16px;
   align-items: center;
 }
+/* Fim Container principal  */
 
-/* Card fixo 1542x132 */
+/* Card fixo */
 .inst-card {
   width: 1542px;
   margin-bottom: 60px;
@@ -64,29 +73,30 @@
   flex-direction: column;
   justify-content: space-between;
 }
+/* Fim do Card fixo */
 
 /* Cabeçalho com imagem + info */
 .need-header {
   display: flex;
-  justify-content: space-between; /* Distribui os itens nos cantos */
-  align-items: center;            /* Alinha verticalmente */
+  justify-content: space-between; 
+  align-items: center;          
   margin-bottom: 4px;
   
 }
 
 .thumb {
-  width: 60px; /* Aumente esse valor */
-  height: 60px; /* Aumente esse valor também */
-  border-radius: 8px; /* Opcional: deixa as bordas arredondadas */
-  object-fit: cover;  /* Garante que a imagem se encaixe bem */
-  margin-right: 12px; /* Espaço entre a imagem e o texto */
+  width: 60px; 
+  height: 60px; 
+  border-radius: 8px; 
+  object-fit: cover;  
+  margin-right: 12px; 
    
 }
 .inst-header {
   display: flex;
   align-items: center;
-  gap: 16px; /* espaço entre imagem e texto */
-  margin-bottom: 20px; /* opcional para espaçar do conteúdo abaixo */
+  gap: 16px; 
+  margin-bottom: 20px; 
 }
 
 .inst-info {
@@ -115,7 +125,7 @@
   margin-top: 8px;
 }
 
-/* Cada necessidade com altura 132px */
+
 .need {
   height: 100px;
   display: flex;
@@ -132,7 +142,7 @@
   color: #212529;
 }
 
-/* Estilo da barra de progresso */
+/* barra de progresso */
 .progress {
   position: relative;
   height: 24px;
@@ -158,6 +168,7 @@
   font-weight: 600;
   color: #fff;
 }
+/* Fim da barra de progresso */
 
 /* Rodapé com botão */
 .inst-footer {
@@ -181,3 +192,4 @@
   width: 100%; /* largura fixa */
   /* ou min-width: 150px; */
 }
+/* Fim do Rodapé com botão */

@@ -1,7 +1,12 @@
+
+<!-- Seção: Titulo -->
 <div class="container">
   <div class="instituicoes-text">
     <h2>Instituições</h2>
   </div>
+<!-- Fim da Seção: Titulo -->
+
+<!-- Seção: Barra de pesquisa -->
 
  <div class="busca-box">
   <img src="lupa.png" alt="Lupa" class="icon-lupa" />
@@ -12,7 +17,10 @@
     [(ngModel)]="searchTerm"
   />
 </div>
+<!-- Fim da Seção: Barra de pesquisa -->
 
+
+<!-- Seção: Informações das instituições -->
 <div class="board">
   <div *ngFor="let instituicao of instituicoes" class="inst-card">
     <div class="inst-header">
@@ -26,6 +34,10 @@
         <p class="inst-local">Localização {{ instituicao.local }}</p>
       </div>
     </div>
+<!-- Fim da Seção: Informações das instituições -->
+ 
+
+  <!-- Seção: Barra de progresso -->
 
     <div class="inst-body">
       <div *ngFor="let item of instituicao.necessidades" class="need">
@@ -41,12 +53,16 @@
       </div>
     </div>
 
+<!-- fim da Seção: Barra de progresso -->
+
+<!-- Seção: Botão -->
+
     <div class="inst-footer">
       <button class="btn btn-danger">Quero Doar</button>
     </div>
   </div>
 
-
+<!-- Fim da Seção: Botão -->
 
 
     

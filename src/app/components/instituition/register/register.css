@@ -12,23 +12,7 @@ body {
 }
 
 
-.header {
-  display: flex;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #fff;
-  border-bottom: 1px solid #e0e0e0;
-}
 
-.menu-icon {
-  font-size: 1.2rem;
-  margin-right: 1rem;
-}
-
-.logo {
-  font-weight: bold;
-  font-size: 1.1rem;
-}
 
 
 .container {
@@ -42,8 +26,14 @@ body {
   max-width: 500px;
   width: 100%;
   background-color: #fff9f9;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+.hidden {
+  display: none;
+}
 
 .form-title {
   font-size: 1.5rem;
@@ -56,6 +46,7 @@ body {
 .step {
   font-size: 1rem;
   margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 
@@ -70,7 +61,8 @@ body {
 .progress {
   height: 100%;
   background-color: #e63946;
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px;
+  transition: width 0.3s ease;
 }
 
 
@@ -88,18 +80,25 @@ body {
   border: 1px solid #ddd;
   border-radius: 8px;
   margin-bottom: 1.5rem;
-  color: #a94442;
+  color: #1a1a1a;
+  background-color: white;
 }
 
+.input:focus {
+  outline: none;
+  border-color: #e63946;
+  box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.2);
+}
 
 .terms {
   font-size: 0.85rem;
   color: #555;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .terms a {
-  color: #000;
+  color: #e63946;
   text-decoration: underline;
 }
 
@@ -121,3 +120,22 @@ body {
   background-color: #c62838;
 }
 
+.btn-next:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.security {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.security input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+
+.input[type="file"] {
+  padding: 0.5rem;
+}

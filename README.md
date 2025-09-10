@@ -1,59 +1,112 @@
-<<<<<<< HEAD
-# ConectaDoaFrontend
+## Requisitos
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.0.
+- Angular v20
+- [Git](https://git-scm.com/downloads)
+- Uma IDE (VSCode, Visual Studio, etc)
 
-## Development server
+## 1- Clone o projeto
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Na sua IDE, faça o seguinte comando
 
 ```bash
-ng generate component component-name
+git clone https://github.com/conecta-doa/conecta-doa-frontend.git
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 2 - Verifique atualizações
+
+- Essa parte é bem importante, esporádicamente rode:
 
 ```bash
-ng generate --help
+# Esse comando fará a verificação de novas mudanças (seja branchs, commits e etc)
+git fetch
 ```
 
-## Building
-
-To build the project run:
+- Caso tenha algo para atualizar rode:
 
 ```bash
-ng build
+# Esse comando trará as atualizações para a sua branch local
+git pull
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 3 - Crie a sua branch
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- Crie a sua branch para desenvolvimento a partir da master
+- Por favor, siga este padrão tipo-de-branch/nome-enxuto-do-que-foi-desenvolvido
+- Ex:
 
 ```bash
-ng test
+# Para criar a sua branch
+git branch feature/update-readme
+
+
+# Para selecionar a branch criada
+git checkout feature/update-readme
+
+
+
+
+git branch fix/ajuste-no-login
+
+
+git checkout fix/ajuste-no-login
+
+
+
+
+git branch chore/atualizacao-dependencias
+
+
+git checkout chore/atualizacao-dependencias
 ```
 
-## Running end-to-end tests
+## 4 - Commits
 
-For end-to-end (e2e) testing, run:
+- Quando criar/modificar/deletar algo é necessário salvar na branch, para isso usamos:
 
 ```bash
-ng e2e
+# Adiciona as mudanças
+git add .
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+```bash
+git commit -m "mensagem que diz o que mudou"
+```
+
+## 5 - Push
+
+- Quando finalmente acreditar que terminou faça o push para atualizar no GitHub
+
+```bash
+git push origin nome-da-sua-branch
+```
+
+## Tipos de branches
+
+### 🔹 `main` (ou `master`)
+
+- **O que é:** branch principal do projeto.
+- **Uso:** contém apenas código estável e pronto para produção.
+- **Quem altera:** somente via Pull Request revisada.
+
+---
+
+### 🔹 `feature/*`
+
+- **O que é:** branch para novas funcionalidades.
+- **Uso:** cada nova feature deve ser criada a partir da `develop`.
+- **Padrão de nome:**
+  - `feature/nome-da-funcionalidade`
+  - Ex.: `feature/cadastro-usuario`, `feature/integracao-pagamentos`.
+
+---
+
+### 🔹 `fix/*`
+
+- **O que é:** branch para corrigir bugs.
+- **Uso:** utilizada quando for corrigir problemas detectados no código.
+- **Padrão de nome:**
+  - `fix/descricao-do-bug`
+  - Ex.: `fix/erro-login`, `fix/carrinho-vazio`.
 
 ## Additional Resources
 

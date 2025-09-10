@@ -1,22 +1,33 @@
 <app-header></app-header>
 
-<!--Cabeçalho-->
+  <!--Cabeçalho-->
 <div class="relative flex min-h-screen flex-col">
   <main class="flex-grow">
     <div class="container mx-auto px-4 py-12 sm:px-6 lg:px-8 flex justify-center items-center">
       <div class="w-full max-w-md space-y-8 p-8 bg-white rounded-2xl shadow-lg">
         <div>
           <h2 class="mt-6 text-center text-3xl font-extrabold text-[var(--text-primary)]">
-            Bem vindo(a)
+            Criar sua conta
           </h2>
           <p class="mt-2 text-center text-sm text-[var(--text-secondary)]">
             Junte-se à nossa plataforma para fazer a diferença.
           </p>
         </div>
-
         <form action="#" class="mt-8 space-y-6" method="POST">
           <div class="rounded-md shadow-sm -space-y-px">
-            <!--Campos do formulario-->
+
+            <!--Campos do Formulário-->
+            <div>
+              <label class="sr-only" for="full-name">Nome Completo</label>
+              <input
+                class="appearance-none rounded-t-md relative block w-full px-3 py-3 border border-gray-300 bg-[var(--input-bg)] placeholder-[var(--input-placeholder)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] focus:z-10 sm:text-sm"
+                id="full-name"
+                name="name"
+                placeholder="Nome Completo"
+                required
+                type="text"
+              />
+            </div>
             <div>
               <label class="sr-only" for="email-address">Endereço de email</label>
               <input
@@ -39,6 +50,18 @@
                 placeholder="Senha"
                 required
                 type="password"
+              />
+            </div>
+            <div>
+              <label class="sr-only" for="phone">Telefone</label>
+              <input
+                autocomplete="tel"
+                class="appearance-none rounded-b-md relative block w-full px-3 py-3 border border-gray-300 bg-[var(--input-bg)] placeholder-[var(--input-placeholder)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] focus:z-10 sm:text-sm"
+                id="phone"
+                name="phone"
+                placeholder="Telefone"
+                required
+                type="tel"
               />
             </div>
           </div>
@@ -75,13 +98,13 @@
             </div>
           </div>
 
-          <!--Botão de Login-->
+          <!--Botão de Cadastrar-->
           <div>
             <button
               class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-md text-white bg-[var(--primary-color)] hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)] transition-colors"
               type="submit"
             >
-              Entrar
+              Cadastrar
             </button>
           </div>
         </form>
@@ -95,6 +118,7 @@
           </div>
         </div>
 
+        <!--botões de login-->
         <div>
           <div class="grid grid-cols-2 gap-3">
             <button
@@ -105,7 +129,7 @@
               <img
                 alt="gov.br logo"
                 class="h-6 w-auto"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS78yDbuYCcsuls1yPUri0XdGLkFdshKwMtPA&s"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdOwG7n7MPTNsTDAPvd0BUaw2HEicg456IqGfmnx6cyJTYC5I3rUInWVcoXhfbY_pmbqh86o_0SyfqUFtkPQC4_PNhwve3thI1jaLT16MpNMTLG94Fq21u_vrEsiTwMR99N22BEfC3D0sLW6lZs20V0AZcHC5_Hi3F4fp_zQ_wjSwWUFlhH_OH5oC9enLpMt4BsIjYaivhvFHS-EGYHPOZx2YPIHkgy9JN4ulA4gMsxGQ_t66wmigDIIipEcMLQ4i2lJiZidIgi_s"
               />
             </button>
             <button
@@ -139,7 +163,7 @@
         <!--Termos de Serviço e Política de Privacidade-->
         <div class="text-center text-xs text-[var(--text-secondary)]">
           <p>
-            Ao acessar, você concorda com nossos
+            Ao se cadastrar, você concorda com nossos
             <a class="font-medium text-[var(--primary-color)] hover:underline" href="#"
               >Termos de Serviço</a
             >
@@ -149,11 +173,11 @@
             >.
           </p>
           <p class="mt-2">
-            Ainda não tem uma conta?
+            Já tem uma conta?
             <a
               class="font-medium text-[var(--primary-color)] hover:underline"
-              href="donor/register"
-              >Fazer Cadastro</a
+              href="/login"
+              >Fazer Login</a
             >
           </p>
         </div>

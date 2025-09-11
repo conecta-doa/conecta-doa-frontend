@@ -5,9 +5,9 @@ import { Login } from './shared/components/login/login';
 import { RegisterComponent } from './components/instituition/register/register';
 
 
-import { Register } from './components/instituition/register/register';
+// import { Register } from './components/instituition/register/register';
 
-import { Register } from './components/donor/register/register';
+// import { Register } from './components/donor/register/register';
 
 
 export const routes: Routes = [
@@ -17,8 +17,8 @@ export const routes: Routes = [
 
   { path: 'instituition/register', component: RegisterComponent },
 
-  { path: 'instituition/register', component: Register },
-  { path: 'donor/register', component: Register },
+  { path: 'instituition/register', component: RegisterComponent },
+  // { path: 'donor/register', component: Register },
 
 
  // { path: 'about', component: SobreNosComponent },

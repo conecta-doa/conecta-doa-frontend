@@ -1,13 +1,3 @@
-.btn-alt {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-.icon-google {
-  margin: 0 auto;
-  display: block;
-}
 .page-container {
   display: flex;
   flex-direction: column;
@@ -144,6 +134,7 @@
   background: #fff;
   cursor: pointer;
   transition: background 0.2s ease;
+  width: 100%;
 }
 
 .btn-alt:hover {
@@ -194,6 +185,6 @@
 }
 
 .icon-google {
-  margin: 0 auto;
+  margin: 0 20px;
   display: block;
 }

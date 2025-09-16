@@ -5,6 +5,7 @@ import { Login } from './shared/components/login/login';
 import { RegisterComponent } from './components/instituition/register/register';
 import { Register as RegisterDoador } from './components/donor/register/register';
 import { Paineldoador } from './components/instituition/paineldoador/paineldoador';
+import { instituicao } from './components/instituition/instituicoes/instituicao';
 // import { Dashboard as DonorDasbboard } from './components/donor/dashboard/dashboard';
 
 
@@ -14,6 +15,7 @@ export const routes: Routes = [
   { path: 'home', component: Home },
   { path: 'login', component: Login },
   { path: 'Paineldoador', component: Paineldoador },
+  { path: 'instituicao', component: instituicao },
   { path: 'instituition/register', component: RegisterComponent },
 
 

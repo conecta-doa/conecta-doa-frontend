@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from "../../../shared/components/header/header";
+
 
 @Component({
   selector: 'app-instituicao',
-  standalone: true,
-  imports: [CommonModule, FormsModule, HeaderComponent],
+  standalone: false,
   templateUrl: './instituicao.html',
   styleUrls: ['./instituicao.css']
 })
 
-export class instituicao {
+export class InstituicaoComponent {
   searchTerm: string = '';
 
   instituicoes = [

@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../header/header';
-import { FooterComponent } from '../footer/footer';
-import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [HeaderComponent, FooterComponent, FormsModule],
+  standalone: false,
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -65,7 +62,7 @@ export class Login {
 
   formatCpfCnpj(value: string): string {
     value = value.replace(/\D/g, '');
-    value = value.slice(0, 14); 
+    value = value.slice(0, 14);
     if (value.length <= 11) {
       // Máscara CPF: 000.000.000-00
       value = value.replace(/(\d{3})(\d)/, '$1.$2');

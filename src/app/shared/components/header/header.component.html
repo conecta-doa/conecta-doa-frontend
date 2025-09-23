@@ -8,16 +8,26 @@
 
   <!-- Menu -->
   <nav class="menu" [class.active]="isMenuOpen">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-      >Como funciona</a
-    >
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Como funciona</a>
     <a routerLink="/institutions" routerLinkActive="active">Instituições</a>
     <a routerLink="/donations" routerLinkActive="active">Doações</a>
 
     <div class="auth">
       <button class="btn vermelho" routerLink="/login">Entrar</button>
-      <button class="btn claro" routerLink="/donor/register">Cadastrar</button>
+
+      <div class="dropdown">
+        <button class="btn claro" (click)="isOpen = !isOpen">
+          Cadastrar
+          <span [class.rotated]="isOpen">⮟</span>
+        </button>
+
+        <div class="dropdown-content" *ngIf="isOpen">
+          <a routerLink="/donor/register" (click)="isOpen = false">Sou Doador</a>
+          <a routerLink="/instituition/register" (click)="isOpen = false">Sou Instituição</a>
+        </div>
+      </div>
     </div>
+
   </nav>
 
   <!-- Botão hamburger -->

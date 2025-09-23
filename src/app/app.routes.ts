@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
-import { Home } from './components/public-pages/home/home';
 import { LoginComponent } from './shared/components/login/login.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: Home },
+  {
+    path: '', loadChildren: () => import('./components/public-pages/public-pages.module')
+      .then(m => m.PublicPagesModule)
+  },
   { path: 'login', component: LoginComponent },
   {
     path: 'donor', loadChildren: () => import('./components/donor/donor.module')

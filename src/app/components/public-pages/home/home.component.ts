@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-home',
   standalone: false,
-  templateUrl: './home.html',
-  styleUrl: './home.css',
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css',
 })
-export class Home {
+export class HomeComponent {
   loginCadastroModalOpen: boolean = false;
 
   openLoginCadastroModal() {

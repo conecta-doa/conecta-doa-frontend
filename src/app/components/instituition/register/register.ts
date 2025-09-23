@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { InstituitionModule } from '../../../modules/instituition.module';
+import { InstituitionModule } from '../instituition.module';
 
 @Component({
   selector: 'app-register',

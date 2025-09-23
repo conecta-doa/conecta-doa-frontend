@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 
 @Component({
@@ -7,7 +7,7 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterModule],
 })
 export class App {
   protected readonly title = signal('Conecta-doa');

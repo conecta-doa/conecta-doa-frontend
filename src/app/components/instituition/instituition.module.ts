@@ -1,19 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardInstituition } from './dashboard/dashboard';
-import { RegisterInstitution } from './register/register';
+import { InstituitionAppComponent } from './instituition.app.component';
+import { InstituitionRoutingModule } from './instituition.routes';
+import { InstituitionDashboardComponent } from './dashboard/instituition-dashboard.component';
+import { InstituitionRegisterComponent } from './register/instituition-register.component';
 import { FormsModule } from '@angular/forms';
-import { InstituicaoComponent } from './instituicoes/instituicao';
-import { RouterModule } from '@angular/router';
-import { SharedModule } from '../../shared/components/shared-components.module';
 
 @NgModule({
-  declarations: [RegisterInstitution, InstituicaoComponent, DashboardInstituition],
-  imports: [
-    CommonModule,
-    RouterModule,
-    SharedModule,
-    FormsModule,
-  ],
+    declarations: [ InstituitionAppComponent, InstituitionDashboardComponent, InstituitionRegisterComponent ],
+    exports: [],
+    imports: [ CommonModule, InstituitionRoutingModule, FormsModule ]
 })
 export class InstituitionModule {}

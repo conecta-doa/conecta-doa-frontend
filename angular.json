@@ -3,9 +3,36 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "conecta-doa-frontend": {
+    "RXJS": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "inlineTemplate": true,
+          "inlineStyle": true,
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -26,12 +53,7 @@
             ],
             "styles": [
               "src/styles.css"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -61,40 +83,21 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "conecta-doa-frontend:build:production"
+              "buildTarget": "RXJS:build:production"
             },
             "development": {
-              "buildTarget": "conecta-doa-frontend:build:development"
+              "buildTarget": "RXJS:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "src/styles.css"
-            ]
-          }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "de63cc25-d457-4fb8-b9a1-5734daca1d9e"
   }
 }

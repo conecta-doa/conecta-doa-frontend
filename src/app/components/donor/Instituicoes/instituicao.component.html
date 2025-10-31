@@ -1,0 +1,186 @@
+<nav class="navbar">
+  <!-- Logo à esquerda -->
+  <div class="logo">
+    <img src="conectaDoacLogo.jpg" alt="Logo">
+    <span>ConectaDoa</span>
+  </div>
+
+  <!-- Menu no centro -->
+  <div class="menu">
+    <a href="#" class="active">Início</a>
+    <a href="#">Instituições</a>
+    <a href="#">Sobre</a>
+    <a href="#">Contato</a>
+  </div>
+
+  <!-- Ícones à direita -->
+  <div class="actions">
+    <button class="search-btn">
+      <img src="search.png" alt="Buscar">
+    </button>
+    <img class="avatar" src="perfil.jpeg" alt="Perfil">
+  </div>
+</nav>
+
+
+ <!-- instituicao -->
+<div class="instituicao-card">
+  <img src="chiarity.JPG" alt="Logo da Instituição" class="instituicao-img">
+
+  <div class="instituicao-info">
+    <h2>Mãos que Ajudam</h2>
+    <p>
+      Transformando vidas através da solidariedade e do apoio comunitário,<br> 
+      fornecendo recursos essenciais para quem mais precisa.
+    </p>
+    <div class="instituicao-contato">
+      <span>📍 São Paulo, SP</span>
+      <span>📞 (11) 98765-4321</span>
+      <span>✉️ contato@maosqueajudam.org</span>
+    </div>
+  </div>
+
+  <button class="btn-doar">💖 Doar Agora</button>
+</div>
+ <!-- fim de instituicao -->
+
+  <!-- Tabs -->
+ <div class="tabs-container">
+  <div class="tabs">
+    <button 
+      class="tab" 
+      [class.active]="isAbaAtiva('sobre')" 
+      (click)="selecionarAba('sobre')">
+      Sobre
+    </button>
+
+    <button 
+      class="tab" 
+      [class.active]="isAbaAtiva('necessidades')" 
+      (click)="selecionarAba('necessidades')">
+      Necessidades
+    </button>
+
+    <button 
+      class="tab" 
+      [class.active]="isAbaAtiva('historias')" 
+      (click)="selecionarAba('historias')">
+      Histórias de Sucesso
+    </button>
+  </div>
+
+ <!-- fim de tabs -->
+
+ <div class="tab-content" *ngIf="isAbaAtiva('sobre')">
+    <p>Este projeto tem como objetivo conectar doadores e instituições de forma simples e solidária.</p>
+  </div>
+
+ <div class="tab-content" *ngIf="isAbaAtiva('necessidades')">
+
+  <!-- título fora do card -->
+  <div class="contribuicao-header">
+    <span class="emoji">💰</span>
+    <h3>Contribuições Financeiras</h3>
+  </div>
+
+  <!-- card principal -->
+  <div class="contribuicao-card">
+
+    <div class="progresso-section">
+      <p class="progresso-titulo">Meta Mensal de Arrecadação</p>
+      <div class="barra-container">
+        <div class="barra-preenchida" [style.width.%]="progresso"></div>
+      </div>
+      <div class="progresso-info">
+        <span>Arrecadado: R$ {{ arrecadado | number:'1.2-2' }} de R$ {{ meta | number:'1.2-2' }}</span>
+        <span class="porcentagem">{{ progresso }}%</span>
+      </div>
+    </div>
+
+    <button class="btn-contribuir">💵 Contribuir Financeiramente</button>
+  </div>
+
+  <!-- seção alimentos -->
+  <div class="contribuicao-header">
+    <span class="emoji">🍞</span>
+    <h3>Alimentos</h3>
+  </div>
+
+  <div class="necessidades-grid">
+    <!-- Card 1 -->
+    <div class="necessidade-card">
+      <h4>Cestas Básicas</h4>
+      <p>Para garantir a alimentação de 50 famílias por um mês.</p>
+      <div class="necessidade-info">
+        <span>Necessário:</span>
+        <span class="quantidade">50 unidades</span>
+      </div>
+      <button class="btn-doar">🧺 Doar Cestas</button>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="necessidade-card">
+      <h4>Leite em Pó</h4>
+      <p>Essencial para a nutrição de crianças atendidas pela instituição.</p>
+      <div class="necessidade-info">
+        <span>Necessário:</span>
+        <span class="quantidade">100 latas</span>
+      </div>
+      <button class="btn-doar">🍼 Doar Leite</button>
+    </div>
+  </div>
+
+  <!-- seção roupas -->
+  <div class="necessidades-header">
+    <span class="emoji">👕</span>
+    <h3>Roupas e Agasalhos</h3>
+  </div>
+
+  <div class="necessidade-single">
+    <div class="necessidade-card">
+      <h4>Agasalhos de Inverno</h4>
+      <p>Para proteger adultos e crianças do frio intenso.</p>
+      <div class="necessidade-info">
+        <span>Necessário:</span>
+        <span class="quantidade">200 peças</span>
+      </div>
+      <button class="btn-doar">🧥 Doar Agasalhos</button>
+    </div>
+  </div>
+
+  <!-- seção alimentos -->
+  <div class="contribuicao-header">
+    <span class="emoji">📚</span>
+    <h3>Materiais Educacionais</h3>
+  </div>
+
+  <div class="necessidades-grid">
+    <!-- Card 1 -->
+    <div class="necessidade-card">
+      <h4>Kits Escolares</h4>
+      <p>Contendo caderno, lápis, borracha e mochila para crianças.</p>
+      <div class="necessidade-info">
+        <span>Necessário:</span>
+        <span class="quantidade">80 kits</span>
+      </div>
+      <button class="btn-doar">🎓 Doar Kits</button>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="necessidade-card">
+      <h4>Livro Infantis</h4>
+      <p>Para incentivar a leitura e desenvolvimento das crianças.</p>
+      <div class="necessidade-info">
+        <span>Necessário:</span>
+        <span class="quantidade">150 unidades</span>
+      </div>
+      <button class="btn-doar">📖 Doar Livros</button>
+    </div>
+  </div>
+
+</div>
+  <div class="tab-content" *ngIf="isAbaAtiva('historias')">
+    <p>Centenas de famílias foram impactadas positivamente com a ajuda de nossos doadores. ❤️</p>
+  </div>
+
+

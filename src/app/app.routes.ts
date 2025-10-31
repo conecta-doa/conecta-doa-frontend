@@ -1,5 +1,8 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './shared/components/login/login.component';
+import { PainelDoadorComponent } from './components/donor/paineldoador/painel.component';
+import { InstituicaoComponent } from './components/donor/Instituicoes/instituicao.component';
+
 
 export const routes: Routes = [
   {
@@ -7,6 +10,8 @@ export const routes: Routes = [
       .then(m => m.PublicPagesModule)
   },
   { path: 'login', component: LoginComponent },
+  { path: 'painel', component: PainelDoadorComponent  },
+  { path: 'instituicao', component: InstituicaoComponent  },
   {
     path: 'donor', loadChildren: () => import('./components/donor/donor.module')
       .then(r => r.DonorModule)

@@ -5,6 +5,7 @@ import { InstituitionRoutingModule } from './instituition.routes';
 import { InstituitionDashboardComponent } from './dashboard/instituition-dashboard.component';
 import { InstituitionRegisterComponent } from './register/instituition-register.component';
 import { FormsModule } from '@angular/forms';
+import { UserSettingsComponent } from './UserSettings/institution-UserSettings.component';
 
 @NgModule({
     declarations: [ InstituitionAppComponent, InstituitionDashboardComponent, InstituitionRegisterComponent ],

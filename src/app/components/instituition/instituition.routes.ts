@@ -3,7 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { InstituitionAppComponent } from "./instituition.app.component";
 import { InstituitionDashboardComponent } from "./dashboard/instituition-dashboard.component";
 import { InstituitionRegisterComponent } from "./register/instituition-register.component";
-import { ManageProfileComponent } from "./menage-profile/institution-manage-profile-component";
+import { ManageProfileComponent } from "./manage-profile/institution-manage-profile-component";
 
 export const instituitionRouterConfig: Routes = [
     { path: '', component: InstituitionAppComponent,

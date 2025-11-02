@@ -7,9 +7,32 @@ import { InstituitionRegisterComponent } from './register/instituition-register.
 import { FormsModule } from '@angular/forms';
 import { ManageProfileComponent } from './manage-profile/institution-manage-profile-component';
 
+
+
+
 @NgModule({
-    declarations: [ InstituitionAppComponent, InstituitionDashboardComponent, InstituitionRegisterComponent],
-    exports: [],
-    imports: [ CommonModule, InstituitionRoutingModule, FormsModule, ManageProfileComponent ]
+  declarations: [
+    InstituitionAppComponent,
+    InstituitionDashboardComponent,
+    InstituitionRegisterComponent,
+  
+   
+    
+  
+    
+   
+    
+  ],
+  imports: [
+    CommonModule,
+    InstituitionRoutingModule,
+    FormsModule,
+    ManageProfileComponent,        
+    
+
+     
+    
+  ]
 })
 export class InstituitionModule {}
+

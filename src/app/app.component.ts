@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { SharedModule } from './shared/components/shared.module';
 
 @Component({
@@ -10,4 +10,11 @@ import { SharedModule } from './shared/components/shared.module';
 })
 export class AppComponent {
   protected readonly title = signal('Conecta-doa');
+
+  constructor(private router: Router) {}
+
+  showHeader() {
+    const hiddenRoutes = ['/institution/notifications']; // rotas onde o header/footer NÃO aparecem
+    return !hiddenRoutes.includes(this.router.url);
+  }
 }

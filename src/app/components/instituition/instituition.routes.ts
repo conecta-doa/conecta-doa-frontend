@@ -5,19 +5,26 @@ import { InstituitionDashboardComponent } from "./dashboard/instituition-dashboa
 import { InstituitionRegisterComponent } from "./register/instituition-register.component";
 import { ManageProfileComponent } from "./manage-profile/institution-manage-profile-component";
 
-export const instituitionRouterConfig: Routes = [
-    { path: '', component: InstituitionAppComponent,
+export const InstituitionRouterConfig: Routes = [ // use InstituitionRouterConfig (camelCase)
+    { 
+        path: '', 
+        component: InstituitionAppComponent,
         children: [
-            { path: '', component: ManageProfileComponent },
-            { path: '', component: InstituitionDashboardComponent },
-            { path: 'register', component: InstituitionRegisterComponent}
+            // Rota Padrão (Página inicial do módulo: /institution)
+            { path: '', component: InstituitionDashboardComponent, pathMatch: 'full' }, 
+            
+            // Rota de Gerenciamento de Perfil (URL: /institution/profile)
+            { path: 'profile', component: ManageProfileComponent }, 
+        
+            
+            { path: 'register', component: InstituitionRegisterComponent},
         ]
     }
-]
+];
 
 @NgModule({
     imports: [
-        RouterModule.forChild(instituitionRouterConfig)
+        RouterModule.forChild(InstituitionRouterConfig)
     ],
     exports: [
         RouterModule

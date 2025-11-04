@@ -16,7 +16,11 @@ export const routes: Routes = [
     loadChildren: () => import('./components/instituition/instituition.module') 
       .then(r => r.InstituitionModule) 
   }
+];
+
+   
+  
   // { path: 'about', component: SobreNosComponent },
   // { path: 'about', component: SobreNosComponent },
   // { path: '**', component: NotFoundComponent }
-];
+;

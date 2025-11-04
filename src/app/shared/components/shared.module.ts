@@ -8,9 +8,10 @@ import { RouterModule } from '@angular/router';
 import { UserFormComponent } from './user-form/user-form.component';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
     declarations: [ FooterComponent, HeaderComponent, LoginComponent, CardComponent, UserFormComponent ],
-    exports: [ FooterComponent, HeaderComponent, CardComponent, UserFormComponent ],
+    exports: [ FooterComponent, HeaderComponent, CardComponent, UserFormComponent],
     imports: [ CommonModule, RouterModule, FormsModule ]
 })
 export class SharedModule {}

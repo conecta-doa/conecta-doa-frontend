@@ -4,6 +4,52 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { InstituitionRoutingModule } from './instituition.routes'; 
 import { InstituitionRegisterComponent } from './register/instituition-register.component';
+import { FormsModule } from '@angular/forms';
+import { ManageProfileComponent } from './manage-profile/institution-manage-profile-component';
+import { NotificationComponent } from './institution-donor-notification/institution-donor-notification-component';
+import { MatDialogModule } from '@angular/material/dialog'; 
+import { MatButtonModule } from '@angular/material/button';
+
+
+
+
+
+
+
+
+@NgModule({
+  declarations: [
+    InstituitionAppComponent,
+    InstituitionDashboardComponent,
+    InstituitionRegisterComponent,
+   
+  
+   
+    
+  
+    
+   
+    
+  ],
+  imports: [
+    CommonModule,
+    InstituitionRoutingModule,
+    FormsModule,
+    ManageProfileComponent, 
+    NotificationComponent ,
+     MatDialogModule,
+     MatButtonModule,
+    
+        
+    
+
+     
+    
+  ]
+})
+export class InstituitionModule {}
+
+=======
 import { InstituitionDashboardComponent } from './dashboard/instituition-dashboard.component';
 import { CnpjComponent } from './register/cnpj/cnpj.component';
 import { ValidationComponent } from './register/validation/validation.component';
@@ -30,3 +76,4 @@ import { SuccessComponent } from './register/success/success.component';
   ]
 })
 export class InstituitionModule { }
+

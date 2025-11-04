@@ -1,0 +1,88 @@
+<form [formGroup]="formSeguranca" (ngSubmit)="onSubmit()">
+  
+  <h2 class="text-2xl font-bold text-center text-gray-800 mb-2">
+    Segurança da Conta
+  </h2>
+  <p class="text-base text-gray-600 text-center mb-8">
+    Para finalizar, crie uma senha segura para
+    proteger o acesso da sua instituição.
+  </p>
+
+  <div class="mb-4">
+    <label for="senha" class="block text-sm font-medium text-gray-700 mb-2">Crie uma senha</label>
+    <div class="relative">
+      <input 
+        id="senha"
+        [type]="senhaVisivel ? 'text' : 'password'"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-500"
+        placeholder="Mínimo de 8 caracteres"
+        formControlName="senha">
+      
+      <button 
+        type="button" 
+        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+        (click)="toggleSenhaVisivel()">
+        
+        <svg *ngIf="senhaVisivel" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 10.226 6.323 7.5 12 7.5s8.577 2.726 9.964 4.183c.375.375.375.983 0 1.358C20.577 14.774 17.677 17.5 12 17.5s-8.577-2.726-9.964-4.183Z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+        </svg>
+        
+        <svg *ngIf="!senhaVisivel" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <label for="confirmarSenha" class="block text-sm font-medium text-gray-700 mb-2">Confirme sua senha</label>
+    <div class="relative">
+      <input 
+        id="confirmarSenha"
+        [type]="senhaVisivel ? 'text' : 'password'"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-500"
+        placeholder="Repita a senha"
+        formControlName="confirmarSenha">
+      
+      <button 
+        type="button" 
+        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+        (click)="toggleSenhaVisivel()">
+        
+        <svg *ngIf="senhaVisivel" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 10.226 6.323 7.5 12 7.5s8.577 2.726 9.964 4.183c.375.375.375.983 0 1.358C20.577 14.774 17.677 17.5 12 17.5s-8.577-2.726-9.964-4.183Z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+        </svg>
+        
+        <svg *ngIf="!senhaVisivel" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L12 12" />
+        </svg>
+      </button>
+    </div>
+    
+    <div *ngIf="formSeguranca.controls['confirmarSenha'].errors?.['mustMatch']" 
+         class="text-red-600 text-sm mt-2">
+      As senhas não coincidem.
+    </div>
+  </div>
+
+  <div class="flex justify-between items-center mt-8">
+    <button 
+      type="button" 
+      class="text-red-600 font-bold py-3 px-6 border border-red-600 rounded-lg
+             hover:bg-red-50 transition duration-300"
+      (click)="onVoltarClick()">
+      Voltar
+    </button>
+    
+    <button 
+      type="submit" 
+      class="bg-red-600 text-white font-bold py-3 px-6 rounded-lg
+             hover:bg-red-700 transition duration-300
+             disabled:bg-gray-300 disabled:cursor-not-allowed"
+      [disabled]="formSeguranca.invalid">
+      Finalizar Cadastro
+    </button>
+  </div>
+</form>

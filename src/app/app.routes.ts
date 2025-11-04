@@ -12,8 +12,9 @@ export const routes: Routes = [
       .then(r => r.DonorModule)
   },
   {
-    path: 'instituition', loadChildren: () => import('./components/instituition/instituition.module')
-      .then(r => r.InstituitionModule)
+    path: 'instituition', 
+    loadChildren: () => import('./components/instituition/instituition.module') 
+      .then(r => r.InstituitionModule) 
   }
   // { path: 'about', component: SobreNosComponent },
   // { path: 'about', component: SobreNosComponent },

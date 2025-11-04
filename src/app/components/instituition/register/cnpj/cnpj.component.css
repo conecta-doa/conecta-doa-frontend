@@ -1,0 +1,207 @@
+/* Cole isto em: src/app/components/instituition/register/institution-register.component.css */
+
+/* Define as cores do seu design */
+:host {
+  --cor-primaria: #D92332; /* O seu vermelho */
+  --cor-primaria-hover: #b01a27;
+  --cor-texto-label: #555;
+  --cor-borda: #ddd;
+  --cor-fundo-card: #ffffff;
+  /* O fundo da PÁGINA (do seu 'como eu quero') é um cinza muito claro ou branco */
+  --cor-fundo-pagina: #f4f7fa; /* Palpite de um cinza claro */
+}
+
+/* --- ESTILOS DO "PAI" --- */
+/* Este é o container principal que ocupa a tela toda */
+.registration-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Alinha no topo */
+  min-height: 100vh;
+  /* Se o fundo da sua página não ficar cinza claro,
+    descomente a linha abaixo para forçar.
+  */
+  /* background-color: var(--cor-fundo-pagina); */
+  padding: 2rem 1rem;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* O cabeçalho 'Conecta Doa' (como no seu design) */
+.registration-header {
+  color: #333; /* Texto escuro */
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  align-self: flex-start; 
+  padding-left: 2rem;
+  width: 100%;
+  max-width: 600px; /* Alinha com o cartão */
+  box-sizing: border-box;
+}
+
+/* O "cartão" branco flutuante */
+.stepper-card {
+  width: 100%;
+  max-width: 600px; 
+  background-color: var(--cor-fundo-card);
+  border-radius: 16px;
+  padding: 2.5rem 3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Sombra suave */
+  box-sizing: border-box;
+}
+
+.stepper-card.step-success {
+  background-color: var(--cor-fundo-card);
+}
+
+/* O rodapé '© 2024...' (como no seu design) */
+.registration-footer {
+  margin-top: 2rem;
+  color: #888;
+  font-size: 0.8rem;
+  text-align: center; /* Centra o rodapé */
+}
+
+/* --- ESTILOS GLOBAIS PARA OS FILHOS (::ng-deep) --- */
+/* ::ng-deep "fura" o CSS e permite que este "Pai"
+  estilize os botões e inputs que estão DENTRO dos "filhos"
+*/
+
+/* Barra de progresso (do seu design) */
+:host ::ng-deep .progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+:host ::ng-deep .progress, 
+:host ::ng-deep .progress-bar-fill {
+  height: 100%;
+  background-color: var(--cor-primaria);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+/* O texto "Passo 1 de 4" */
+:host ::ng-deep .step {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--cor-texto-label);
+  margin-bottom: 0.5rem;
+}
+
+/* Título (ex: 'Cadastre sua Instituição') */
+:host ::ng-deep .form-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.75rem;
+}
+
+/* Subtítulo (ex: 'Para começar, insira...') */
+:host ::ng-deep .step-subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--cor-texto-label);
+  margin-bottom: 2.5rem;
+  line-height: 1.5;
+}
+
+/* Labels (ex: 'CNPJ') */
+:host ::ng-deep .label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--cor-texto-label);
+  margin-bottom: 0.5rem;
+}
+
+/* Inputs (o campo de texto) */
+:host ::ng-deep .input {
+  width: 100%;
+  padding: 0.9rem 1rem; 
+  font-size: 1rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  background-color: #f9f9f9; /* Fundo do input ligeiramente cinza */
+  box-sizing: border-box; 
+  margin-bottom: 1.5rem; 
+}
+
+:host ::ng-deep .input::placeholder {
+  color: var(--cor-input-placeholder);
+}
+
+/* Texto 'Termos de Uso' */
+:host ::ng-deep .terms {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+:host ::ng-deep .terms a {
+  color: var(--cor-primaria);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Botão 'Avançar' (vermelho) */
+:host ::ng-deep .btn-next {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--cor-primaria);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 2rem;
+}
+
+:host ::ng-deep .btn-next:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+:host ::ng-deep .btn-next:hover:not(:disabled) {
+  background-color: var(--cor-primaria-hover);
+}
+
+/* Botão 'Voltar' (branco) */
+:host ::ng-deep .btn-secondary {
+  padding: 0.9rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cor-primaria);
+  background-color: var(--cor-fundo-card);
+  border: 1px solid var(--cor-primaria);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+:host ::ng-deep .btn-secondary:hover {
+  background-color: #b33f49; 
+}
+
+/* Container para botões 'Voltar' e 'Avançar' lado a lado */
+:host ::ng-deep .step-navigation {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin-top: 2rem;
+}

@@ -3,89 +3,51 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-instituition-register',
   standalone: false,
-  templateUrl: './instituition-register.component.html',
-  styleUrl: './instituition-register.component.css'
+  templateUrl: './instituition-register.component.html', 
+  styleUrls: ['./instituition-register.component.css'] 
 })
 export class InstituitionRegisterComponent {
+
   currentStep: number = 1;
-  cnpj: string = '';
+  dadosDaApi: any = null;
+  dadosCnpj: string = '';
+  dadosValidacao: any = null;
+  dadosResponsavel: any = null;
+  dadosSeguranca: any = null;
 
-  estatutoSocial: File | null = null;
-  ataDiretoria: File | null = null;
-  certificadoFederal: File | null = null;
-  certificadoOscip: File | null = null;
-  alvaraFuncionamento: File | null = null;
+  constructor() { }
 
-  assinaturaDigital: boolean = false;
-  vinculoConta: boolean = false;
-
-  constructor() {}
-
-  // FORMATAR CNPJ
-  formatCnpj(event: any): void {
-    let value = event.target.value.replace(/\D/g, '');
-
-    if (value.length > 14) {
-      value = value.slice(0, 14);
-    }
-
-    if (value.length <= 14) {
-      value = value.replace(/^(\d{2})(\d)/, '$1.$2');
-      value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
-      value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
-      value = value.replace(/(\d{4})(\d)/, '$1-$2');
-    }
-
-    this.cnpj = value;
-    event.target.value = value;
+  handleCnpjSubmit(cnpj: string) {
+    console.log('CNPJ recebido do filho:', cnpj);
+    this.dadosCnpj = cnpj;
+    this.dadosDaApi = {
+      razaoSocial: 'ACME CORPORATION LTDA',
+      nomeFantasia: 'Acme Co',
+      endereco: 'Av. Principal, 123, Centro, São Paulo - SP',
+      email: 'contato@acme.com',
+      telefone: '+55 (11) 99999-9999'
+    };
+    this.currentStep = 2; 
   }
 
-  nextStep(): void {
-    if (this.cnpj.length === 18) {
-      this.currentStep = 2;
-    } else {
-      alert('Por favor, informe um CNPJ válido.');
-    }
+  handleValidationSubmit(dadosValidados: any) {
+    this.dadosValidacao = dadosValidados;
+    this.currentStep = 3; 
   }
 
-  onFileSelected(event: any, fileType: string): void {
-    const file: File = event.target.files[0];
-    if (file) {
-      switch (fileType) {
-        case 'estatutoSocial':
-          this.estatutoSocial = file;
-          break;
-        case 'ataDiretoria':
-          this.ataDiretoria = file;
-          break;
-        case 'certificadoFederal':
-          this.certificadoFederal = file;
-          break;
-        case 'certificadoOscip':
-          this.certificadoOscip = file;
-          break;
-        case 'alvaraFuncionamento':
-          this.alvaraFuncionamento = file;
-          break;
-      }
-    }
+  handleResponsibleSubmit(dadosResponsavel: any) {
+    this.dadosResponsavel = dadosResponsavel;
+    this.currentStep = 4;
   }
 
-  submitDocuments(): void {
-    if (!this.estatutoSocial || !this.ataDiretoria || !this.certificadoFederal) {
-      alert('Por favor, envie os documentos obrigatórios.');
-      return;
+  handleSecuritySubmit(dadosSeguranca: any) {
+    this.dadosSeguranca = dadosSeguranca;
+    this.currentStep = 5;
+  }
+
+  onVoltar() {
+    if (this.currentStep > 1 && this.currentStep < 5) {
+      this.currentStep--;
     }
-
-    console.log('CNPJ:', this.cnpj);
-    console.log('Documentos:', {
-      estatutoSocial: this.estatutoSocial,
-      ataDiretoria: this.ataDiretoria,
-      certificadoFederal: this.certificadoFederal,
-      certificadoOscip: this.certificadoOscip,
-      alvaraFuncionamento: this.alvaraFuncionamento,
-    });
-
-    alert('Documentos enviados com sucesso!');
   }
 }

@@ -1,0 +1,165 @@
+.donation-notifications-page {
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+}
+
+
+.header {
+  background-color: #fff;
+  padding: 15px 0;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-name {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #333;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+
+.notifications-page {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* TÍTULO E BOTÕES */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.notifications-title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.button-header {
+  display: flex;
+  gap: 10px;
+}
+.btn-acao {
+  background-color: #e63946;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn-acao:hover {
+  background-color: #d12c3a;
+}
+.btn-acao.cinza {
+  background-color: #f0f0f0;
+  color: #333;
+}
+.btn-acao.cinza:hover {
+  background-color: #e0e0e0;
+}
+
+
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.notification-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 18px 24px;
+  border-left: 4px solid transparent;
+  transition: 0.2s ease;
+}
+.notification-item.unread {
+  border-left: 4px solid #e63946;
+}
+.notification-item.confirmed {
+
+}
+.notification-item:hover {
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.dot-unread {
+  background-color: #e63946;
+}
+.dot-confirmed {
+  
+}
+
+
+.notification-details {
+  display: flex;
+  flex-direction: column;
+}
+.notification-text {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+.notification-time {
+  font-size: 0.85rem;
+  color: #999;
+  margin-top: 4px;
+}
+
+
+.confirm-button {
+  background-color: transparent;
+  border: 1.5px solid #e63946;
+  color: #e63946;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.confirm-button:hover {
+  background-color: #e63946;
+  color: #fff;
+}
+
+
+.empty-notifications {
+  text-align: center;
+  margin-top: 80px;
+  color: #999;
+}
+.empty-notifications p {
+  margin-top: 10px;
+  font-size: 1rem;
+}

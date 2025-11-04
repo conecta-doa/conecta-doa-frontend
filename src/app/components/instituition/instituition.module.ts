@@ -6,6 +6,13 @@ import { InstituitionDashboardComponent } from './dashboard/instituition-dashboa
 import { InstituitionRegisterComponent } from './register/instituition-register.component';
 import { FormsModule } from '@angular/forms';
 import { ManageProfileComponent } from './manage-profile/institution-manage-profile-component';
+import { NotificationComponent } from './institution-donor-notification/institution-donor-notification-component';
+import { MatDialogModule } from '@angular/material/dialog'; 
+import { MatButtonModule } from '@angular/material/button';
+
+
+
+
 
 
 
@@ -15,6 +22,7 @@ import { ManageProfileComponent } from './manage-profile/institution-manage-prof
     InstituitionAppComponent,
     InstituitionDashboardComponent,
     InstituitionRegisterComponent,
+   
   
    
     
@@ -27,7 +35,12 @@ import { ManageProfileComponent } from './manage-profile/institution-manage-prof
     CommonModule,
     InstituitionRoutingModule,
     FormsModule,
-    ManageProfileComponent,        
+    ManageProfileComponent, 
+    NotificationComponent ,
+     MatDialogModule,
+     MatButtonModule,
+    
+        
     
 
      

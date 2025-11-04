@@ -14,7 +14,7 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   showHeader() {
-    const hiddenRoutes = ['/institution/notifications']; // rotas onde o header/footer NÃO aparecem
+    const hiddenRoutes = ['/institution/notifications']; 
     return !hiddenRoutes.includes(this.router.url);
   }
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { MockApiService } from '../../../core/services/mock-api.service';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +10,9 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
   cpfCnpj: string = '';
+  password: string = '';
+
+  constructor(private mockApi: MockApiService, private router: Router) {}
 
   validateCpfCnpj(): string {
     const value = this.cpfCnpj.replace(/\D/g, '');
@@ -63,12 +68,10 @@ export class LoginComponent {
     value = value.replace(/\D/g, '');
     value = value.slice(0, 14);
     if (value.length <= 11) {
-      // Máscara CPF: 000.000.000-00
       value = value.replace(/(\d{3})(\d)/, '$1.$2');
       value = value.replace(/(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
       value = value.replace(/(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
     } else {
-      // Máscara CNPJ: 00.000.000/0000-00
       value = value.replace(/(\d{2})(\d)/, '$1.$2');
       value = value.replace(/(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
       value = value.replace(/(\d{2})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3/$4');
@@ -80,5 +83,28 @@ export class LoginComponent {
   onCpfCnpjInput(event: any): void {
     this.cpfCnpj = this.formatCpfCnpj(event.target.value);
     event.target.value = this.cpfCnpj;
+  }
+
+  onSubmit(): void {
+    this.mockApi.login(this.cpfCnpj, this.password).subscribe({
+      next: (res) => {
+        try {
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('user', JSON.stringify(res.user));
+        } catch (e) {
+          // ignore storage errors
+        }
+        if (res.user?.role === 'donor') {
+          this.router.navigate(['/donor']);
+        } else if (res.user?.role === 'institution') {
+          this.router.navigate(['/instituition']);
+        } else {
+          this.router.navigate(['/']);
+        }
+      },
+      error: (err) => {
+        alert(err?.message || 'Falha no login');
+      },
+    });
   }
 }

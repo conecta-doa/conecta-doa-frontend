@@ -7,6 +7,26 @@ import { Component } from '@angular/core';
   styleUrls: ['./instituition-register.component.css'] 
 })
 export class InstituitionRegisterComponent {
+  currentStep: number = 1;
+  cnpj: string = '';
+
+  estatutoSocial: File | null = null;
+  ataDiretoria: File | null = null;
+  certificadoFederal: File | null = null;
+  certificadoOscip: File | null = null;
+  alvaraFuncionamento: File | null = null;
+
+  assinaturaDigital: boolean = false;
+  vinculoConta: boolean = false;
+
+  constructor() {}
+
+  formatCnpj(event: any): void {
+    let value = event.target.value.replace(/\D/g, '');
+
+    if (value.length > 14) {
+      value = value.slice(0, 14);
+    }
 
   currentStep: number = 1;
   dadosDaApi: any = null;

@@ -1,0 +1,170 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Arquivo de dados mock para facilitar consumo de API no front-end. Contém usuários para simular login, doadores, instituições e doações.",
+    "notes": "Use 'users' para validar login (documento + password). Campos 'cpf' e 'cnpj' são armazenados sem máscaras.",
+    "sampleLogin": {
+      "donor": { "document": "12345678901", "formatted": "123.456.789-01", "password": "senha123" },
+      "institution": {
+        "document": "11222333000181",
+        "formatted": "11.222.333/0001-81",
+        "password": "instituicao123"
+      }
+    }
+  },
+
+  "users": [
+    {
+      "id": "u_donor_1",
+      "role": "donor",
+      "name": "João Silva",
+      "cpf": "12345678901",
+      "cpf_formatted": "123.456.789-01",
+      "password": "senha123",
+      "phone": "+55 11 99999-0001",
+      "email": "joao.silva@example.com",
+      "createdAt": "2025-11-01T09:30:00Z",
+      "token": "mock-token-donor-1"
+    },
+    {
+      "id": "u_instit_1",
+      "role": "institution",
+      "name": "Casa da Esperança",
+      "cnpj": "11222333000181",
+      "cnpj_formatted": "11.222.333/0001-81",
+      "password": "instituicao123",
+      "phone": "+55 11 3333-4444",
+      "email": "contato@casadaesperanca.org",
+      "createdAt": "2025-10-20T14:00:00Z",
+      "token": "mock-token-instit-1"
+    },
+    {
+      "id": "u_donor_2",
+      "role": "donor",
+      "name": "Mariana Costa",
+      "cpf": "98765432100",
+      "cpf_formatted": "987.654.321-00",
+      "password": "mudar123",
+      "phone": "+55 21 98888-7777",
+      "email": "mariana.costa@example.com",
+      "createdAt": "2025-09-15T11:20:00Z",
+      "token": "mock-token-donor-2"
+    }
+  ],
+
+  "donors": [
+    {
+      "id": "d1",
+      "userId": "u_donor_1",
+      "name": "João Silva",
+      "cpf": "12345678901",
+      "phone": "+55 11 99999-0001",
+      "profileType": "public",
+      "address": {
+        "street": "Rua das Flores",
+        "number": "123",
+        "city": "São Paulo",
+        "state": "SP",
+        "zip": "01000-000"
+      },
+      "createdAt": "2025-11-01T09:30:00Z"
+    },
+    {
+      "id": "d2",
+      "userId": "u_donor_2",
+      "name": "Mariana Costa",
+      "cpf": "98765432100",
+      "phone": "+55 21 98888-7777",
+      "profileType": "anonymous",
+      "address": {
+        "street": "Av. Atlântica",
+        "number": "2000",
+        "city": "Rio de Janeiro",
+        "state": "RJ",
+        "zip": "22010-000"
+      },
+      "createdAt": "2025-09-15T11:20:00Z"
+    }
+  ],
+
+  "institutions": [
+    {
+      "id": "i1",
+      "userId": "u_instit_1",
+      "name": "Casa da Esperança",
+      "cnpj": "11222333000181",
+      "description": "Organização que acolhe famílias em situação de vulnerabilidade.",
+      "address": {
+        "street": "Praça da Fé",
+        "number": "45",
+        "city": "São Paulo",
+        "state": "SP",
+        "zip": "02020-000"
+      },
+      "contact": {
+        "phone": "+55 11 3333-4444",
+        "email": "contato@casadaesperanca.org"
+      },
+      "documents": [
+        {
+          "type": "estatutoSocial",
+          "file": "estatuto-social-casa-esperanca.pdf",
+          "uploadedAt": "2025-10-21T08:00:00Z"
+        },
+        {
+          "type": "ataDiretoria",
+          "file": "ata-diretoria-casa-esperanca.pdf",
+          "uploadedAt": "2025-10-21T08:05:00Z"
+        }
+      ],
+      "verified": true,
+      "bank": {
+        "bankName": "Banco Exemplo",
+        "agency": "1234",
+        "account": "00012345-6",
+        "holder": "Casa da Esperança"
+      },
+      "createdAt": "2025-10-20T14:00:00Z"
+    }
+  ],
+
+  "donations": [
+    {
+      "id": "don_1",
+      "donorId": "d1",
+      "institutionId": "i1",
+      "type": "in-kind",
+      "items": [
+        { "name": "Arroz", "quantity": 10, "unit": "kg" },
+        { "name": "Feijão", "quantity": 5, "unit": "kg" }
+      ],
+      "pickup": {
+        "date": "2025-10-28T10:00:00Z",
+        "address": {
+          "street": "Rua das Flores",
+          "number": "123",
+          "city": "São Paulo",
+          "state": "SP"
+        }
+      },
+      "status": "delivered",
+      "notes": "Entrega realizada com sucesso",
+      "createdAt": "2025-10-28T08:30:00Z"
+    },
+    {
+      "id": "don_2",
+      "donorId": "d2",
+      "institutionId": "i1",
+      "type": "monetary",
+      "amount": 150.0,
+      "currency": "BRL",
+      "status": "pending",
+      "createdAt": "2025-10-30T16:00:00Z"
+    }
+  ],
+
+  "settings": {
+    "categories": ["Alimentos", "Roupas", "Dinheiro", "Higiene"],
+    "states": ["SP", "RJ", "MG", "BA"]
+  }
+}

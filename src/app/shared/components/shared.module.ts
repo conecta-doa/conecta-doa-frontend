@@ -9,8 +9,8 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-    declarations: [ FooterComponent, HeaderComponent, LoginComponent, CardComponent, UserFormComponent ],
+    declarations: [ HeaderComponent, LoginComponent, CardComponent, UserFormComponent ],
     exports: [ FooterComponent, HeaderComponent, CardComponent, UserFormComponent ],
-    imports: [ CommonModule, RouterModule, FormsModule ]
+    imports: [ CommonModule, RouterModule, FormsModule, FooterComponent ],
 })
 export class SharedModule {}

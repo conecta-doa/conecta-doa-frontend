@@ -1,1 +1,125 @@
-<p>Dashboard works</p>
+<!-- <header class="navbar">
+  <div class="logo">
+    <img src="conectaDoacLogo.jpg" alt="Logo ConectaDoa" />
+    <span>ConectaDoa</span>
+  </div>
+
+  <nav class="menu">
+    <a href="#">Início</a>
+    <a href="http://localhost:4200/instituicao">Instituições</a>
+    <a href="#">Doações</a>
+    <a href="#">Comunidade</a>
+  </nav>
+
+  <div class="user-actions">
+    <button class="icon">
+      <img class="notificacao" src="notificacao.png" alt="Perfil do usuário" />
+    </button>
+    <a href="perfil.html">
+      <img class="avatar1" src="perfil.jpeg" alt="Perfil do usuário" />
+    </a>
+  </div>
+</header> -->
+
+<div class="container">
+  <h1>Painel do Doador</h1>
+
+  <div class="card">
+    <img src="perfil.jpeg" alt="Avatar" class="avatar" />
+    <div class="info">
+      <h2>{{ name }}</h2>
+
+      <p class="status">Coração de Ouro <span class="emoji">💛</span></p>
+      <p class="points">❤️ <strong>{{points}} SolidarPoints</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="painel-container">
+  <div class="historico-card">
+    <h2>Histórico de Doações</h2>
+    <table class="historico-tabela">
+      <thead>
+        <tr>
+          <th>DATA</th>
+          <th>INSTITUIÇÃO</th>
+          <th>TIPO</th>
+          <th>STATUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>15/03/2024</td>
+          <td>Lar da Esperança</td>
+          <td>Alimentos</td>
+          <td>
+            <span class="status concluida">Concluída</span>
+            <a href="#" class="ver-link">Ver</a>
+          </td>
+        </tr>
+        <tr>
+          <td>20/02/2024</td>
+          <td>Abrigo Fraterno</td>
+          <td>Roupas</td>
+          <td>
+            <span class="status concluida">Concluída</span>
+            <a href="#" class="ver-link">Ver</a>
+          </td>
+        </tr>
+        <tr>
+          <td>05/01/2024</td>
+          <td>Casa do Acolhimento</td>
+          <td>Financeiro</td>
+          <td>
+            <span class="status concluida">Concluída</span>
+            <a href="#" class="ver-link">Ver</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="painel-lateral">
+    <div class="ranking-card">
+      <img src="trofeu.jpeg" alt="Troféu" class="ranking-bg" />
+      <div class="ranking-content">
+        <h3>Ranking de Doadores</h3>
+        <p>Você está na <strong style="color: #ffd700">5ª posição</strong> do Top 10 Local!</p>
+        <p>Continue assim!</p>
+      </div>
+    </div>
+
+    <div class="recompensas-card">
+      <img src="caixa.jpeg" alt="Caixa" class="recompensas-bg" />
+      <div class="recompensas-content">
+        <h3>Área de Recompensas</h3>
+        <p>
+          Troque seus <strong>SolidarPoints</strong> por cupons de <br />
+          parceiros ou cashback social!
+        </p>
+        <button>Trocar meus pontos</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sugestoes-container">
+  <h2><strong>Sugestões Próximas</strong></h2>
+  <div class="sugestoes-grid">
+    <div class="sugestao-card">
+      <img src="compras.JPG" alt="Lar da Esperança" />
+      <h4><strong>Lar da Esperança</strong></h4>
+      <p>Precisa de alimentos</p>
+    </div>
+    <div class="sugestao-card">
+      <img src="imagem2.JPG" alt="Abrigo Fraterno" />
+      <h4><strong>Abrigo Fraterno</strong></h4>
+      <p>Precisa de roupas</p>
+    </div>
+    <div class="sugestao-card">
+      <img src="imagem3.JPG" alt="Casa do Acolhimento" />
+      <h4><strong>Casa do Acolhimento</strong></h4>
+      <p>Meta financeira</p>
+    </div>
+  </div>
+</div>

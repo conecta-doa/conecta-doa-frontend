@@ -21,7 +21,6 @@ export class InstituitionRegisterComponent {
 
   constructor() {}
 
-  // FORMATAR CNPJ
   formatCnpj(event: any): void {
     let value = event.target.value.replace(/\D/g, '');
 

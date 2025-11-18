@@ -8,9 +8,12 @@
 
   <!-- Menu -->
   <nav class="menu" [class.active]="isMenuOpen">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Como funciona</a>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+      >Como funciona</a
+    >
     <a routerLink="/institutions" routerLinkActive="active">Instituições</a>
     <a routerLink="/donations" routerLinkActive="active">Doações</a>
+    <a routerLink="/stories" routerLinkActive="active">Histórias</a>
 
     <div class="auth">
       <button class="btn vermelho" routerLink="/login">Entrar</button>
@@ -27,7 +30,6 @@
         </div>
       </div>
     </div>
-
   </nav>
 
   <!-- Botão hamburger -->

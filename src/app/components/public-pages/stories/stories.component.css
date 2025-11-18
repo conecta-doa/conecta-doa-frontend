@@ -1,0 +1,41 @@
+/* Minimal styles for the stories page. You can expand or replace with the original 'historias.css' content. */
+.historias {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.historias h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.descricao {
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+.carrossel {
+  display: grid;
+  gap: 1rem;
+}
+.historia {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.historia img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.texto h3 {
+  margin: 0 0 0.25rem 0;
+}
+.paginacao {
+  margin-top: 1rem;
+}
+.page-btn {
+  margin-right: 0.25rem;
+}

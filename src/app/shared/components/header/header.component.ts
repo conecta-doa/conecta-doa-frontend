@@ -14,6 +14,13 @@ export class HeaderComponent {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  public usuarioLogado: boolean = false;
+
+  toggleDropdown() {
+    this.isOpen = !this.isOpen;
+  }
+
+
   @HostListener('document:click', ['$event.target'])
   onClickOutside(targetElement: any) {
     const clickedInside = targetElement.closest('.dropdown');

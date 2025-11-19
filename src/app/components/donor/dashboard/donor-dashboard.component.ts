@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MockApiService } from '../../../core/services/mock-api.service';
 
+
 interface Donation {
   date: string;
   institution: string;

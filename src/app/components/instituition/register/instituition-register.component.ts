@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-instituition-register',
   standalone: false,
-  templateUrl: './instituition-register.component.html', 
-  styleUrls: ['./instituition-register.component.css'] 
+  templateUrl: './instituition-register.component.html',
+  styleUrls: ['./instituition-register.component.css']
 })
 export class InstituitionRegisterComponent {
   currentStep: number = 1;
@@ -19,23 +19,33 @@ export class InstituitionRegisterComponent {
   assinaturaDigital: boolean = false;
   vinculoConta: boolean = false;
 
-  constructor() {}
-
-  formatCnpj(event: any): void {
-    let value = event.target.value.replace(/\D/g, '');
-
-    if (value.length > 14) {
-      value = value.slice(0, 14);
-    }
-
-  currentStep: number = 1;
   dadosDaApi: any = null;
   dadosCnpj: string = '';
   dadosValidacao: any = null;
   dadosResponsavel: any = null;
   dadosSeguranca: any = null;
 
-  constructor() { }
+  constructor() {}
+
+  formatCnpj(event: any): void {
+    let value = (event && event.target && event.target.value) ? String(event.target.value) : '';
+    value = value.replace(/\D/g, '');
+
+    if (value.length > 14) {
+      value = value.slice(0, 14);
+    }
+
+    // Apply basic CNPJ mask: 00.000.000/0000-00
+    value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+    value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+    value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+    value = value.replace(/(\d{4})(\d)/, '$1-$2');
+
+    this.cnpj = value;
+    if (event && event.target) {
+      event.target.value = value;
+    }
+  }
 
   handleCnpjSubmit(cnpj: string) {
     console.log('CNPJ recebido do filho:', cnpj);
@@ -47,12 +57,12 @@ export class InstituitionRegisterComponent {
       email: 'contato@acme.com',
       telefone: '+55 (11) 99999-9999'
     };
-    this.currentStep = 2; 
+    this.currentStep = 2;
   }
 
   handleValidationSubmit(dadosValidados: any) {
     this.dadosValidacao = dadosValidados;
-    this.currentStep = 3; 
+    this.currentStep = 3;
   }
 
   handleResponsibleSubmit(dadosResponsavel: any) {

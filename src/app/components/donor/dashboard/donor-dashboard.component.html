@@ -1,26 +1,5 @@
-<!-- <header class="navbar">
-  <div class="logo">
-    <img src="conectaDoacLogo.jpg" alt="Logo ConectaDoa" />
-    <span>ConectaDoa</span>
-  </div>
 
-  <nav class="menu">
-    <a href="#">Início</a>
-    <a href="http://localhost:4200/instituicao">Instituições</a>
-    <a href="#">Doações</a>
-    <a href="#">Comunidade</a>
-  </nav>
-
-  <div class="user-actions">
-    <button class="icon">
-      <img class="notificacao" src="notificacao.png" alt="Perfil do usuário" />
-    </button>
-    <a href="perfil.html">
-      <img class="avatar1" src="perfil.jpeg" alt="Perfil do usuário" />
-    </a>
-  </div>
-</header> -->
-
+<app-donor-header></app-donor-header>
 <div class="container">
   <h1>Painel do Doador</h1>
 
@@ -30,7 +9,9 @@
       <h2>{{ name }}</h2>
 
       <p class="status">Coração de Ouro <span class="emoji">💛</span></p>
-      <p class="points">❤️ <strong>{{points}} SolidarPoints</strong></p>
+      <p class="points">
+        ❤️ <strong>{{ points }} SolidarPoints</strong>
+      </p>
     </div>
   </div>
 </div>

@@ -4,6 +4,7 @@ import { DonorAppComponent } from './donor.app.component';
 import { DonorDashboardComponent } from './dashboard/donor-dashboard.component';
 import { DonorRegisterComponent } from './register/donor-register.component';
 import { InstituicaoComponent } from './Instituicoes/instituicao.component';
+import { InstituitinListComponent } from '../../shared/components/instituitin-list.component/instituitin-list.component';
 
 export const donorRouterConfig: Routes = [
   {
@@ -13,6 +14,7 @@ export const donorRouterConfig: Routes = [
       { path: '', component: DonorDashboardComponent },
       { path: 'register', component: DonorRegisterComponent },
       { path: 'instituicao', component: InstituicaoComponent },
+      { path: 'instituicoes', component: InstituitinListComponent },
     ],
   },
 ];

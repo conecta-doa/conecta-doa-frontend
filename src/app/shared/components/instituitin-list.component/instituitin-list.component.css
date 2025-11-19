@@ -1,0 +1,36 @@
+/* Component specific styles (variables moved to global styles.css) */
+
+.institution-list-wrapper {
+  font-family: 'Plus Jakarta Sans', 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Utility refinements when Tailwind not available (fallback) */
+.institution-list-wrapper h2 {
+  line-height: 1.15;
+}
+.institution-list-wrapper input {
+  outline: none;
+}
+.institution-list-wrapper input:focus {
+  box-shadow: 0 0 0 3px rgba(234, 42, 51, 0.25);
+}
+
+/* Card hover fallback */
+.institution-list-wrapper .group {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.institution-list-wrapper .group:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Tag chip (generic badge style) */
+.institution-list-wrapper .tag-chip {
+  background: var(--input-background-color);
+  color: var(--text-secondary-color);
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 500;
+}

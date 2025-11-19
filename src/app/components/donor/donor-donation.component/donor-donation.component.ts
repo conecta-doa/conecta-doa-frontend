@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-donor-donation',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+  standalone: false,
   templateUrl: './donor-donation.component.html',
   styleUrls: ['./donor-donation.component.css'],
 })

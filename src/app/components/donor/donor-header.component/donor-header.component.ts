@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-donor-header',
-  standalone: true,
-  imports: [CommonModule],
+  standalone: false,
   templateUrl: './donor-header.component.html',
   styleUrls: ['./donor-header.component.css'],
 })

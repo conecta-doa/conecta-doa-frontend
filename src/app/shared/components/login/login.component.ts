@@ -1,18 +1,22 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MockApiService } from '../../../core/services/mock-api.service';
+import { Auth } from '../../../core/services/auth';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  standalone: false,
+  standalone: true,
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
+  imports: [CommonModule, FormsModule, RouterModule],
 })
 export class LoginComponent {
   cpfCnpj: string = '';
   password: string = '';
 
-  constructor(private mockApi: MockApiService, private router: Router) {}
+  constructor(private mockApi: MockApiService, private router: Router, private auth: Auth) {}
 
   validateCpfCnpj(): string {
     const value = this.cpfCnpj.replace(/\D/g, '');
@@ -89,7 +93,7 @@ export class LoginComponent {
     this.mockApi.login(this.cpfCnpj, this.password).subscribe({
       next: (res) => {
         try {
-          localStorage.setItem('token', res.token);
+          this.auth.setToken(res.token);
           localStorage.setItem('user', JSON.stringify(res.user));
         } catch (e) {
           // ignore storage errors

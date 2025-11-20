@@ -8,28 +8,33 @@
 
   <!-- Menu -->
   <nav class="menu" [class.active]="isMenuOpen">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-      >Como funciona</a
-    >
+    <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      Como funciona
+    </a>
     <a routerLink="/instituicoes" routerLinkActive="active">Instituições</a>
-    <a routerLink="/donations" routerLinkActive="active">Doações</a>
     <a routerLink="/stories" routerLinkActive="active">Histórias</a>
 
-    <div class="auth">
+    <div class="auth" *ngIf="!auth.hasToken(); else loggedIn">
       <button class="btn vermelho" routerLink="/login">Entrar</button>
 
       <div class="dropdown">
-        <button class="btn claro" (click)="isOpen = !isOpen">
+        <button class="btn claro" (click)="toggleDropdown()">
           Cadastrar
           <span [class.rotated]="isOpen">⮟</span>
         </button>
 
         <div class="dropdown-content" *ngIf="isOpen">
           <a routerLink="/donor/register" (click)="isOpen = false">Sou Doador</a>
-          <a routerLink="/instituition/register" (click)="isOpen = false">Sou Instituição</a>
+          <a routerLink="/institution/register" (click)="isOpen = false">Sou Instituição</a>
         </div>
       </div>
     </div>
+
+    <ng-template #loggedIn>
+      <div class="auth">
+        <button class="btn claro" (click)="logout()">Sair</button>
+      </div>
+    </ng-template>
   </nav>
 
   <!-- Botão hamburger -->
@@ -39,5 +44,3 @@
     <span></span>
   </div>
 </header>
-
-

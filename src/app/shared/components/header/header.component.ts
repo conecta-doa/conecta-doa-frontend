@@ -1,31 +1,39 @@
 import { Component, HostListener } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Auth } from '../../../core/services/auth';
 
 @Component({
   selector: 'app-header',
-  standalone: false,
+  standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
+  imports: [CommonModule, RouterModule]
 })
 export class HeaderComponent {
   isMenuOpen = false;
   isOpen = false;
 
-  toggleMenu() {
+  constructor(public auth: Auth, private router: Router) {}
+
+  toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  public usuarioLogado: boolean = false;
-
-  toggleDropdown() {
+  toggleDropdown(): void {
     this.isOpen = !this.isOpen;
   }
 
-
   @HostListener('document:click', ['$event.target'])
-  onClickOutside(targetElement: any) {
+  onClickOutside(targetElement: any): void {
     const clickedInside = targetElement.closest('.dropdown');
     if (!clickedInside) {
       this.isOpen = false;
     }
+  }
+
+  logout(): void {
+    this.auth.logout();
+    this.router.navigate(['/home']);
   }
 }

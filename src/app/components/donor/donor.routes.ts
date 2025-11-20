@@ -4,7 +4,8 @@ import { DonorAppComponent } from './donor.app.component';
 import { DonorDashboardComponent } from './dashboard/donor-dashboard.component';
 import { DonorRegisterComponent } from './register/donor-register.component';
 import { InstituicaoComponent } from './Instituicoes/instituicao.component';
-import { InstituitinListComponent } from '../../shared/components/instituitin-list.component/instituitin-list.component';
+import { InstituitionListComponent } from '../../shared/components/instituition-list.component/instituition-list.component';
+import { DonorDonationComponent } from './donor-donation.component/donor-donation.component';
 
 export const donorRouterConfig: Routes = [
   {
@@ -14,7 +15,9 @@ export const donorRouterConfig: Routes = [
       { path: '', component: DonorDashboardComponent },
       { path: 'register', component: DonorRegisterComponent },
       { path: 'instituicao', component: InstituicaoComponent },
-      { path: 'instituicoes', component: InstituitinListComponent },
+      { path: 'instituicao/:slug', component: InstituicaoComponent },
+      { path: 'instituicoes', component: InstituitionListComponent },
+      { path: 'donation', component: DonorDonationComponent },
     ],
   },
 ];

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Auth } from '../../../core/services/auth';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,8 @@ export class HomeComponent {
       }
     }
   }
+
+  constructor(public auth: Auth) {}
 
   ngOnInit() {
     if (typeof document !== 'undefined') {

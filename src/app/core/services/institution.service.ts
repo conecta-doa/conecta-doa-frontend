@@ -1,30 +1,24 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Injectable } from '@angular/core';
 
-interface Institution {
+export interface InstitutionData {
+  slug: string;
   name: string;
   description: string;
   tags: string[];
   image: string;
-  badge?: string; // e.g. "Sangue: A+, O-" or other need summary
-  icon?: string; // material-symbols-outlined name
-  accentClass?: string; // tailwind color class for icon
+  badge?: string;
+  icon?: string;
+  accentClass?: string;
+  location?: string;
+  phone?: string;
+  email?: string;
 }
 
-@Component({
-  selector: 'app-instituitin-list',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './instituitin-list.component.html',
-  styleUrls: ['./instituitin-list.component.css'],
-})
-export class InstituitinListComponent {
-  search = '';
-  @Output() selectInstitution = new EventEmitter<Institution>();
-
-  institutions: Institution[] = [
+@Injectable({ providedIn: 'root' })
+export class InstitutionService {
+  private readonly institutions: InstitutionData[] = [
     {
+      slug: 'lar-da-esperanca',
       name: 'Lar da Esperança',
       description: 'Lar para crianças em situação de vulnerabilidade.',
       tags: ['Infância', 'Proteção'],
@@ -33,8 +27,12 @@ export class InstituitinListComponent {
       badge: 'Sangue: A+, O-',
       icon: 'local_hospital',
       accentClass: 'text-green-500',
+      location: 'São Paulo, SP',
+      phone: '(11) 1111-1111',
+      email: 'contato@lardoesperanca.org',
     },
     {
+      slug: 'abrigo-dos-animais',
       name: 'Abrigo dos Animais',
       description: 'Abrigo para animais abandonados e resgatados.',
       tags: ['Animais', 'Resgate'],
@@ -43,8 +41,12 @@ export class InstituitinListComponent {
       badge: 'Ração, Remédios',
       icon: 'pets',
       accentClass: 'text-blue-500',
+      location: 'Curitiba, PR',
+      phone: '(41) 2222-2222',
+      email: 'contato@abrigodosanimais.org',
     },
     {
+      slug: 'banco-de-alimentos-solidario',
       name: 'Banco de Alimentos Solidário',
       description: 'Combate à fome distribuindo alimentos para famílias carentes.',
       tags: ['Fome', 'Alimentos'],
@@ -53,8 +55,12 @@ export class InstituitinListComponent {
       badge: 'Não perecíveis',
       icon: 'restaurant',
       accentClass: 'text-yellow-500',
+      location: 'Recife, PE',
+      phone: '(81) 3333-3333',
+      email: 'contato@bancodesolidario.org',
     },
     {
+      slug: 'casa-do-idoso-feliz',
       name: 'Casa do Idoso Feliz',
       description: 'Lar para idosos que precisam de cuidados e companhia.',
       tags: ['Idosos', 'Cuidados'],
@@ -63,21 +69,17 @@ export class InstituitinListComponent {
       badge: 'Fraldas, Roupas',
       icon: 'elderly',
       accentClass: 'text-purple-500',
+      location: 'Porto Alegre, RS',
+      phone: '(51) 4444-4444',
+      email: 'contato@casadoidosofeliz.org',
     },
   ];
 
-  get filtered(): Institution[] {
-    const term = this.search.trim().toLowerCase();
-    if (!term) return this.institutions;
-    return this.institutions.filter(
-      (i) =>
-        i.name.toLowerCase().includes(term) ||
-        i.description.toLowerCase().includes(term) ||
-        i.tags.some((t) => t.toLowerCase().includes(term))
-    );
+  list(): InstitutionData[] {
+    return this.institutions;
   }
 
-  onSelect(inst: Institution) {
-    this.selectInstitution.emit(inst);
+  findBySlug(slug: string): InstitutionData | undefined {
+    return this.institutions.find((i) => i.slug === slug);
   }
 }

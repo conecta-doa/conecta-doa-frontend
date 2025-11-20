@@ -1,28 +1,36 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './shared/components/login/login.component';
-import { InstituicaoComponent } from './components/donor/Instituicoes/instituicao.component';
-import { InstituitinListComponent } from './shared/components/instituitin-list.component/instituitin-list.component';
-
+import { authCanMatch } from './core/guards/auth.guard';
+import { DonorRegisterComponent } from './components/donor/register/donor-register.component';
 
 export const routes: Routes = [
   {
-    path: '', loadChildren: () => import('./components/public-pages/public-pages.module')
-      .then(m => m.PublicPagesModule)
-  },
-  { path: 'login', component: LoginComponent },
-
-  { path: 'instituicao', component: InstituicaoComponent  },
-  { path: 'instituicoes', component: InstituitinListComponent  },
-  {
-    path: 'donor', loadChildren: () => import('./components/donor/donor.module')
-      .then(r => r.DonorModule)
+    path: '',
+    loadChildren: () =>
+      import('./components/public-pages/public-pages.module').then((m) => m.PublicPagesModule),
   },
   {
-    path: 'instituition',
-    loadChildren: () => import('./components/instituition/instituition.module')
-      .then(r => r.InstituitionModule)
-  }
-  // { path: 'about', component: SobreNosComponent },
-  // { path: 'about', component: SobreNosComponent },
-  // { path: '**', component: NotFoundComponent }
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'instituicoes',
+    loadChildren: () =>
+      import('./components/public-pages/public-pages.module').then((m) => m.PublicPagesModule),
+  },
+  {
+    path: 'donor',
+    canMatch: [authCanMatch],
+    loadChildren: () => import('./components/donor/donor.module').then((r) => r.DonorModule),
+  },
+  {
+    path: 'instituicao',
+    canMatch: [authCanMatch],
+    loadChildren: () =>
+      import('./components/instituition/instituition.module').then((r) => r.InstituitionModule),
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];

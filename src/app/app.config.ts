@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { MockApiService } from './core/services/mock-api.service';
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     // registra interceptor funcional que trata POST /api/auth/login via MockApiService
     provideHttpClient(
       withInterceptors([

@@ -2,7 +2,7 @@
   <div class="header-inner">
     <!-- LOGO -->
     <div class="left">
-      <div class="logo-wrapper" aria-hidden="true">
+      <a routerLink="/donor/dashboard" class="logo-wrapper">
         <svg
           width="28"
           height="28"
@@ -15,27 +15,21 @@
           <rect x="14" y="10" width="12" height="4" rx="2" fill="#e63946" />
         </svg>
         <span class="brand">ConectaDoa</span>
-      </div>
+      </a>
     </div>
 
     <!-- MENU -->
     <nav class="main-nav" aria-label="Navegação principal">
-      <a href="home">Início</a>
-      <a href="instituicoes">Instituições</a>
-      <a href="historico_doacoes">Doações</a>
+      <a routerLink="/donor/dashboard" routerLinkActive="active">Início</a>
+      <a routerLink="/instituicoes" routerLinkActive="active">Instituições</a>
+      <a routerLink="/donor/historico" routerLinkActive="active">Doações</a>
     </nav>
 
     <!-- ÍCONES À DIREITA -->
     <div class="right">
       <!-- Notificações -->
       <button class="icon-btn notification" aria-label="Notificações">
-        <svg
-          viewBox="0 0 24 24"
-          width="22"
-          height="22"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.3-2-6-5-6V4a1 1 0 10-2 0v1c-3 0-5 2.7-5 6v5l-2 2v1h16v-1l-2-2z"
             fill="#444"
@@ -44,7 +38,9 @@
         <span class="notif-dot"></span>
       </button>
 
-      <!-- perfil -->
+      <button class="btn logout" (click)="logout()" aria-label="Sair">Sair</button>
+
+      <!-- Perfil -->
       <div class="profile">
         <img
           src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><rect rx='40' width='40' height='40' fill='%23f3f4f6'/><circle cx='20' cy='14' r='7' fill='%239ca3af'/><rect x='6' y='26' width='28' height='8' rx='4' fill='%239ca3af'/></svg>"

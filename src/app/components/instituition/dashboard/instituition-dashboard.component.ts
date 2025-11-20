@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-instituition-dashboard',
   standalone: false,
   templateUrl: './instituition-dashboard.component.html',
-  styleUrl: './instituition-dashboard.component.css'
+  styleUrls: ['./instituition-dashboard.component.css'],
 })
-export class InstituitionDashboardComponent {
-
-}
+export class InstituitionDashboardComponent {}

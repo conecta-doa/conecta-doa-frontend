@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-donor-register',
   standalone: false,
   templateUrl: './donor-register.component.html',
-  styleUrl: './donor-register.component.css',
+  styleUrls: ['./donor-register.component.css'],
 })
 export class DonorRegisterComponent {}

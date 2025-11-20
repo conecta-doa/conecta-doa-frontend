@@ -1,1 +1,110 @@
-<p>clothing-donation.component works!</p>
+<div class="container">
+  <h1>Doação de Roupas</h1>
+  <p class="subtle">
+    Compartilhe o calor da solidariedade. Doe roupas em bom estado e ajude a aquecer o inverno de quem precisa.
+  </p>
+
+  <div class="row grid-2" style="margin-top: 28px;">
+    <div class="left">
+      <div class="card" style="padding: 22px;">
+        <h3 style="margin:0 0 18px;">Detalhes da Doação</h3>
+
+        <div style="display:grid; gap:16px;">
+          <div>
+            <label class="label">Tipo de roupa</label>
+            <select class="select" [(ngModel)]="tipo">
+              <option value="" disabled selected>Selecione</option>
+              <option>Casacos</option>
+              <option>Calças</option>
+              <option>Camisas</option>
+              <option>Calçados</option>
+              <option>Outros</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="label">Condição</label>
+            <select class="select" [(ngModel)]="condicao">
+              <option value="" disabled selected>Selecione</option>
+              <option>Novo</option>
+              <option>Bom estado</option>
+              <option>Usado com marcas</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="label">Quantidade (número de peças)</label>
+            <input class="input" type="number" min="1" placeholder="Ex.: 10" [(ngModel)]="quantidade">
+          </div>
+        </div>
+
+        <h3 style="margin:24px 0 12px;">Retirada ou Entrega</h3>
+
+        <div class="row" style="gap:12px;">
+          <label class="badge-radio" [class.active]="metodo==='retirada'">
+            <input type="radio" name="metodo" value="retirada" [(ngModel)]="metodo" style="accent-color:#e23d3d;">
+            Agendar Retirada
+          </label>
+
+          <label class="badge-radio" [class.active]="metodo==='ponto'">
+            <input type="radio" name="metodo" value="ponto" [(ngModel)]="metodo" style="accent-color:#e23d3d;">
+            Pontos de Entrega
+          </label>
+        </div>
+
+        <div style="margin-top: 12px;" *ngIf="metodo==='retirada'">
+          <label class="label">Endereço para Retirada</label>
+          <input class="input" placeholder="Rua, número, bairro, cidade" [(ngModel)]="endereco">
+        </div>
+
+        <button class="btn btn-primary" style="margin-top:24px; width:220px;" (click)="confirmar()">
+          Confirmar Doação
+        </button>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="card" style="padding:0; overflow:hidden;">
+       <div class="card" style="padding:0; overflow:hidden;">
+  <div class="map-wrapper">
+    <iframe
+      class="map-frame"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps?q=São+Paulo&output=embed">
+    </iframe>
+  </div>
+  <div style="padding:16px 18px;">
+    <p class="helper">
+      Encontre o ponto de entrega mais próximo de você. Clique no mapa para ver os endereços e horários de funcionamento.
+    </p>
+  </div>
+</div>
+
+        <div style="padding:16px 18px;">
+          <p class="helper">
+            Encontre o ponto de entrega mais próximo de você. Clique no mapa para ver os endereços e horários de funcionamento.
+          </p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px; padding:18px;">
+        <h3 style="margin:0 0 10px;">Instruções e Orientações</h3>
+        <div class="list">
+          <div class="list-item">
+            <div class="icon">🧺</div>
+            <div>As roupas devem estar limpas e em boas condições de uso.</div>
+          </div>
+          <div class="list-item">
+            <div class="icon">🧷</div>
+            <div>Separe por tipo e tamanho para facilitar a triagem.</div>
+          </div>
+          <div class="list-item">
+            <div class="icon">🙏</div>
+            <div>Agradecemos sua colaboração!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

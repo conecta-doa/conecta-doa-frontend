@@ -105,7 +105,9 @@ export class DonorDonationComponent implements OnInit {
   }
 
   finalizeDonation(): void {
-    alert('Doação realizada com sucesso! Obrigado pela sua contribuição.');
+    // Ao finalizar, navega para a tela de confirmação
+    // Poderíamos salvar dados no DonationContextService se necessário
+    this.router.navigate(['/donor/donation/confirmed']);
   }
 
   backToStart(): void {

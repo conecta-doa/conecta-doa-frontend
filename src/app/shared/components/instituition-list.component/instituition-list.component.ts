@@ -5,6 +5,7 @@ import { DonorHeaderComponent } from '../../../components/donor/donor-header.com
 import { Auth } from '../../../core/services/auth';
 
 import { InstitutionService, InstitutionData } from '../../../core/services/institution.service';
+import { DonationContextService } from '../../../core/services/donation-context.service';
 import { Router } from '@angular/router';
 import { SharedModule } from '../shared.module';
 
@@ -37,7 +38,8 @@ export class InstituitionListComponent {
   constructor(
     public auth: Auth,
     private institutionService: InstitutionService,
-    private router: Router
+    private router: Router,
+    private donationContext: DonationContextService
   ) {
     this.institutions = this.institutionService.list();
   }
@@ -58,12 +60,15 @@ export class InstituitionListComponent {
   }
 
   donate(inst: InstitutionData) {
+    // Store selected institution in the shared DonationContextService so it
+    // survives navigation through the login flow.
+    this.donationContext.setSelectedInstitution(inst);
+
     if (this.auth.hasToken()) {
-      this.router.navigate(['/donor/donation'], { state: { institution: inst } });
+      this.router.navigate(['/donor/donation']);
     } else {
       this.router.navigate(['/login'], {
         queryParams: { returnUrl: '/donor/donation' },
-        state: { institution: inst },
       });
     }
   }

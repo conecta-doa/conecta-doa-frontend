@@ -1,1 +1,32 @@
-<p>donor-confirmed-appointment.component works!</p>
+<div class="container" style="display:grid; place-items:center;">
+  <div class="card" style="max-width:680px; width:100%; padding:34px 26px;">
+    <div style="display:grid; place-items:center; gap:10px; margin-bottom:8px;">
+      <div style="width:60px;height:60px;border-radius:50%;background:#e9f9ef;color:#16a34a;display:grid;place-items:center;font-size:30px;">
+        ✓
+      </div>
+      <h2 style="margin:0; font-size:32px;">Agendamento Confirmado!</h2>
+      <p class="subtle" style="text-align:center; margin:0;">Agradecemos sua solidariedade.</p>
+    </div>
+
+    <div class="card" style="padding:18px; background:#fff6f6; border-color:#f6d6d6; margin-top:18px;">
+      <h3 style="margin:0 0 10px;">Detalhes da sua Doação de Alimentos</h3>
+
+      <div class="list">
+        <div class="list-item"><div class="icon">📅</div><div><strong>Data:</strong> 25 de Julho, 2024</div></div>
+        <div class="list-item"><div class="icon">⏰</div><div><strong>Horário:</strong> Entre 14:00 e 16:00</div></div>
+        <div class="list-item"><div class="icon">🚚</div><div><strong>Método:</strong> Coleta agendada no seu endereço</div></div>
+        <div class="list-item"><div class="icon">📍</div><div><strong>Local:</strong> Rua das Flores, 123 – São Paulo, SP – CEP 01234-567</div></div>
+        <div class="list-item"><div class="icon">🧾</div><div><strong>Itens:</strong> 5 kg de arroz (não perecível), 2L de leite (não perecível)</div></div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:12px; margin-top:18px;">
+      <button class="btn" style="background:#eef2f7; color:#1e293b; font-weight:600;">Gerenciar Agendamento</button>
+      <button class="btn" style="background:#eef2f7; color:#1e293b; font-weight:600;">Ver Histórico</button>
+    </div>
+
+    <div style="border-top:1px solid var(--stroke); margin:22px 0;"></div>
+
+    <button class="btn btn-primary" routerLink="/doar" style="width:100%;">Voltar ao Painel</button>
+  </div>
+</div>

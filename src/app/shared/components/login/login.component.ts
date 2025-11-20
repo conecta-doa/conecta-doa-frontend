@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { DonationContextService } from '../../../core/services/donation-context.service';
 import { MockApiService } from '../../../core/services/mock-api.service';
 import { Auth } from '../../../core/services/auth';
 import { CommonModule } from '@angular/common';
@@ -9,14 +10,20 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  styleUrls: ['./login.component.css'],
   imports: [CommonModule, FormsModule, RouterModule],
 })
 export class LoginComponent {
   cpfCnpj: string = '';
   password: string = '';
 
-  constructor(private mockApi: MockApiService, private router: Router, private auth: Auth) {}
+  constructor(
+    private mockApi: MockApiService,
+    private router: Router,
+    private auth: Auth,
+    private route: ActivatedRoute,
+    private donationContext: DonationContextService
+  ) {}
 
   validateCpfCnpj(): string {
     const value = this.cpfCnpj.replace(/\D/g, '');
@@ -98,6 +105,34 @@ export class LoginComponent {
         } catch (e) {
           // ignore storage errors
         }
+        // Determine redirect after login. Prefer returnUrl from query params.
+        const returnUrl = this.route.snapshot.queryParams['returnUrl'];
+
+        // If the login was initiated with an institution/donation in navigation state,
+        // persist it to DonationContextService so DonationComponent can read it.
+        const navState = this.router.getCurrentNavigation()?.extras?.state as any;
+        const histState =
+          (window && (window.history as any) && (window.history as any).state) || undefined;
+        const state = navState || histState;
+        if (state && (state as any).institution) {
+          try {
+            this.donationContext.setSelectedInstitution((state as any).institution);
+          } catch (e) {
+            // ignore
+          }
+        } else if (state && (state as any).donationData?.institution) {
+          try {
+            this.donationContext.setSelectedInstitution((state as any).donationData.institution);
+          } catch (e) {}
+        }
+
+        if (returnUrl) {
+          // Navigate to requested URL (DonationComponent will read institution
+          // from DonationContextService if present)
+          this.router.navigate([returnUrl]);
+          return;
+        }
+
         if (res.user?.role === 'donor') {
           this.router.navigate(['/donor']);
         } else if (res.user?.role === 'institution') {

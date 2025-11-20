@@ -37,7 +37,7 @@
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           <h3 class="absolute bottom-4 left-4 text-xl font-bold text-white">{{ inst.name }}</h3>
         </div>
-        <div class="p-6" (click)="navigateToInstitution(inst)">
+        <div class="p-6 flex flex-col items-center" (click)="navigateToInstitution(inst)">
           <p class="text-[var(--text-secondary-color)] text-sm mb-4">{{ inst.description }}</p>
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-2 text-sm text-gray-500" *ngIf="inst.badge">
@@ -51,7 +51,7 @@
               (click)="donate(inst); $event.stopPropagation()"
             >
               Quero Doar
-              <span class="material-symbols-outlined ml-2 text-base">favorite</span>
+              <!-- <span class="material-symbols-outlined ml-2 text-base">favorite</span> -->
             </button>
           </div>
           <div class="mt-4 flex flex-wrap gap-2" *ngIf="inst.tags && inst.tags.length > 0">

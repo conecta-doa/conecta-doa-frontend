@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InstitutionData } from '../../../core/services/institution.service';
+import { DonationContextService } from '../../../core/services/donation-context.service';
 
 @Component({
   selector: 'app-donor-donation',
@@ -165,14 +166,17 @@ export class DonorDonationComponent implements OnInit {
     }
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private donationContext: DonationContextService) {}
 
   ngOnInit(): void {
     // Try to read institution from navigation state (works on navigation)
-    const navState = this.router.getCurrentNavigation()?.extras?.state as { institution?: InstitutionData } | undefined;
+    const navState = this.router.getCurrentNavigation()?.extras?.state as
+      | { institution?: InstitutionData }
+      | undefined;
 
     // Fallback to history.state (works also on reload/navigation from external link)
-    const histState = (window && (window.history as any) && (window.history as any).state) || undefined;
+    const histState =
+      (window && (window.history as any) && (window.history as any).state) || undefined;
 
     const state = navState || histState;
 
@@ -180,6 +184,14 @@ export class DonorDonationComponent implements OnInit {
       const inst = (state as any).institution as InstitutionData;
       if (inst && inst.name) {
         this.institutionName = inst.name;
+      }
+    } else {
+      // Fallback: check DonationContextService for a saved institution (e.g. after login)
+      const saved = this.donationContext.getSelectedInstitution();
+      if (saved && saved.name) {
+        this.institutionName = saved.name;
+        // Optionally clear the context so it doesn't leak to other flows
+        this.donationContext.clear();
       }
     }
   }

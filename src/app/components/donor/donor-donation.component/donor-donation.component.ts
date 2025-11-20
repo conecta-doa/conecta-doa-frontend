@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { InstitutionData } from '../../../core/services/institution.service';
 
 @Component({
   selector: 'app-donor-donation',
@@ -8,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './donor-donation.component.html',
   styleUrls: ['./donor-donation.component.css'],
 })
-export class DonorDonationComponent {
+export class DonorDonationComponent implements OnInit {
   currentScreen: 'screen1' | 'screen2' | 'screen3' = 'screen1';
   currentDonationType: 'financeira' | 'alimentos' | 'roupas' = 'financeira';
   currentPaymentMethod: 'pix' | 'credit' = 'pix';
@@ -28,6 +30,8 @@ export class DonorDonationComponent {
   cardCvv: string = '';
   cardName: string = '';
   cardCpf: string = '';
+
+  institutionName: string = 'Mãos que Ajudam';
 
   selectDonationType(type: 'financeira' | 'alimentos' | 'roupas'): void {
     this.currentDonationType = type;
@@ -158,6 +162,25 @@ export class DonorDonationComponent {
       this.cardCpf = numbers.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
     } else {
       this.cardCpf = numbers.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
+    }
+  }
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    // Try to read institution from navigation state (works on navigation)
+    const navState = this.router.getCurrentNavigation()?.extras?.state as { institution?: InstitutionData } | undefined;
+
+    // Fallback to history.state (works also on reload/navigation from external link)
+    const histState = (window && (window.history as any) && (window.history as any).state) || undefined;
+
+    const state = navState || histState;
+
+    if (state && (state as any).institution) {
+      const inst = (state as any).institution as InstitutionData;
+      if (inst && inst.name) {
+        this.institutionName = inst.name;
+      }
     }
   }
 }

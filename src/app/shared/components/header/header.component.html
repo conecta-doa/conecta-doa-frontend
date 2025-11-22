@@ -15,7 +15,7 @@
     <a routerLink="/stories" routerLinkActive="active">Histórias</a>
 
     <div class="auth" *ngIf="!auth.hasToken(); else loggedIn">
-      <button class="btn vermelho" routerLink="/login">Entrar</button>
+      <button class="btn vermelho" (click)="login()">Entrar</button>
 
       <div class="dropdown">
         <button class="btn claro" (click)="toggleDropdown()">

@@ -2,6 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Auth } from '../../../core/services/auth';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +15,11 @@ export class HeaderComponent {
   isMenuOpen = false;
   isOpen = false;
 
-  constructor(public auth: Auth, private router: Router) {}
+  constructor(public auth: Auth, private router: Router, private keycloak: KeycloakService) {}
 
+  login() {
+    this.keycloak.login();
+  }
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }

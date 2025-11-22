@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './shared/components/login/login.component';
-import { authCanMatch } from './core/guards/auth.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 import { DonorRegisterComponent } from './components/donor/register/donor-register.component';
 
 export const routes: Routes = [
@@ -20,14 +20,14 @@ export const routes: Routes = [
   },
   {
     path: 'donor',
-    canMatch: [authCanMatch],
     loadChildren: () => import('./components/donor/donor.module').then((r) => r.DonorModule),
+    // canActivate: [AuthGuard]
   },
   {
     path: 'instituicao',
-    canMatch: [authCanMatch],
     loadChildren: () =>
       import('./components/instituition/instituition.module').then((r) => r.InstituitionModule),
+    // canActivate: [AuthGuard]
   },
   {
     path: '**',

@@ -14,7 +14,7 @@
     <a routerLink="/instituicoes" routerLinkActive="active">Instituições</a>
     <a routerLink="/stories" routerLinkActive="active">Histórias</a>
 
-    <div class="auth" *ngIf="!auth.hasToken(); else loggedIn">
+    <div class="auth" *ngIf="!isLoggedIn; else loggedIn">
       <button class="btn vermelho" (click)="login()">Entrar</button>
 
       <div class="dropdown">
@@ -29,6 +29,13 @@
         </div>
       </div>
     </div>
+
+    <ng-template #loggedIn>
+      <div class="auth">
+        <button class="btn claro" (click)="logout()">Sair</button>
+      </div>
+    </ng-template>
+
 
     <ng-template #loggedIn>
       <div class="auth">

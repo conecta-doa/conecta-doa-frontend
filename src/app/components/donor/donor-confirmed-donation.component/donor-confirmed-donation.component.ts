@@ -10,7 +10,6 @@ export class DonorConfirmedDonationComponent implements AfterViewInit {
   constructor(private renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
-    // cria e inicia o container de confete dinamicamente
     const COLORS = ['#e63946', '#ffd166', '#06d6a0', '#118ab2', '#ffcf6b'];
     const COUNT = 120;
     const container = this.renderer.createElement('div');
@@ -57,8 +56,6 @@ export class DonorConfirmedDonationComponent implements AfterViewInit {
     };
 
     setInterval(recycle, 1500);
-
-    // parallax leve ao rolar
     window.addEventListener(
       'scroll',
       () => {
@@ -67,8 +64,6 @@ export class DonorConfirmedDonationComponent implements AfterViewInit {
       },
       { passive: true }
     );
-
-    // garante z-index do card
     const card = document.querySelector('.card');
     if (card) (card as HTMLElement).style.zIndex = '10';
   }

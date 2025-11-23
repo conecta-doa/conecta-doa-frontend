@@ -21,7 +21,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    // registra interceptor funcional que trata POST /api/auth/login via MockApiService
     provideHttpClient(
       withInterceptors([
         (req: any, next: any) => {

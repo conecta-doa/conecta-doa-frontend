@@ -35,7 +35,6 @@ export class InstituitionRegisterComponent {
       value = value.slice(0, 14);
     }
 
-    // Apply basic CNPJ mask: 00.000.000/0000-00
     value = value.replace(/^(\d{2})(\d)/, '$1.$2');
     value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
     value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');

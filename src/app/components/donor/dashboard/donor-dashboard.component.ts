@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription, timer } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { MockApiService } from '../../../core/services/mock-api.service';
-
+import { DonationService } from '../../../core/services/donation.service';
 
 interface Donation {
-  date: string;
-  institution: string;
-  type: string;
-  status: string;
+  id?: string;
+  createdAt?: string;
+  institutionName?: string;
+  institutionId?: string;
+  type?: string;
+  status?: string;
 }
 
 @Component({
@@ -16,50 +20,76 @@ interface Donation {
   templateUrl: './donor-dashboard.component.html',
   styleUrls: ['./donor-dashboard.component.css'],
 })
-export class DonorDashboardComponent implements OnInit {
+export class DonorDashboardComponent implements OnInit, OnDestroy {
   name = '';
   title = '';
   points = 0;
   ranking = 0;
 
   donations$!: Observable<any[]>;
-  donors$!: Observable<any[]>;
   institutions$!: Observable<any[]>;
 
-  constructor(private mockApi: MockApiService) {}
+  private donorId: string | null = null;
+  private pollSub: Subscription | null = null;
+
+  constructor(private mockApi: MockApiService, private donationService: DonationService) {}
 
   ngOnInit(): void {
-    // Wire observables once (shareReplay already in service)
-    this.donations$ = this.mockApi.getDonations();
-    this.donors$ = this.mockApi.getDonors();
+    const raw = localStorage.getItem('user');
+    let currentUser: any = null;
+    try {
+      currentUser = raw ? JSON.parse(raw) : null;
+    } catch {
+      currentUser = null;
+    }
+
     this.institutions$ = this.mockApi.getInstitutions();
 
-    // Example: find donor by CPF (ensure CPF matches mock-data.json)
-    const cpf = '12345678901';
-    this.mockApi.findUserByDocument(cpf).subscribe({
-      next: (user) => {
-        if (user) {
-          this.name = user.name || '';
-          this.title = 'Heart of Gold 💛';
-          this.points = user.points || 0;
-          this.ranking = user.ranking || 0;
-        } else {
-          console.warn('Mock user not found for document', cpf);
+    if (!currentUser || !currentUser.id) {
+      // not logged: show all donations as fallback
+      this.donations$ = this.donationService.getAll();
+      return;
+    }
+
+    // find donor record for current user and start polling donations+donor
+    this.mockApi.getDonors().subscribe({
+      next: (donors) => {
+        const donor = (donors || []).find((d: any) => d.userId === currentUser.id);
+        if (!donor) {
+          this.donations$ = this.donationService.getAll();
+          return;
         }
+
+        this.donorId = donor.id;
+        this.name = donor.name || currentUser.name || '';
+        this.title = 'Heart of Gold 💛';
+        this.points = donor.points || 0;
+        this.ranking = donor.ranking || 0;
+
+        // start polling every 5s for donations and donor updates
+        this.donations$ = timer(0, 5000).pipe(
+          switchMap(() => this.donationService.getAll(donor.id))
+        );
+
+        this.pollSub = timer(0, 5000)
+          .pipe(switchMap(() => this.donationService.getDonorById(donor.id)))
+          .subscribe({
+            next: (freshDonor) => {
+              this.points = freshDonor?.points || 0;
+            },
+            error: (err) => {
+              console.error('Failed polling donor', err);
+            },
+          });
       },
-      error: (err) => console.error('Failed to load mock user', err),
+      error: (err) => {
+        console.error('Failed to load donors', err);
+        this.donations$ = this.donationService.getAll();
+      },
     });
   }
 
-  // Static fallback while async data loads
-  donationHistory: Donation[] = [
-    { date: '15/03/2024', institution: 'Lar da Esperança', type: 'Alimentos', status: 'Concluída' },
-    { date: '20/02/2024', institution: 'Abrigo Fraterno', type: 'Roupas', status: 'Concluída' },
-    {
-      date: '05/01/2024',
-      institution: 'Casa do Acolhimento',
-      type: 'Financeiro',
-      status: 'Concluída',
-    },
-  ];
+  ngOnDestroy(): void {
+    if (this.pollSub) this.pollSub.unsubscribe();
+  }
 }

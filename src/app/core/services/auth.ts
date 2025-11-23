@@ -24,7 +24,7 @@ export class Auth {
   }
 
   hasToken(): boolean {
-    return !!this.getToken(); // Corrigido para usar o método interno
+    return !!this.getToken();
   }
 
   clearToken(): void {

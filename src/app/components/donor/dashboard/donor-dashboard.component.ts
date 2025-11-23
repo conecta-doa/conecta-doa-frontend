@@ -1,4 +1,3 @@
-import { Component, OnInit } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';

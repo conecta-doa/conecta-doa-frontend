@@ -182,11 +182,16 @@ export class DonorDonationComponent implements OnInit {
 
             // create donation and update points
             this.donationService.create(donation, donor.id, pointsToAdd).subscribe({
-              next: () => {
+              next: (res: any) => {
                 try {
                   this.donationContext.clear();
                 } catch {}
-                this.router.navigate(['/donor/donation/confirmed']);
+                const navState: any = {
+                  donation: res?.donation || res,
+                  pointsAdded: pointsToAdd,
+                  newDonor: res?.donor,
+                };
+                this.router.navigate(['/donor/donation/confirmed'], { state: navState });
               },
               error: (err) => {
                 console.error('Erro ao criar doação', err);
@@ -197,11 +202,16 @@ export class DonorDonationComponent implements OnInit {
           error: (err: any) => {
             // proceed without mapping institution
             this.donationService.create(donation, donor.id, pointsToAdd).subscribe({
-              next: () => {
+              next: (res: any) => {
                 try {
                   this.donationContext.clear();
                 } catch {}
-                this.router.navigate(['/donor/donation/confirmed']);
+                const navState: any = {
+                  donation: res?.donation || res,
+                  pointsAdded: pointsToAdd,
+                  newDonor: res?.donor,
+                };
+                this.router.navigate(['/donor/donation/confirmed'], { state: navState });
               },
               error: (err) => {
                 console.error('Erro ao criar doação', err);

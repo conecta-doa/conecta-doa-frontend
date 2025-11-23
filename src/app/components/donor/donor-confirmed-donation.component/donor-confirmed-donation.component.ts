@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, Renderer2, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-donor-confirmed-donation',
@@ -6,8 +6,42 @@ import { AfterViewInit, Component, Renderer2 } from '@angular/core';
   standalone: false,
   styleUrls: ['./donor-confirmed-donation.component.css'],
 })
-export class DonorConfirmedDonationComponent implements AfterViewInit {
+export class DonorConfirmedDonationComponent implements AfterViewInit, OnInit {
+  donatedAmount: number | null = null;
+  formattedAmount: string = 'R$ 0,00';
+  pointsAdded: number = 0;
+
   constructor(private renderer: Renderer2) {}
+
+  ngOnInit(): void {
+    // Try to read navigation state (router state or history state)
+    const state = (window && (window.history as any) && (window.history as any).state) || {};
+    const donation = state?.donation || null;
+    const points = state?.pointsAdded ?? null;
+
+    if (donation && typeof donation === 'object') {
+      if (donation.amount != null) {
+        this.donatedAmount = Number(donation.amount) || 0;
+        try {
+          this.formattedAmount = this.donatedAmount.toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          });
+          this.formattedAmount = `R$ ${this.formattedAmount}`;
+        } catch {
+          this.formattedAmount = `R$ ${Number(this.donatedAmount).toFixed(2)}`;
+        }
+      }
+    }
+
+    if (points != null) {
+      this.pointsAdded = Number(points) || 0;
+    } else {
+      // fallback: try to infer from donation
+      if (this.donatedAmount && this.donatedAmount > 0)
+        this.pointsAdded = Math.max(1, Math.round(this.donatedAmount));
+    }
+  }
 
   ngAfterViewInit(): void {
     const COLORS = ['#e63946', '#ffd166', '#06d6a0', '#118ab2', '#ffcf6b'];

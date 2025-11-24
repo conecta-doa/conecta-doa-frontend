@@ -102,10 +102,8 @@ export class LoginComponent {
         try {
           this.auth.setToken(res.token);
           localStorage.setItem('user', JSON.stringify(res.user));
-        } catch (e) {
-  
-        }
-       
+        } catch (e) {}
+
         const returnUrl = this.route.snapshot.queryParams['returnUrl'];
         const navState = this.router.getCurrentNavigation()?.extras?.state as any;
         const histState =
@@ -124,7 +122,7 @@ export class LoginComponent {
         }
 
         if (returnUrl) {
-          this.router.navigate([returnUrl]);
+          this.router.navigateByUrl(returnUrl);
           return;
         }
 

@@ -5,8 +5,6 @@
       <h2>ConectaDoa</h2>
     </div>
   </a>
-
-  <!-- Menu -->
   <nav class="menu" [class.active]="isMenuOpen">
     <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       Como funciona
@@ -24,8 +22,8 @@
         </button>
 
         <div class="dropdown-content" *ngIf="isOpen">
-          <a routerLink="/donor/register" (click)="isOpen = false">Sou Doador</a>
-          <a routerLink="/institution/register" (click)="isOpen = false">Sou Instituição</a>
+          <a href="#" (click)="navigateTo('/donor/register', $event)">Sou Doador</a>
+          <a href="#" (click)="navigateTo('/instituicao/register', $event)">Sou Instituição</a>
         </div>
       </div>
     </div>
@@ -36,8 +34,6 @@
       </div>
     </ng-template>
   </nav>
-
-  <!-- Botão hamburger -->
   <div class="hamburger" (click)="toggleMenu()">
     <span></span>
     <span></span>

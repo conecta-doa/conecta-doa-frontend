@@ -1,7 +1,5 @@
-
 <div class="px-4 flex justify-center py-4">
   <div class="w-full max-w-xl flex flex-col gap-4">
-    <!-- Hero -->
     <div
       class="bg-cover bg-center bg-no-repeat rounded-lg p-4 min-h-[320px] flex flex-col items-center justify-center text-center gap-4"
       style="
@@ -15,43 +13,36 @@
       <p class="text-white text-sm">
         Facilitamos doações seguras e transparentes, conectando doadores e instituições verificadas.
       </p>
-
-      <!-- Botões -->
       <div class="flex gap-2 flex-wrap justify-center relative">
         <div class="relative">
           <button
-            onclick="toggleDropdown()"
+            (click)="toggleDropdown()"
             class="bg-red-600 text-white text-sm font-bold px-4 py-2 rounded-lg hover:bg-red-700 transition"
           >
             Sou Instituição
           </button>
-          <!-- Dropdown Menu -->
           <div
             id="dropdown-menu"
             class="absolute top-full mt-1 left-0 w-40 bg-white rounded-md shadow-lg hidden z-10"
           >
             <a
-              href="instituition/register"
+              routerLink="/instituicao/register"
               class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100"
               >Fazer Cadastro</a
             >
-            <a href="login" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100"
+            <a routerLink="/login" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100"
               >Login</a
             >
           </div>
         </div>
-
-        <!-- Doador -->
         <a
-          href="login"
+          routerLink="/login"
           class="bg-pink-100 text-red-900 text-sm font-bold px-4 py-2 rounded-lg hover:bg-pink-200 transition"
         >
           Sou Doador
         </a>
       </div>
     </div>
-
-    <!-- Instituições Próximas -->
     <section>
       <h2 class="text-lg font-bold text-gray-900 mb-2">Instituições Próximas</h2>
       <div
@@ -61,8 +52,6 @@
         "
       ></div>
     </section>
-
-    <!-- Doações em Tempo Real -->
     <section>
       <h2 class="text-lg font-bold text-gray-900 mb-2">Doações em Tempo Real</h2>
       <div class="bg-pink-100 rounded-lg p-4 flex flex-col gap-1">

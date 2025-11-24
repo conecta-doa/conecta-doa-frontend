@@ -5,6 +5,11 @@ import { DonorRegisterComponent } from './components/donor/register/donor-regist
 
 export const routes: Routes = [
   {
+    path: 'instituicao',
+    loadChildren: () =>
+      import('./components/instituition/instituition.module').then((r) => r.InstituitionModule),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./components/public-pages/public-pages.module').then((m) => m.PublicPagesModule),
@@ -20,14 +25,7 @@ export const routes: Routes = [
   },
   {
     path: 'donor',
-    canMatch: [authCanMatch],
     loadChildren: () => import('./components/donor/donor.module').then((r) => r.DonorModule),
-  },
-  {
-    path: 'instituicao',
-    canMatch: [authCanMatch],
-    loadChildren: () =>
-      import('./components/instituition/instituition.module').then((r) => r.InstituitionModule),
   },
   {
     path: '**',

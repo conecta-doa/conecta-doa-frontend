@@ -61,7 +61,7 @@
       "name": "João Silva",
       "cpf": "12345678901",
       "phone": "+55 11 99999-0001",
-      "points": 4170,
+      "points": 4770,
       "profileType": "public",
       "address": {
         "street": "Rua das Flores",
@@ -200,6 +200,26 @@
       "institutionName": "Lar da Esperança",
       "donorId": "d1",
       "id": "hUqHe4D"
+    },
+    {
+      "type": "monetary",
+      "status": "pending",
+      "createdAt": "2025-11-23T23:43:28.615Z",
+      "amount": 200,
+      "currency": "BRL",
+      "institutionName": "Abrigo dos Animais",
+      "donorId": "d1",
+      "id": "pcjlI9d"
+    },
+    {
+      "type": "monetary",
+      "status": "pending",
+      "createdAt": "2025-11-24T00:01:23.755Z",
+      "amount": 400,
+      "currency": "BRL",
+      "institutionName": "Lar da Esperança",
+      "donorId": "d1",
+      "id": "_H0GAxz"
     }
   ],
   "settings": {

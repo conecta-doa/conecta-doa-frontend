@@ -9,14 +9,12 @@ export class DonationContextService {
   private readonly STORAGE_KEY = 'conecta_donation_institution';
 
   constructor() {
-    // Try to load from sessionStorage on initialization
     try {
       const raw = sessionStorage.getItem(this.STORAGE_KEY);
       if (raw) {
         this._selectedInstitution = JSON.parse(raw) as InstitutionData;
       }
     } catch (e) {
-      // ignore parse/storage errors
       this._selectedInstitution = null;
     }
   }

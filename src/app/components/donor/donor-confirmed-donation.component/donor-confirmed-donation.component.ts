@@ -14,7 +14,6 @@ export class DonorConfirmedDonationComponent implements AfterViewInit, OnInit {
   constructor(private renderer: Renderer2) {}
 
   ngOnInit(): void {
-    // Try to read navigation state (router state or history state)
     const state = (window && (window.history as any) && (window.history as any).state) || {};
     const donation = state?.donation || null;
     const points = state?.pointsAdded ?? null;
@@ -37,7 +36,6 @@ export class DonorConfirmedDonationComponent implements AfterViewInit, OnInit {
     if (points != null) {
       this.pointsAdded = Number(points) || 0;
     } else {
-      // fallback: try to infer from donation
       if (this.donatedAmount && this.donatedAmount > 0)
         this.pointsAdded = Math.max(1, Math.round(this.donatedAmount));
     }

@@ -11,20 +11,14 @@ export class DonationService {
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Get all donations or donations filtered by donorId
-   */
   getAll(donorId?: string): Observable<any[]> {
     if (donorId) return this.http.get<any[]>(`${this.api}?donorId=${encodeURIComponent(donorId)}`);
     return this.http.get<any[]>(this.api);
   }
-
-  // Get a donor by id from the json-server
   getDonorById(donorId: string): Observable<any> {
     return this.http.get<any>(`${this.donorsApi}/${encodeURIComponent(donorId)}`);
   }
 
-  // Get all donors
   getDonors(): Observable<any[]> {
     return this.http.get<any[]>(this.donorsApi);
   }

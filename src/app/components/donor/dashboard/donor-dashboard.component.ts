@@ -45,12 +45,9 @@ export class DonorDashboardComponent implements OnInit, OnDestroy {
     this.institutions$ = this.mockApi.getInstitutions();
 
     if (!currentUser || !currentUser.id) {
-      // not logged: show all donations as fallback
       this.donations$ = this.donationService.getAll();
       return;
     }
-
-    // find donor record for current user and start polling donations+donor
     this.mockApi.getDonors().subscribe({
       next: (donors) => {
         const donor = (donors || []).find((d: any) => d.userId === currentUser.id);
@@ -64,8 +61,6 @@ export class DonorDashboardComponent implements OnInit, OnDestroy {
         this.title = 'Heart of Gold 💛';
         this.points = donor.points || 0;
         this.ranking = donor.ranking || 0;
-
-        // start polling every 5s for donations and donor updates
         this.donations$ = timer(0, 5000).pipe(
           switchMap(() => this.donationService.getAll(donor.id))
         );

@@ -6,6 +6,7 @@ import { InstitutionData } from '../../../core/services/institution.service';
 import { DonationContextService } from '../../../core/services/donation-context.service';
 import { DonationService } from '../../../core/services/donation.service';
 import { MockApiService } from '../../../core/services/mock-api.service';
+import { PixService } from '../../../core/services/pix.service';
 
 @Component({
   selector: 'app-donor-donation',
@@ -18,6 +19,10 @@ export class DonorDonationComponent implements OnInit {
   currentDonationType: 'financeira' | 'alimentos' | 'roupas' = 'financeira';
   currentPaymentMethod: 'pix' | 'credit' = 'pix';
   currentValue: string = '50';
+
+  pixImage: string | null = null;
+  pixCopyPaste: string | null = null;
+  pixLoading: boolean = false;
 
   showCustomValue: boolean = false;
   customValue: string = 'R$ 0,00';
@@ -96,6 +101,52 @@ export class DonorDonationComponent implements OnInit {
 
   confirmFinancialDonation(): void {
     this.currentScreen = 'screen2';
+
+    if (this.currentPaymentMethod === 'pix') {
+      this.generatePixForCurrentDonation();
+    }
+  }
+
+  private generatePixForCurrentDonation(): void {
+    const value = parseFloat(this.currentValue) || 0;
+    if (value <= 0) return;
+
+    const selected = this.donationContext.getSelectedInstitution();
+    const name = (selected && (selected as any).name) || this.institutionName || '';
+    const location = (selected && (selected as any).location) || '';
+    const city = (location && location.split(',')[0]) || 'São Paulo';
+
+    this.pixLoading = true;
+    this.pixImage = null;
+    this.pixCopyPaste = null;
+
+    this.pixService.generatePix(value, name, city).subscribe({
+      next: (res) => {
+        this.pixLoading = false;
+        if (res && res.isSuccess) {
+          this.pixCopyPaste = res.copyPaste || null;
+          this.pixImage = res.qrCode ? `data:image/png;base64,${res.qrCode}` : null;
+        } else {
+          alert('Falha ao gerar QR Pix: ' + (res?.error || 'Resposta inválida'));
+        }
+      },
+      error: (err) => {
+        this.pixLoading = false;
+        console.error('Erro gerando Pix', err);
+        alert('Erro ao gerar QR Pix. Veja o console para detalhes.');
+      },
+    });
+  }
+
+  copyPixToClipboard(): void {
+    if (!this.pixCopyPaste) return;
+    try {
+      navigator.clipboard.writeText(this.pixCopyPaste);
+      alert('Texto Pix copiado para a área de transferência');
+    } catch (e) {
+      console.error('Erro copiando para clipboard', e);
+      alert('Não foi possível copiar automaticamente. Selecione e copie manualmente.');
+    }
   }
 
   confirmFoodDonation(): void {
@@ -107,7 +158,6 @@ export class DonorDonationComponent implements OnInit {
   }
 
   finalizeDonation(): void {
-    // Build donation object based on current state
     let donation: any = {
       type: this.currentDonationType === 'financeira' ? 'monetary' : 'in-kind',
       status: 'pending',
@@ -124,8 +174,6 @@ export class DonorDonationComponent implements OnInit {
     } else if (this.currentDonationType === 'roupas') {
       donation.items = [{ name: 'Roupas', quantity: 1, unit: 'un' }];
     }
-
-    // Determine institution id if possible
     const selected = this.donationContext.getSelectedInstitution();
     if (selected && (selected as any).name) {
       donation.institutionName = (selected as any).name;
@@ -133,7 +181,6 @@ export class DonorDonationComponent implements OnInit {
       donation.institutionName = this.institutionName;
     }
 
-    // Get current user and matching donor record
     let rawUser: any = null;
     try {
       rawUser = JSON.parse(localStorage.getItem('user') || 'null');
@@ -142,14 +189,12 @@ export class DonorDonationComponent implements OnInit {
     }
 
     if (!rawUser || !rawUser.id) {
-      // fallback: redirect to login
       this.router.navigate(['/login'], { queryParams: { returnUrl: '/donor/donation' } });
       return;
     }
 
     const userId = rawUser.id as string;
 
-    // Find donor record for this user
     this.mockApi.getDonors().subscribe({
       next: (donors: any[]) => {
         const donor = (donors || []).find((d: any) => d.userId === userId);
@@ -160,7 +205,6 @@ export class DonorDonationComponent implements OnInit {
 
         donation.donorId = donor.id;
 
-        // compute points to add (simple rules)
         let pointsToAdd = 0;
         if (donation.type === 'monetary') {
           pointsToAdd = Math.max(1, Math.round(donation.amount));
@@ -172,7 +216,6 @@ export class DonorDonationComponent implements OnInit {
           pointsToAdd = Math.max(1, totalQty * 5);
         }
 
-        // attempt to map institution name to known institution id in mock-data (best-effort)
         this.mockApi.getInstitutions().subscribe({
           next: (insts: any[]) => {
             const found = (insts || []).find(
@@ -180,7 +223,6 @@ export class DonorDonationComponent implements OnInit {
             );
             if (found && found.id) donation.institutionId = found.id;
 
-            // create donation and update points
             this.donationService.create(donation, donor.id, pointsToAdd).subscribe({
               next: (res: any) => {
                 try {
@@ -200,7 +242,6 @@ export class DonorDonationComponent implements OnInit {
             });
           },
           error: (err: any) => {
-            // proceed without mapping institution
             this.donationService.create(donation, donor.id, pointsToAdd).subscribe({
               next: (res: any) => {
                 try {
@@ -290,7 +331,8 @@ export class DonorDonationComponent implements OnInit {
     private router: Router,
     private donationContext: DonationContextService,
     private donationService: DonationService,
-    private mockApi: MockApiService
+    private mockApi: MockApiService,
+    private pixService: PixService
   ) {}
 
   ngOnInit(): void {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Auth } from '../../../core/services/auth';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-home',
@@ -10,19 +11,13 @@ import { Auth } from '../../../core/services/auth';
 export class HomeComponent {
   loginCadastroModalOpen: boolean = false;
 
-  openLoginCadastroModal() {
-    this.loginCadastroModalOpen = true;
-  }
-  toggleDropdown() {
-    if (typeof document !== 'undefined') {
-      const menu = document.getElementById('dropdown-menu');
-      if (menu) {
-        menu.classList.toggle('hidden');
-      }
-    }
+  login() {
+    this.keycloak.login({
+      redirectUri: window.location.origin + '/home'
+    });
   }
 
-  constructor(public auth: Auth) {}
+  constructor(public auth: Auth, private keycloak: KeycloakService) {}
 
   ngOnInit() {
     if (typeof document !== 'undefined') {

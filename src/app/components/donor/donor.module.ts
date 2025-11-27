@@ -28,8 +28,6 @@ import { DonorConfirmedDonationComponent } from './donor-confirmed-donation.comp
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    DonorHeaderComponent,
-    InstituicaoComponent,
   ],
   exports: [DonorHeaderComponent],
 })

@@ -1,7 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Auth } from '../../../core/services/auth';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-header',
@@ -10,20 +11,31 @@ import { Auth } from '../../../core/services/auth';
   styleUrls: ['./header.component.css'],
   imports: [CommonModule, RouterModule],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   isMenuOpen = false;
   isOpen = false;
+  isLoggedIn = false;
 
-  constructor(public auth: Auth, private router: Router) {}
+  constructor(
+    public auth: Auth,
+    private router: Router,
+    private keycloak: KeycloakService
+  ) {}
 
-  ngOnInit(): void {
-    // subscribe to router events to help debug navigation issues
-    this.router.events.subscribe((e) => {
-      // eslint-disable-next-line no-console
-      console.log('[Header] router.event', e);
-      // eslint-disable-next-line no-console
-      console.log('[Header] router.url', this.router.url);
+  async ngOnInit() {
+    this.isLoggedIn = await this.auth.hasToken();
+    console.log('Logado no Keycloak?', this.isLoggedIn);
+  }
+
+  login() {
+    this.keycloak.login({
+      redirectUri: window.location.origin + '/home'
     });
+  }
+
+  logout(): void {
+    this.auth.logout(); // já chama o logout do keycloak lá dentro
+    this.isLoggedIn = false;
   }
 
   toggleMenu(): void {
@@ -40,24 +52,5 @@ export class HeaderComponent {
     if (!clickedInside) {
       this.isOpen = false;
     }
-  }
-
-  logout(): void {
-    this.auth.logout();
-    this.router.navigate(['/home']);
-  }
-
-  navigateTo(path: string, event?: Event): void {
-    // prevent default anchor behavior (hash change) and navigate via router
-    if (event) event.preventDefault();
-    this.isOpen = false;
-    console.log('[Header] navigateTo', path);
-    // Use explicit navigation to avoid ambiguity with hash routing
-    if (path === '/instituicao/register') {
-      this.router.navigate(['/instituicao', 'register']);
-      return;
-    }
-    const segments = path.split('/').filter((s) => s.length > 0);
-    this.router.navigate(segments);
   }
 }

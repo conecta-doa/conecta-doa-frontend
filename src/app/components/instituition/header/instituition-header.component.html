@@ -1,0 +1,47 @@
+<header class="sticky top-0 z-10 bg-white backdrop-blur-sm border-b border-gray-300">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      
+      <h1 class="text-xl font-bold text-black">
+        Conecta Doa
+      </h1>
+
+      <div class="flex items-center gap-4">
+
+        <span class="hidden sm:block text-sm font-medium text-black">
+          {{ institutionName }}
+        </span>
+
+        <img
+          [src]="avatarUrl"
+          alt="Institution Logo"
+          class="size-9 rounded-full"
+        />
+
+        <button
+          class="p-2 rounded-full hover:bg-gray-200 text-black"
+          (click)="onNotificationsClick()"
+          type="button"
+        >
+          <span class="material-symbols-outlined text-black">notifications</span>
+        </button>
+
+        <button
+          class="p-2 rounded-full hover:bg-gray-200 text-black"
+          (click)="onSettingsClick()"
+          type="button"
+        >
+          <span class="material-symbols-outlined text-black">settings</span>
+        </button>
+
+        <button
+          class="btn logout"
+          (click)="logout()"
+        >
+          Sair
+        </button>
+
+      </div>
+    </div>
+  </div>
+</header>

@@ -9,11 +9,11 @@
     <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       Como funciona
     </a>
-    <a routerLink="/instituicoes" routerLinkActive="active">Instituições</a>
+    <a routerLink="/public-pages" routerLinkActive="active">Instituições</a>
     <a routerLink="/stories" routerLinkActive="active">Histórias</a>
 
-    <div class="auth" *ngIf="!auth.hasToken(); else loggedIn">
-      <button class="btn vermelho" routerLink="/login">Entrar</button>
+    <div class="auth" *ngIf="!isLoggedIn; else loggedIn">
+      <button class="btn vermelho" (click)="login()">Entrar</button>
 
       <div class="dropdown">
         <button class="btn claro" (click)="toggleDropdown()">
@@ -22,11 +22,18 @@
         </button>
 
         <div class="dropdown-content" *ngIf="isOpen">
-          <a href="#" (click)="navigateTo('/donor/register', $event)">Sou Doador</a>
-          <a href="#" (click)="navigateTo('/instituicao/register', $event)">Sou Instituição</a>
+          <a routerLink="/donor/register" (click)="isOpen = false">Sou Doador</a>
+          <a routerLink="/instituicao/register" (click)="isOpen = false">Sou Instituição</a>
         </div>
       </div>
     </div>
+
+    <ng-template #loggedIn>
+      <div class="auth">
+        <button class="btn claro" (click)="logout()">Sair</button>
+      </div>
+    </ng-template>
+
 
     <ng-template #loggedIn>
       <div class="auth">

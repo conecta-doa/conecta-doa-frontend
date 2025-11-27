@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cnpj', 
-  standalone: true, 
-  imports: [ CommonModule, FormsModule ],
+  standalone: false, 
   templateUrl: './cnpj.component.html',
   styleUrls: ['./cnpj.component.css']  
 })

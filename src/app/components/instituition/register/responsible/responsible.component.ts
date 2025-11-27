@@ -4,11 +4,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-responsible', 
-  standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule 
-  ],
+  standalone: false,
   templateUrl: './responsible.component.html',
   styleUrls: ['./responsible.component.css']
 })

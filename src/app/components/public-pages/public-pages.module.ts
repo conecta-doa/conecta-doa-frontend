@@ -8,6 +8,7 @@ import { SharedModule } from '../../shared/components/shared.module';
 import { DonorHeaderComponent } from '../donor/donor-header.component/donor-header.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { InstituitionListComponent } from '../../shared/components/instituition-list.component/instituition-list.component';
+import { DonorModule } from '../donor/donor.module';
 
 @NgModule({
   declarations: [PublicPagesAppComponent, HomeComponent],
@@ -17,7 +18,6 @@ import { InstituitionListComponent } from '../../shared/components/instituition-
     PublicPagesRoutingModule,
     StoriesComponent,
     SharedModule,
-    DonorHeaderComponent,
     HeaderComponent,
     InstituitionListComponent,
   ],

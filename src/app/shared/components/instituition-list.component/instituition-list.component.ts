@@ -8,6 +8,7 @@ import { InstitutionService, InstitutionData } from '../../../core/services/inst
 import { DonationContextService } from '../../../core/services/donation-context.service';
 import { Router } from '@angular/router';
 import { SharedModule } from '../shared.module';
+import { DonorModule } from '../../../components/donor/donor.module';
 
 interface Institution {
   name: string;
@@ -24,7 +25,7 @@ interface Institution {
   standalone: true,
   templateUrl: './instituition-list.component.html',
   styleUrls: ['./instituition-list.component.css'],
-  imports: [CommonModule, FormsModule, DonorHeaderComponent, SharedModule],
+  imports: [CommonModule, FormsModule, DonorModule, SharedModule],
 })
 export class InstituitionListComponent {
   onSelect(inst: InstitutionData) {

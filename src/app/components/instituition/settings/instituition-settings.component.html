@@ -1,0 +1,110 @@
+<main class="flex-grow container mx-auto px-6 py-8">
+  <div class="max-w-4xl mx-auto">
+
+    <!-- Voltar -->
+    <header class="mb-8">
+      <div class="flex items-center gap-2 mb-4">
+        <button
+          class="flex items-center gap-1 text-primary font-medium hover:underline"
+          (click)="goBack()"
+        >
+          <span class="material-symbols-outlined text-base">arrow_back</span>
+          Voltar
+        </button>
+      </div>
+
+      <h2 class="text-4xl font-bold tracking-tight">
+        Perfil da Instituição
+      </h2>
+      <p class="mt-2 text-gray-600">
+        Visualize e mantenha os dados da sua instituição atualizados.
+      </p>
+    </header>
+
+    <!-- Informações da Instituição -->
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+      <div class="p-6">
+        <div class="flex justify-between items-start">
+          <h3 class="text-xl font-bold">Informações da Instituição</h3>
+          <button
+            class="bg-primary/10 text-primary font-bold py-2 px-4 rounded-lg text-sm hover:bg-primary/20 transition-colors"
+          >
+            Editar
+          </button>
+        </div>
+
+        <div
+          class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-sm text-gray-700"
+        >
+          <div>
+            <strong>Razão Social:</strong> ACME CORPORATION LTDA
+          </div>
+
+          <div>
+            <strong>Nome Fantasia:</strong> Acme Co
+          </div>
+
+          <div class="md:col-span-2">
+            <strong>Endereço:</strong> Av. Principal, 123, Centro, São Paulo - SP
+          </div>
+
+          <div>
+            <strong>E-mail:</strong> contato@acme.com
+          </div>
+
+          <div>
+            <strong>Telefone:</strong> +55 (11) 99999-9999
+          </div>
+        </div>
+      </div>
+    </div>
+      <div
+        class="bg-white dark:bg-subtle-dark/50 rounded-lg shadow-sm overflow-hidden"
+      >
+        <div class="p-6">
+          <div class="flex justify-between items-start">
+            <h3 class="text-xl font-bold">Dados Bancários</h3>
+            <button
+              class="bg-primary/10 dark:bg-primary/20 text-primary font-bold py-2 px-4 rounded-lg text-sm hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors"
+            >
+              Editar
+            </button>
+          </div>
+
+          <div
+            class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-sm text-muted-light dark:text-muted-dark"
+          >
+            <div>
+              <strong
+                class="font-semibold text-foreground-light dark:text-foreground-dark"
+                >Banco:</strong
+              >
+              Banco Solidário
+            </div>
+            <div>
+              <strong
+                class="font-semibold text-foreground-light dark:text-foreground-dark"
+                >Agência:</strong
+              >
+              0001
+            </div>
+            <div>
+              <strong
+                class="font-semibold text-foreground-light dark:text-foreground-dark"
+                >Conta:</strong
+              >
+              12345-6
+            </div>
+            <div>
+              <strong
+                class="font-semibold text-foreground-light dark:text-foreground-dark"
+                >Chave Pix:</strong
+              >
+              12.345.678/0001-90
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+</main>

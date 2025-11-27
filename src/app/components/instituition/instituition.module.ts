@@ -15,6 +15,7 @@ import { ResponsibleComponent } from './register/responsible/responsible.compone
 import { CnpjComponent } from './register/cnpj/cnpj.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InstituitionNotificationsComponent } from './notifications/instituition-notifications.component';
+import { InstituitionSettingsComponent } from './settings/instituition-settings.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { InstituitionNotificationsComponent } from './notifications/instituition
     SecurityComponent,
     ResponsibleComponent,
     CnpjComponent,
-    InstituitionNotificationsComponent
+    InstituitionNotificationsComponent,
+    InstituitionSettingsComponent
   ],
   imports: [
     CommonModule,

@@ -12,7 +12,7 @@ export class InstituitionHeaderComponent {
   constructor(private auth: Auth, private router: Router) { }
 
   // Nome da instituição – futuramente pode vir do backend
-  @Input() institutionName: string = 'Hope Foundation';
+  @Input() institutionName: string = 'ACME CORPORATION';
 
   // Logo/avatar
   @Input() avatarUrl: string =
@@ -23,7 +23,7 @@ export class InstituitionHeaderComponent {
   }
 
   onSettingsClick() {
-    console.log('Configurações clicadas');
+    this.router.navigate(['/instituicao/settings']);
   }
 
   logout(): void {

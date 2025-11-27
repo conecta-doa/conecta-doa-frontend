@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
   templateUrl: './instituition-dashboard.component.html',
   styleUrls: ['./instituition-dashboard.component.css'],
 })
-export class InstituitionDashboardComponent {}
+export class InstituitionDashboardComponent {
+  refresh() {
+  window.location.reload();
+}
+
+}

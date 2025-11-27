@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 type DonationNotification = {
   id: number;
@@ -14,6 +15,8 @@ type DonationNotification = {
   templateUrl: './instituition-notifications.component.html',
 })
 export class InstituitionNotificationsComponent {
+  constructor(private router: Router) {}
+
   notifications: DonationNotification[] = [
     {
       id: 1,
@@ -54,5 +57,9 @@ export class InstituitionNotificationsComponent {
     notification.confirmed = true;
     notification.isNew = false;
     console.log('Doação confirmada:', notification);
+  }
+
+    goBack(): void {
+    this.router.navigate(['/instituicao']);
   }
 }

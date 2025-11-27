@@ -4,6 +4,7 @@ import { InstituitionAppComponent } from './instituition.app.component';
 import { InstituitionDashboardComponent } from './dashboard/instituition-dashboard.component';
 import { InstituitionRegisterComponent } from './register/instituition-register.component';
 import { InstituitionNotificationsComponent } from './notifications/instituition-notifications.component';
+import { InstituitionSettingsComponent } from './settings/instituition-settings.component';
 
 export const instituitionRouterConfig: Routes = [
   {
@@ -13,6 +14,7 @@ export const instituitionRouterConfig: Routes = [
       { path: '', component: InstituitionDashboardComponent },
       { path: 'register', component: InstituitionRegisterComponent },
       { path: 'notifications', component: InstituitionNotificationsComponent },
+      { path: 'settings', component: InstituitionSettingsComponent },
     ],
   },
 ];

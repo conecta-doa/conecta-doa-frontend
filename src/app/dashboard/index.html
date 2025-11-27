@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conecta Doa - Dashboard</title>
+    <link href="./src/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+    <nav class="bg-white p-4 shadow-md flex justify-between items-center">
+        <div class="text-2xl font-bold text-red-600">Conecta Doa</div>
+        <div class="flex items-center space-x-4">
+            <span class="text-gray-700">Hope Foundation</span>
+            <div class="relative">
+                <i class="fas fa-bell text-gray-600 text-lg cursor-pointer"></i>
+                <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
+            </div>
+            <i class="fas fa-cog text-gray-600 text-lg cursor-pointer"></i>
+            <img src="https://via.placeholder.com/32" alt="Avatar" class="rounded-full">
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-gray-800">Estoque em Tempo Real</h1>
+            <a href="atualizar-estoque.html" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out">
+                <i class="fas fa-sync-alt mr-2"></i> Atualizar Estoque
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div class="bg-white p-6 rounded-lg shadow-xl border-t-4 border-red-500">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="bg-red-100 p-3 rounded-full text-red-600">
+                            <i class="fas fa-money-bill-wave text-2xl"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-gray-800">Meta Monetária</h2>
+                    </div>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">Meta</span>
+                </div>
+                <p class="text-gray-600 mb-2">Arrecadado: <span class="font-bold text-green-600" id="monetary-stock">R$ 7.500</span></p>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                    <div class="bg-red-500 h-2.5 rounded-full" style="width: 75%" id="monetary-progress"></div>
+                </div>
+                <div class="flex justify-between text-sm text-gray-500 mb-4">
+                    <span>R$ 0</span>
+                    <span class="font-semibold text-gray-700" id="monetary-percentage">75% atingido</span>
+                    <span>R$ 10.000</span>
+                </div>
+                <div class="flex items-center text-green-600 text-sm font-medium">
+                    <i class="fas fa-chart-line mr-2"></i>
+                    <p>Tendência: <span class="font-bold">+15%</span></p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-xl border-t-4 border-red-500">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center space-x-3">
+                       <div class="p-3 rounded-full bg-red-100 text-red-600">
+                            <i class="fas fa-apple-alt text-2xl"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-gray-800">Alimentos</h2>
+                    </div>
+                    <span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full" id="food-status">Urgente</span>
+                </div>
+                <p class="text-gray-600 mb-2">Estoque atual: <span class="font-bold text-red-600 food-stock-display" id="food-stock">2000 kg</span></p>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                    <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 40%" id="food-progress"></div>
+                </div>
+                <div class="flex justify-between text-sm text-gray-500 mb-4">
+                    <span>0 kg</span>
+                    <span class="font-semibold text-gray-700" id="food-percentage">40% atingido</span>
+                    <span>5000 kg</span>
+                </div>
+                <div class="flex items-center text-red-600 text-sm font-medium">
+                    <i class="fas fa-chart-line mr-2 transform rotate-180"></i>
+                    <p>Tendência: <span class="font-bold">-2%</span></p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-xl border-t-4 border-red-500">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center space-x-3">
+                         <div class="p-3 rounded-full bg-red-100 text-red-600">
+                            <i class="fas fa-tshirt text-2xl"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-gray-800">Roupas</h2>
+                    </div>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full" id="clothes-status">Estável</span>
+                </div>
+                <p class="text-gray-600 mb-2">Estoque atual: <span class="font-bold text-green-600" id="clothes-stock">5000 peças</span></p>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                    <div class="bg-green-500 h-2.5 rounded-full" style="width: 66%" id="clothes-progress"></div>
+                </div>
+                <div class="flex justify-between text-sm text-gray-500 mb-4">
+                    <span>0 peças</span>
+                    <span class="font-semibold text-gray-700" id="clothes-percentage">66% atingido</span>
+                    <span>7500 peças</span>
+                </div>
+                <div class="flex items-center text-green-600 text-sm font-medium">
+                    <i class="fas fa-chart-line mr-2"></i>
+                    <p>Tendência: <span class="font-bold">+10%</span></p>
+                </div>
+            </div>
+        </div>
+
+       <div class="bg-white p-6 rounded-lg shadow-lg mb-10">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-semibold text-gray-800">Relatórios de Doações Recebidas</h2>
+        <div class="flex space-x-2">
+            <select id="dateFilter" class="border border-gray-300 rounded-lg p-2 text-sm focus:ring-red-500 focus:border-red-500">
+                <option value="all">Últimos 30 dias</option>
+                <option value="last7">Últimos 7 dias</option>
+                <option value="thisMonth">Este mês</option>
+            </select>
+            <select id="typeFilter" class="border border-gray-300 rounded-lg p-2 text-sm focus:ring-red-500 focus:border-red-500">
+                <option value="Todos">Todos os tipos</option>
+                <option value="Dinheiro">Dinheiro</option>
+                <option value="Alimentos">Alimentos</option>
+                <option value="Roupas">Roupas</option>
+            </select>
+        </div>
+    </div>
+    <div class="overflow-x-auto">
+        <table id="donationsTable" class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DATA</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DOADOR</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">TIPO DE DOAÇÃO</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">VALOR/QUANTIDADE</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-08-15</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Emily Carter</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Dinheiro</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">R$ 500</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-11-29</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Liam Harper</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Alimentos</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">200 kg</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-01-17</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Olivia Bennett</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Roupas</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">50 peças</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-03-19</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Ava Coleman</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Dinheiro</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">R$ 250</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-05-02</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Gabriel Silva</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Alimentos</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">150 kg</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-09-21</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Isabela Costa</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Roupas</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">75 peças</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-10-22</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Marcus Oliveira</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Dinheiro</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">R$ 1.000</td>
+                </tr>
+                
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-10-20</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Pedro Almeida</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Alimentos</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">300 kg</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Gestão Administrativa</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Documentos da Instituição -->
+        <div class="border border-gray-200 p-5 rounded-lg">
+            <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-medium text-gray-800">Documentos da Instituição</h3>
+                <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
+                    Completo
+                </span>
+            </div>
+            <p class="text-gray-600 mb-3">
+                Visualize e gerencie todos os documentos.
+            </p>
+            <a href="#" class="text-red-600 hover:text-red-700 font-semibold flex items-center">
+                Ver Documentos <i class="fas fa-chevron-right ml-2 text-sm"></i>
+            </a>
+        </div>
+
+        <!-- Conta Bancária -->
+        <div class="border border-gray-200 p-5 rounded-lg">
+            <h3 class="text-lg font-medium text-gray-800 mb-2">Conta Bancária</h3>
+            <p class="text-gray-600 mb-3">Gerencie os detalhes financeiros.</p>
+            <a href="#" class="text-red-600 hover:text-red-700 font-semibold flex items-center">
+                <i class="fas fa-edit mr-2 text-sm"></i> Editar Dados
+            </a>
+        </div>
+
+    </div>
+</div>
+
+    </div>
+
+    <footer class="text-center py-6 text-gray-500 text-sm">
+        &copy; 2025 — Plataforma de Doações
+    </footer>
+
+   <script>
+        // ============== LÓGICA DE ATUALIZAÇÃO DE ESTOQUE ==============
+        document.addEventListener('DOMContentLoaded', () => {
+            const FOOD_GOAL = 5000; // kg
+            const CLOTHES_GOAL = 7500; // peças
+
+            function updateStock(stockKey, stockElementId, progressElementId, percentageElementId, statusElementId, goal, unit) {
+                const stock = parseInt(localStorage.getItem(stockKey) || 0);
+
+                document.getElementById(stockElementId).textContent = `${stock} ${unit}`;
+
+                let percentage = (stock / goal) * 100;
+                if (percentage > 100) percentage = 100;
+
+                const progressBar = document.getElementById(progressElementId);
+                progressBar.style.width = `${percentage}%`;
+
+                document.getElementById(percentageElementId).textContent = `${Math.round(percentage)}% atingido`;
+
+                const statusElement = document.getElementById(statusElementId);
+                statusElement.classList.remove('bg-red-100', 'text-red-700', 'bg-orange-100', 'text-orange-700', 'bg-green-100', 'text-green-700');
+                
+                document.getElementById(stockElementId).classList.remove('text-red-600', 'text-orange-600', 'text-green-600');
+
+                if (percentage < 30) {
+                    statusElement.textContent = 'Crítico';
+                    statusElement.classList.add('bg-red-100', 'text-red-700');
+                    document.getElementById(stockElementId).classList.add('text-red-600');
+                } else if (percentage < 70) {
+                    statusElement.textContent = 'Atenção';
+                    statusElement.classList.add('bg-orange-100', 'text-orange-700');
+                    document.getElementById(stockElementId).classList.add('text-orange-600');
+                } else {
+                    statusElement.textContent = 'Estável';
+                    statusElement.classList.add('bg-green-100', 'text-green-700');
+                    document.getElementById(stockElementId).classList.add('text-green-600');
+                }
+            }
+
+            if (!localStorage.getItem('foodStock')) {
+                localStorage.setItem('foodStock', 2000);
+            }
+            if (!localStorage.getItem('clothesStock')) {
+                localStorage.setItem('clothesStock', 5000);
+            }
+
+            updateStock('foodStock', 'food-stock', 'food-progress', 'food-percentage', 'food-status', FOOD_GOAL, 'kg');
+            updateStock('clothesStock', 'clothes-stock', 'clothes-progress', 'clothes-percentage', 'clothes-status', CLOTHES_GOAL, 'peças');
+        
+            /// ... (Seu código de atualização de estoque termina aqui) ...
+
+            // ============== LÓGICA DE FILTRAGEM DE TABELA (CORRIGIDA) ==============
+
+            const dateFilter = document.getElementById('dateFilter');
+            const typeFilter = document.getElementById('typeFilter');
+            const tableBody = document.querySelector('#donationsTable tbody');
+            
+            // SAÍDA DE SEGURANÇA: Se algum elemento crítico (filtros ou tabela) não for encontrado,
+            // o script de filtro não será executado, prevenindo erros.
+            if (!dateFilter || !typeFilter || !tableBody) {
+                console.error("Erro: Um ou mais elementos de filtro (dateFilter, typeFilter) ou a tabela (#donationsTable) não foram encontrados. Verifique os IDs no HTML.");
+                return; // Sai da função DOMContentLoaded
+            }
+
+            const rows = tableBody.querySelectorAll('tr');
+
+            // Converte a data YYYY-MM-DD em um objeto Date de forma segura
+            // (Assumindo que sua data na célula está no formato YYYY-MM-DD, ex: 2024-03-15)
+            const parseDate = (dateString) => {
+                const parts = dateString.split('-');
+                // parts[0]=YYYY, parts[1]=MM, parts[2]=DD
+                // Cria a data no fuso horário local e define o mês como 0-indexed (MM - 1)
+                return new Date(parts[0], parts[1] - 1, parts[2]);
+            };
+
+            const filterTable = () => {
+                const selectedDateRange = dateFilter.value;
+                const selectedType = typeFilter.value;
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); // Zera hora para comparação de dia
+
+                let dateLimit = null;
+
+                // 1. Calcular o limite de data
+                if (selectedDateRange === 'last7') {
+                    dateLimit = new Date(today);
+                    dateLimit.setDate(today.getDate() - 7);
+                } else if (selectedDateRange === 'thisMonth') {
+                    dateLimit = new Date(today.getFullYear(), today.getMonth(), 1);
+                }
+
+                rows.forEach(row => {
+                    // Coluna DATA (célula 0)
+                    const dateCellContent = row.cells[0].textContent.trim(); 
+                    // Coluna TIPO DE DOAÇÃO (célula 2)
+                    const typeCellContent = row.cells[2].textContent.trim(); 
+
+                    // Verifica se o conteúdo da célula de data não está vazio antes de tentar analisar
+                    if (!dateCellContent) {
+                        row.style.display = 'none'; // Esconde linhas vazias por segurança
+                        return;
+                    }
+                    
+                    const donationDate = parseDate(dateCellContent);
+
+                    let showRow = true;
+
+                    // 2. Filtrar por Tipo
+                    if (selectedType !== 'Todos' && typeCellContent !== selectedType) {
+                        showRow = false;
+                    }
+
+                    // 3. Filtrar por Data
+                    if (showRow && dateLimit) {
+                        // Compara se a data da doação é anterior ao limite (dateLimit)
+                        if (donationDate < dateLimit) {
+                            showRow = false;
+                        }
+                    }
+
+                    // 4. Mostrar ou esconder a linha
+                    row.style.display = showRow ? '' : 'none';
+                });
+            };
+
+            // Adicionar ouvintes de evento aos filtros
+            dateFilter.addEventListener('change', filterTable);
+            typeFilter.addEventListener('change', filterTable);
+
+            // Executar o filtro uma vez ao carregar
+            filterTable();
+        });
+    </script>
+        
+</body>
+</html>

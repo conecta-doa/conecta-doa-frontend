@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conecta Doa - Atualizar Estoque</title>
+    <link href="./src/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+    <nav class="bg-white p-4 shadow-md flex justify-between items-center">
+        <div class="text-2xl font-bold text-red-600">Conecta Doa</div>
+        <div class="flex items-center space-x-4">
+            <span class="text-gray-700">Lar de idosos anjos</span>
+            <div class="relative">
+                <i class="fas fa-bell text-gray-600 text-lg cursor-pointer"></i>
+                <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
+            </div>
+            <i class="fas fa-cog text-gray-600 text-lg cursor-pointer"></i>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex items-center mb-6">
+            <a href="index.html" class="text-red-600 hover:text-red-700 mr-4">
+                <i class="fas fa-arrow-left text-xl"></i>
+            </a>
+            <h1 class="text-3xl font-bold text-gray-800">Atualizar Estoque</h1>
+        </div>
+        
+
+       <!-- INÍCIO DO BLOCO ALIMENTOS -->
+<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-xl mb-8 border-t-4 border-red-500">
+
+            <h2 class="text-xl font-semibold text-gray-800 mb-4"><i class="fas fa-apple-alt mr-2 text-red-500"></i> Alimentos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label for="food-item-name" class="block text-sm font-medium text-gray-700 mb-1">Item</label>
+                    <input type="text" id="food-item-name" class="w-full border border-gray-300 rounded-md p-2 focus:ring-yellow-500 focus:border-yellow-500" placeholder="Ex: Arroz, Feijão">
+                </div>
+                <div>
+                    <label for="food-quantity" class="block text-sm font-medium text-gray-700 mb-1">Quantidade Adicionada (kg)</label>
+                    <input type="number" id="food-quantity" class="w-full border border-gray-300 rounded-md p-2 focus:ring-yellow-500 focus:border-yellow-500" placeholder="Ex: 100" value="0">
+                </div>
+                <div>
+                    <label for="food-current-stock" class="block text-sm font-medium text-gray-700 mb-1">Estoque Atual (kg)</label>
+                    <input type="text" id="food-current-stock" class="w-full border border-gray-300 rounded-md p-2 bg-gray-50 cursor-not-allowed" readonly>
+                </div>
+            </div>
+            <div class="mb-6">
+                <label for="food-entry-date" class="block text-sm font-medium text-gray-700 mb-1">Data da Entrada</label>
+                <input type="date" id="food-entry-date" class="w-full border border-gray-300 rounded-md p-2 focus:ring-yellow-500 focus:border-yellow-500">
+            </div>
+            <button id="add-food-btn" class="bg-red-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                <i class="fas fa-plus mr-2"></i> Adicionar ao Estoque
+            </button>
+        </div>
+
+       <!-- INÍCIO DO BLOCO ROUPAS -->
+<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-xl mb-8 border-t-4 border-red-500">
+
+            <h2 class="text-xl font-semibold text-gray-800 mb-4"><i class="fas fa-tshirt mr-2 text-red-500"></i> Roupas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 items-end gap-4 mb-4">
+
+                <div>
+                    <label for="clothes-item-name" class="block text-sm font-medium text-gray-700 mb-1">Item</label>
+                    <input type="text" id="clothes-item-name" class="w-full border border-gray-300 rounded-md p-2 focus:ring-green-500 focus:border-green-500" placeholder="Ex: Camisetas, Calças">
+                </div>
+                <div>
+                    <label for="clothes-quantity" class="block text-sm font-medium text-gray-700 mb-1">Quantidade Adicionada (peças)</label>
+                    <input type="number" id="clothes-quantity" class="w-full border border-gray-300 rounded-md p-2 focus:ring-green-500 focus:border-green-500" placeholder="Ex: 50" value="0">
+                </div>
+                <div>
+                    <label for="clothes-current-stock" class="block text-sm font-medium text-gray-700 mb-1">Estoque Atual (peças)</label>
+                    <input type="text" id="clothes-current-stock" class="w-full border border-gray-300 rounded-md p-2 bg-gray-50 cursor-not-allowed" readonly>
+                </div>
+            </div>
+            <div class="mb-6">
+                <label for="clothes-entry-date" class="block text-sm font-medium text-gray-700 mb-1">Data da Entrada</label>
+                <input type="date" id="clothes-entry-date" class="w-full border border-gray-300 rounded-md p-2 focus:ring-green-500 focus:border-green-500">
+            </div>
+            <button id="add-clothes-btn" class="bg-red-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                <i class="fas fa-plus mr-2"></i> Adicionar ao Estoque
+            </button>
+        </div>
+
+        
+
+        <div class="text-center mt-10">
+            <button id="save-changes-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 ease-in-out text-lg transform hover:scale-105">
+                <i class="fas fa-check mr-2"></i> Salvar e Voltar ao Dashboard
+            </button>
+            <p id="message" class="mt-4 text-green-600 font-semibold hidden">Estoque atualizado com sucesso!</p>
+        </div>
+    </div>
+
+    <script>
+        // JS para ler, atualizar e salvar o estoque via LocalStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const foodCurrentStockInput = document.getElementById('food-current-stock');
+            const clothesCurrentStockInput = document.getElementById('clothes-current-stock');
+            const foodQuantityInput = document.getElementById('food-quantity');
+            const clothesQuantityInput = document.getElementById('clothes-quantity');
+            const addFoodBtn = document.getElementById('add-food-btn');
+            const addClothesBtn = document.getElementById('add-clothes-btn');
+            const saveChangesBtn = document.getElementById('save-changes-btn');
+            const messageElement = document.getElementById('message');
+
+            let currentFoodStock = parseInt(localStorage.getItem('foodStock')) || 2000;
+            let currentClothesStock = parseInt(localStorage.getItem('clothesStock')) || 5000;
+
+            // Exibir estoque inicial
+            foodCurrentStockInput.value = currentFoodStock;
+            clothesCurrentStockInput.value = currentClothesStock;
+
+            // Setar data atual
+            document.getElementById('food-entry-date').valueAsDate = new Date();
+            document.getElementById('clothes-entry-date').valueAsDate = new Date();
+
+            // Lógica para adicionar Alimentos (Acumula o valor)
+            addFoodBtn.addEventListener('click', () => {
+                const addedQuantity = parseInt(foodQuantityInput.value) || 0;
+                currentFoodStock += addedQuantity;
+                foodCurrentStockInput.value = currentFoodStock;
+                foodQuantityInput.value = 0; // Limpa o campo de adição
+                messageElement.textContent = `Alimentos: ${addedQuantity}kg adicionados. Estoque atual: ${currentFoodStock}kg.`;
+                messageElement.classList.remove('hidden');
+            });
+
+            // Lógica para adicionar Roupas (Acumula o valor)
+            addClothesBtn.addEventListener('click', () => {
+                const addedQuantity = parseInt(clothesQuantityInput.value) || 0;
+                currentClothesStock += addedQuantity;
+                clothesCurrentStockInput.value = currentClothesStock;
+                clothesQuantityInput.value = 0; // Limpa o campo de adição
+                messageElement.textContent = `Roupas: ${addedQuantity} peças adicionadas. Estoque atual: ${currentClothesStock} peças.`;
+                messageElement.classList.remove('hidden');
+            });
+
+            // Lógica para salvar e voltar ao Dashboard
+            saveChangesBtn.addEventListener('click', () => {
+                // 1. Salvar os novos valores no LocalStorage
+                localStorage.setItem('foodStock', currentFoodStock);
+                localStorage.setItem('clothesStock', currentClothesStock);
+                
+                // 2. Notificar e redirecionar
+                saveChangesBtn.textContent = 'Salvando...';
+                saveChangesBtn.disabled = true;
+
+                // Simula o salvamento e redireciona após um pequeno atraso
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

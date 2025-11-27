@@ -1,14 +1,12 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DonorHeaderComponent } from '../../../components/donor/donor-header.component/donor-header.component';
 import { Auth } from '../../../core/services/auth';
 
 import { InstitutionService, InstitutionData } from '../../../core/services/institution.service';
 import { DonationContextService } from '../../../core/services/donation-context.service';
 import { Router } from '@angular/router';
 import { SharedModule } from '../shared.module';
-import { DonorModule } from '../../../components/donor/donor.module';
 
 interface Institution {
   name: string;
@@ -25,7 +23,7 @@ interface Institution {
   standalone: true,
   templateUrl: './instituition-list.component.html',
   styleUrls: ['./instituition-list.component.css'],
-  imports: [CommonModule, FormsModule, DonorModule, SharedModule],
+  imports: [CommonModule, FormsModule, SharedModule],
 })
 export class InstituitionListComponent {
   onSelect(inst: InstitutionData) {

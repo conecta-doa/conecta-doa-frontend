@@ -17,6 +17,7 @@ export const donorRouterConfig: Routes = [
       { path: 'register', component: DonorRegisterComponent },
       { path: 'instituicao', component: InstituicaoComponent },
       { path: 'instituicoes', component: InstituitionListComponent },
+      { path: 'instituicoes-list', redirectTo: 'instituicoes', pathMatch: 'full' },
       { path: 'donation', component: DonorDonationComponent },
       {
         path: 'donation/confirmed',

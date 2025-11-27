@@ -27,9 +27,11 @@ export class AppComponent implements OnInit {
       const username = (tokenParsed.preferred_username || '').toString();
       const digits = username.replace(/\D/g, '');
       if (digits.length === 14) {
-        this.router.navigate(['/institution/dashboard']);
+        // CNPJ -> instituição
+        this.router.navigate(['/instituicao']);
       } else if (digits.length === 11) {
-        this.router.navigate(['/donor/dashboard']);
+        // CPF -> doador
+        this.router.navigate(['/donor']);
       } else {
         console.warn('Username não parece CPF/CNPJ:', username);
         this.router.navigate(['/home']);

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, Renderer2, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-donor-confirmed-donation',
@@ -6,11 +6,42 @@ import { AfterViewInit, Component, Renderer2 } from '@angular/core';
   standalone: false,
   styleUrls: ['./donor-confirmed-donation.component.css'],
 })
-export class DonorConfirmedDonationComponent implements AfterViewInit {
+export class DonorConfirmedDonationComponent implements AfterViewInit, OnInit {
+  donatedAmount: number | null = null;
+  formattedAmount: string = 'R$ 0,00';
+  pointsAdded: number = 0;
+
   constructor(private renderer: Renderer2) {}
 
+  ngOnInit(): void {
+    const state = (window && (window.history as any) && (window.history as any).state) || {};
+    const donation = state?.donation || null;
+    const points = state?.pointsAdded ?? null;
+
+    if (donation && typeof donation === 'object') {
+      if (donation.amount != null) {
+        this.donatedAmount = Number(donation.amount) || 0;
+        try {
+          this.formattedAmount = this.donatedAmount.toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          });
+          this.formattedAmount = `R$ ${this.formattedAmount}`;
+        } catch {
+          this.formattedAmount = `R$ ${Number(this.donatedAmount).toFixed(2)}`;
+        }
+      }
+    }
+
+    if (points != null) {
+      this.pointsAdded = Number(points) || 0;
+    } else {
+      if (this.donatedAmount && this.donatedAmount > 0)
+        this.pointsAdded = Math.max(1, Math.round(this.donatedAmount));
+    }
+  }
+
   ngAfterViewInit(): void {
-    // cria e inicia o container de confete dinamicamente
     const COLORS = ['#e63946', '#ffd166', '#06d6a0', '#118ab2', '#ffcf6b'];
     const COUNT = 120;
     const container = this.renderer.createElement('div');
@@ -57,8 +88,6 @@ export class DonorConfirmedDonationComponent implements AfterViewInit {
     };
 
     setInterval(recycle, 1500);
-
-    // parallax leve ao rolar
     window.addEventListener(
       'scroll',
       () => {
@@ -67,8 +96,6 @@ export class DonorConfirmedDonationComponent implements AfterViewInit {
       },
       { passive: true }
     );
-
-    // garante z-index do card
     const card = document.querySelector('.card');
     if (card) (card as HTMLElement).style.zIndex = '10';
   }

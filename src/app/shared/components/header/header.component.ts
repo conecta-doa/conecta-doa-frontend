@@ -9,7 +9,7 @@ import { KeycloakService } from 'keycloak-angular';
   standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  imports: [CommonModule, RouterModule]
+  imports: [CommonModule, RouterModule],
 })
 export class HeaderComponent implements OnInit {
   isMenuOpen = false;

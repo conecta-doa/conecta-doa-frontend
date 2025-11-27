@@ -111,3 +111,25 @@ git push origin nome-da-sua-branch
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Usando json-server com `mock-data.json`
+
+- O projeto contém `src/assets/mock-data.json` com uma coleção `donations`.
+- Para rodar um servidor REST local que persiste alterações nesse arquivo, execute em um terminal:
+
+```powershell
+npm install
+npm run json-server
+```
+
+- O `json-server` expõe endpoints REST em `http://localhost:3000`, por exemplo:
+
+  - `GET /donations` — lista doações
+  - `GET /donations/:id` — obter doação por id
+  - `POST /donations` — criar doação (o body será inserido em `mock-data.json`)
+  - `PUT /donations/:id` — atualizar doação
+  - `DELETE /donations/:id` — remover doação
+
+- Abra outro terminal para rodar a aplicação Angular (`npm start`).
+
+Observação: o script `json-server` já foi adicionado ao `package.json`.

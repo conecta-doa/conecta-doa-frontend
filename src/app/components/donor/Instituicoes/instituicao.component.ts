@@ -32,7 +32,6 @@ export class InstituicaoComponent implements OnInit {
   isLoading: boolean = true;
   errorMessage: string = '';
 
-  // Mock data - should come from service
   donationItems: DonationItem[] = [
     {
       id: '1',
@@ -43,7 +42,6 @@ export class InstituicaoComponent implements OnInit {
       category: 'food',
       unit: 'unidades',
     },
-    // Add more items...
   ];
 
   progresso: number = 60;

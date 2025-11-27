@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InstitutionData } from '../../../core/services/institution.service';
 import { DonationContextService } from '../../../core/services/donation-context.service';
+import { DonationService } from '../../../core/services/donation.service';
+import { MockApiService } from '../../../core/services/mock-api.service';
+import { PixService } from '../../../core/services/pix.service';
 
 @Component({
   selector: 'app-donor-donation',
@@ -16,6 +19,10 @@ export class DonorDonationComponent implements OnInit {
   currentDonationType: 'financeira' | 'alimentos' | 'roupas' = 'financeira';
   currentPaymentMethod: 'pix' | 'credit' = 'pix';
   currentValue: string = '50';
+
+  pixImage: string | null = null;
+  pixCopyPaste: string | null = null;
+  pixLoading: boolean = false;
 
   showCustomValue: boolean = false;
   customValue: string = 'R$ 0,00';
@@ -94,6 +101,52 @@ export class DonorDonationComponent implements OnInit {
 
   confirmFinancialDonation(): void {
     this.currentScreen = 'screen2';
+
+    if (this.currentPaymentMethod === 'pix') {
+      this.generatePixForCurrentDonation();
+    }
+  }
+
+  private generatePixForCurrentDonation(): void {
+    const value = parseFloat(this.currentValue) || 0;
+    if (value <= 0) return;
+
+    const selected = this.donationContext.getSelectedInstitution();
+    const name = (selected && (selected as any).name) || this.institutionName || '';
+    const location = (selected && (selected as any).location) || '';
+    const city = (location && location.split(',')[0]) || 'São Paulo';
+
+    this.pixLoading = true;
+    this.pixImage = null;
+    this.pixCopyPaste = null;
+
+    this.pixService.generatePix(value, name, city).subscribe({
+      next: (res) => {
+        this.pixLoading = false;
+        if (res && res.isSuccess) {
+          this.pixCopyPaste = res.copyPaste || null;
+          this.pixImage = res.qrCode ? `data:image/png;base64,${res.qrCode}` : null;
+        } else {
+          alert('Falha ao gerar QR Pix: ' + (res?.error || 'Resposta inválida'));
+        }
+      },
+      error: (err) => {
+        this.pixLoading = false;
+        console.error('Erro gerando Pix', err);
+        alert('Erro ao gerar QR Pix. Veja o console para detalhes.');
+      },
+    });
+  }
+
+  copyPixToClipboard(): void {
+    if (!this.pixCopyPaste) return;
+    try {
+      navigator.clipboard.writeText(this.pixCopyPaste);
+      alert('Texto Pix copiado para a área de transferência');
+    } catch (e) {
+      console.error('Erro copiando para clipboard', e);
+      alert('Não foi possível copiar automaticamente. Selecione e copie manualmente.');
+    }
   }
 
   confirmFoodDonation(): void {
@@ -105,9 +158,115 @@ export class DonorDonationComponent implements OnInit {
   }
 
   finalizeDonation(): void {
-    // Ao finalizar, navega para a tela de confirmação
-    // Poderíamos salvar dados no DonationContextService se necessário
-    this.router.navigate(['/donor/donation/confirmed']);
+    let donation: any = {
+      type: this.currentDonationType === 'financeira' ? 'monetary' : 'in-kind',
+      status: 'pending',
+      createdAt: new Date().toISOString(),
+    };
+
+    if (this.currentDonationType === 'financeira') {
+      donation.amount = parseFloat(this.currentValue) || 0;
+      donation.currency = 'BRL';
+    } else if (this.currentDonationType === 'alimentos') {
+      const qty = parseInt(this.foodQuantity || '1') || 1;
+      donation.items = [{ name: 'Alimentos', quantity: qty, unit: 'un' }];
+      donation.pickup = { date: new Date().toISOString() };
+    } else if (this.currentDonationType === 'roupas') {
+      donation.items = [{ name: 'Roupas', quantity: 1, unit: 'un' }];
+    }
+    const selected = this.donationContext.getSelectedInstitution();
+    if (selected && (selected as any).name) {
+      donation.institutionName = (selected as any).name;
+    } else {
+      donation.institutionName = this.institutionName;
+    }
+
+    let rawUser: any = null;
+    try {
+      rawUser = JSON.parse(localStorage.getItem('user') || 'null');
+    } catch (e) {
+      rawUser = null;
+    }
+
+    if (!rawUser || !rawUser.id) {
+      this.router.navigate(['/login'], { queryParams: { returnUrl: '/donor/donation' } });
+      return;
+    }
+
+    const userId = rawUser.id as string;
+
+    this.mockApi.getDonors().subscribe({
+      next: (donors: any[]) => {
+        const donor = (donors || []).find((d: any) => d.userId === userId);
+        if (!donor) {
+          alert('Não foi possível localizar seu perfil de doador.');
+          return;
+        }
+
+        donation.donorId = donor.id;
+
+        let pointsToAdd = 0;
+        if (donation.type === 'monetary') {
+          pointsToAdd = Math.max(1, Math.round(donation.amount));
+        } else if (donation.items && donation.items.length) {
+          const totalQty = donation.items.reduce(
+            (s: number, it: any) => s + (Number(it.quantity) || 0),
+            0
+          );
+          pointsToAdd = Math.max(1, totalQty * 5);
+        }
+
+        this.mockApi.getInstitutions().subscribe({
+          next: (insts: any[]) => {
+            const found = (insts || []).find(
+              (i: any) => i.name === donation.institutionName || i.slug === donation.institutionName
+            );
+            if (found && found.id) donation.institutionId = found.id;
+
+            this.donationService.create(donation, donor.id, pointsToAdd).subscribe({
+              next: (res: any) => {
+                try {
+                  this.donationContext.clear();
+                } catch {}
+                const navState: any = {
+                  donation: res?.donation || res,
+                  pointsAdded: pointsToAdd,
+                  newDonor: res?.donor,
+                };
+                this.router.navigate(['/donor/donation/confirmed'], { state: navState });
+              },
+              error: (err) => {
+                console.error('Erro ao criar doação', err);
+                alert('Falha ao processar doação. Tente novamente.');
+              },
+            });
+          },
+          error: (err: any) => {
+            this.donationService.create(donation, donor.id, pointsToAdd).subscribe({
+              next: (res: any) => {
+                try {
+                  this.donationContext.clear();
+                } catch {}
+                const navState: any = {
+                  donation: res?.donation || res,
+                  pointsAdded: pointsToAdd,
+                  newDonor: res?.donor,
+                };
+                this.router.navigate(['/donor/donation/confirmed'], { state: navState });
+              },
+              error: (err) => {
+                console.error('Erro ao criar doação', err);
+                alert('Falha ao processar doação. Tente novamente.');
+              },
+            });
+          },
+        });
+      },
+      error: (err: any) => {
+        console.error('Erro carregando doadores', err);
+        alert('Não foi possível acessar dados do doador.');
+      },
+    });
   }
 
   backToStart(): void {
@@ -168,15 +327,18 @@ export class DonorDonationComponent implements OnInit {
     }
   }
 
-  constructor(private router: Router, private donationContext: DonationContextService) {}
+  constructor(
+    private router: Router,
+    private donationContext: DonationContextService,
+    private donationService: DonationService,
+    private mockApi: MockApiService,
+    private pixService: PixService
+  ) {}
 
   ngOnInit(): void {
-    // Try to read institution from navigation state (works on navigation)
     const navState = this.router.getCurrentNavigation()?.extras?.state as
       | { institution?: InstitutionData }
       | undefined;
-
-    // Fallback to history.state (works also on reload/navigation from external link)
     const histState =
       (window && (window.history as any) && (window.history as any).state) || undefined;
 
@@ -188,11 +350,9 @@ export class DonorDonationComponent implements OnInit {
         this.institutionName = inst.name;
       }
     } else {
-      // Fallback: check DonationContextService for a saved institution (e.g. after login)
       const saved = this.donationContext.getSelectedInstitution();
       if (saved && saved.name) {
         this.institutionName = saved.name;
-        // Optionally clear the context so it doesn't leak to other flows
         this.donationContext.clear();
       }
     }

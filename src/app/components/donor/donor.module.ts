@@ -28,7 +28,8 @@ import { DonorConfirmedDonationComponent } from './donor-confirmed-donation.comp
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    // DonorHeaderComponent and InstituicaoComponent are standalone and imported where needed
+    DonorHeaderComponent,
+    InstituicaoComponent,
   ],
   exports: [DonorHeaderComponent],
 })

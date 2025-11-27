@@ -61,8 +61,6 @@ export class InstituitionListComponent {
   }
 
   donate(inst: InstitutionData) {
-    // Store selected institution in the shared DonationContextService so it
-    // survives navigation through the login flow.
     this.donationContext.setSelectedInstitution(inst);
 
     if (this.auth.hasToken()) {

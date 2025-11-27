@@ -4,7 +4,11 @@
     "description": "Arquivo de dados mock para facilitar consumo de API no front-end. Contém usuários para simular login, doadores, instituições e doações.",
     "notes": "Use 'users' para validar login (documento + password). Campos 'cpf' e 'cnpj' são armazenados sem máscaras.",
     "sampleLogin": {
-      "donor": { "document": "12345678901", "formatted": "123.456.789-01", "password": "senha123" },
+      "donor": {
+        "document": "12345678901",
+        "formatted": "123.456.789-01",
+        "password": "senha123"
+      },
       "institution": {
         "document": "11222333000181",
         "formatted": "11.222.333/0001-81",
@@ -12,7 +16,6 @@
       }
     }
   },
-
   "users": [
     {
       "id": "u_donor_1",
@@ -51,7 +54,6 @@
       "token": "mock-token-donor-2"
     }
   ],
-
   "donors": [
     {
       "id": "d1",
@@ -59,6 +61,7 @@
       "name": "João Silva",
       "cpf": "12345678901",
       "phone": "+55 11 99999-0001",
+      "points": 6770,
       "profileType": "public",
       "address": {
         "street": "Rua das Flores",
@@ -75,6 +78,7 @@
       "name": "Mariana Costa",
       "cpf": "98765432100",
       "phone": "+55 21 98888-7777",
+      "points": 40,
       "profileType": "anonymous",
       "address": {
         "street": "Av. Atlântica",
@@ -86,7 +90,6 @@
       "createdAt": "2025-09-15T11:20:00Z"
     }
   ],
-
   "institutions": [
     {
       "id": "i1",
@@ -127,7 +130,6 @@
       "createdAt": "2025-10-20T14:00:00Z"
     }
   ],
-
   "donations": [
     {
       "id": "don_1",
@@ -135,8 +137,16 @@
       "institutionId": "i1",
       "type": "in-kind",
       "items": [
-        { "name": "Arroz", "quantity": 10, "unit": "kg" },
-        { "name": "Feijão", "quantity": 5, "unit": "kg" }
+        {
+          "name": "Arroz",
+          "quantity": 10,
+          "unit": "kg"
+        },
+        {
+          "name": "Feijão",
+          "quantity": 5,
+          "unit": "kg"
+        }
       ],
       "pickup": {
         "date": "2025-10-28T10:00:00Z",
@@ -156,15 +166,84 @@
       "donorId": "d2",
       "institutionId": "i1",
       "type": "monetary",
-      "amount": 150.0,
+      "amount": 150,
       "currency": "BRL",
       "status": "pending",
       "createdAt": "2025-10-30T16:00:00Z"
+    },
+    {
+      "type": "monetary",
+      "status": "pending",
+      "createdAt": "2025-11-23T22:56:38.780Z",
+      "amount": 300,
+      "currency": "BRL",
+      "institutionName": "Abrigo dos Animais",
+      "donorId": "d1",
+      "id": "QXk17qI"
+    },
+    {
+      "type": "monetary",
+      "status": "pending",
+      "createdAt": "2025-11-23T23:14:58.872Z",
+      "amount": 4000,
+      "currency": "BRL",
+      "institutionName": "Lar da Esperança",
+      "donorId": "d1",
+      "id": "qV33p8i"
+    },
+    {
+      "type": "monetary",
+      "status": "pending",
+      "createdAt": "2025-11-23T23:17:30.461Z",
+      "amount": 50,
+      "currency": "BRL",
+      "institutionName": "Lar da Esperança",
+      "donorId": "d1",
+      "id": "hUqHe4D"
+    },
+    {
+      "type": "monetary",
+      "status": "pending",
+      "createdAt": "2025-11-23T23:43:28.615Z",
+      "amount": 200,
+      "currency": "BRL",
+      "institutionName": "Abrigo dos Animais",
+      "donorId": "d1",
+      "id": "pcjlI9d"
+    },
+    {
+      "type": "monetary",
+      "status": "pending",
+      "createdAt": "2025-11-24T00:01:23.755Z",
+      "amount": 400,
+      "currency": "BRL",
+      "institutionName": "Lar da Esperança",
+      "donorId": "d1",
+      "id": "_H0GAxz"
+    },
+    {
+      "type": "monetary",
+      "status": "pending",
+      "createdAt": "2025-11-25T02:31:49.047Z",
+      "amount": 2000,
+      "currency": "BRL",
+      "institutionName": "Abrigo dos Animais",
+      "donorId": "d1",
+      "id": "u8zqfSP"
     }
   ],
-
   "settings": {
-    "categories": ["Alimentos", "Roupas", "Dinheiro", "Higiene"],
-    "states": ["SP", "RJ", "MG", "BA"]
+    "categories": [
+      "Alimentos",
+      "Roupas",
+      "Dinheiro",
+      "Higiene"
+    ],
+    "states": [
+      "SP",
+      "RJ",
+      "MG",
+      "BA"
+    ]
   }
 }

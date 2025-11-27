@@ -3,6 +3,11 @@ import { LoginComponent } from './shared/components/login/login.component';
 
 export const routes: Routes = [
   {
+    path: 'instituicao',
+    loadChildren: () =>
+      import('./components/instituition/instituition.module').then((r) => r.InstituitionModule),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./components/public-pages/public-pages.module')

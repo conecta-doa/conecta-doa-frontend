@@ -102,14 +102,9 @@ export class LoginComponent {
         try {
           this.auth.setToken(res.token);
           localStorage.setItem('user', JSON.stringify(res.user));
-        } catch (e) {
-          // ignore storage errors
-        }
-        // Determine redirect after login. Prefer returnUrl from query params.
-        const returnUrl = this.route.snapshot.queryParams['returnUrl'];
+        } catch (e) {}
 
-        // If the login was initiated with an institution/donation in navigation state,
-        // persist it to DonationContextService so DonationComponent can read it.
+        const returnUrl = this.route.snapshot.queryParams['returnUrl'];
         const navState = this.router.getCurrentNavigation()?.extras?.state as any;
         const histState =
           (window && (window.history as any) && (window.history as any).state) || undefined;
@@ -127,9 +122,7 @@ export class LoginComponent {
         }
 
         if (returnUrl) {
-          // Navigate to requested URL (DonationComponent will read institution
-          // from DonationContextService if present)
-          this.router.navigate([returnUrl]);
+          this.router.navigateByUrl(returnUrl);
           return;
         }
 

@@ -233,9 +233,14 @@
         <div class="section">
           <p>Escaneie o QR Code abaixo com o app do seu banco para pagar:</p>
           <div class="qr-code-placeholder">
-            [QR CODE AQUI]
+            <div *ngIf="pixLoading">Gerando QR Code...</div>
+            <img *ngIf="!pixLoading && pixImage" [src]="pixImage" alt="QR Code PIX" />
+            <div *ngIf="!pixLoading && !pixImage" class="placeholder-text">[QR CODE AQUI]</div>
           </div>
-          <button class="pix-button">Copiar Chave PIX</button>
+          <button class="pix-button" (click)="copyPixToClipboard()" [disabled]="!pixCopyPaste">
+            Copiar Chave PIX
+          </button>
+          <!-- PARA MATHEUS -->
         </div>
       </div>
 

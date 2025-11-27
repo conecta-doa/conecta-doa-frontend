@@ -1,18 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-validation', 
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule 
-  ],
+  standalone: false,
   templateUrl: './validation.component.html',
   styleUrls: ['./validation.component.css']
 })
-export class ValidationComponent {
+export class ValidationComponent implements OnInit {
 
   @Input() dadosIniciais: any; 
   @Output() voltar = new EventEmitter<void>();

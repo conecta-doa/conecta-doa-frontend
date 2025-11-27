@@ -15,7 +15,7 @@
     utilizando o CNPJ e a senha cadastrada.
   </p>
 
-  <a [routerLink]="['/login']" 
+  <a (click)="login()"
      class="w-full max-w-xs bg-red-600 text-white font-bold py-3 px-6 rounded-lg
             hover:bg-red-700 transition duration-300">
     Ir para o Login

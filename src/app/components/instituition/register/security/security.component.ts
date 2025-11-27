@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-security', 
-  standalone: true,
-  imports: [ CommonModule, ReactiveFormsModule ],
+  standalone: false,
   templateUrl: './security.component.html',
   styleUrls: ['./security.component.css']
 })

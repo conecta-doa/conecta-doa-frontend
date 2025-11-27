@@ -11,7 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DonorHeaderComponent } from './donor-header.component/donor-header.component';
 import { SharedModule } from '../../shared/components/shared.module';
-import { InstituicaoComponent } from './Instituicoes/instituicao.component';
 import { DonorConfirmedDonationComponent } from './donor-confirmed-donation.component/donor-confirmed-donation.component';
 
 @NgModule({
@@ -21,6 +20,7 @@ import { DonorConfirmedDonationComponent } from './donor-confirmed-donation.comp
     DonorRegisterComponent,
     DonorDonationComponent,
     DonorConfirmedDonationComponent,
+    DonorHeaderComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +30,6 @@ import { DonorConfirmedDonationComponent } from './donor-confirmed-donation.comp
     SharedModule,
     // DonorHeaderComponent and InstituicaoComponent are standalone and imported where needed
   ],
-  exports: [],
+  exports: [DonorHeaderComponent],
 })
 export class DonorModule {}

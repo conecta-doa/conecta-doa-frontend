@@ -5,10 +5,9 @@ import { Auth } from '../../../core/services/auth';
 
 @Component({
   selector: 'app-donor-header',
-  standalone: true,
+  standalone: false,
   templateUrl: './donor-header.component.html',
   styleUrls: ['./donor-header.component.css'],
-  imports: [CommonModule, RouterModule],
 })
 export class DonorHeaderComponent {
   constructor(private auth: Auth, private router: Router) {}

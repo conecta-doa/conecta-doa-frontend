@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { KeycloakService } from 'keycloak-angular';
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +8,13 @@ export class Auth {
   private readonly TOKEN_KEY = 'token';
   private readonly USER_KEY = 'user';
 
+  constructor(private keycloak: KeycloakService) {}
+
+  /**
+   * Mantido para compatibilidade com o código antigo.
+   * Hoje o token "oficial" vem do Keycloak, mas se você ainda
+   * usa algum login mock / API própria, pode continuar salvando aqui.
+   */
   setToken(token: string): void {
     try {
       localStorage.setItem(this.TOKEN_KEY, token);
@@ -15,7 +23,15 @@ export class Auth {
     }
   }
 
+  /**
+   * Pega o token, priorizando o do Keycloak.
+   */
   getToken(): string | null {
+    const kcToken = this.keycloak.getKeycloakInstance().token;
+    if (kcToken) {
+      return kcToken;
+    }
+
     try {
       return localStorage.getItem(this.TOKEN_KEY);
     } catch {
@@ -23,8 +39,12 @@ export class Auth {
     }
   }
 
+  /**
+   * Versão síncrona usada em vários lugares do código.
+   * Retorna true se existir token (Keycloak ou localStorage).
+   */
   hasToken(): boolean {
-    return !!this.getToken(); // Corrigido para usar o método interno
+    return !!this.getToken();
   }
 
   clearToken(): void {
@@ -35,6 +55,9 @@ export class Auth {
     }
   }
 
+  /**
+   * Se quiser manter a limpeza de dados locais + logout no Keycloak.
+   */
   logout(): void {
     try {
       localStorage.removeItem(this.TOKEN_KEY);
@@ -42,5 +65,8 @@ export class Auth {
     } catch {
       // ignore storage errors
     }
+
+    // Faz logout também no Keycloak e volta pra /home
+    this.keycloak.logout(window.location.origin + '/home');
   }
 }

@@ -1,7 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { Auth } from '../../../core/services/auth';
 import { KeycloakService } from 'keycloak-angular';
 
@@ -24,7 +23,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.isLoggedIn = await this.keycloak.isLoggedIn();
+    this.isLoggedIn = await this.auth.hasToken();
     console.log('Logado no Keycloak?', this.isLoggedIn);
   }
 
@@ -35,8 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.auth.logout();
-    this.keycloak.logout(window.location.origin + '/home');
+    this.auth.logout(); // já chama o logout do keycloak lá dentro
     this.isLoggedIn = false;
   }
 

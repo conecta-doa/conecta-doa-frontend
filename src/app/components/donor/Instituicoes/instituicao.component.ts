@@ -6,6 +6,7 @@ import { Auth } from '../../../core/services/auth';
 import { DonorHeaderComponent } from '../donor-header.component/donor-header.component';
 import { SharedModule } from '../../../shared/components/shared.module';
 import { HeaderComponent } from "../../../shared/components/header/header.component";
+import { DonorModule } from '../donor.module';
 
 interface DonationItem {
   id: string;
@@ -23,7 +24,7 @@ interface DonationItem {
     templateUrl: './instituicao.component.html',
     styleUrls: ['./instituicao.component.css'],
     providers: [DecimalPipe],
-    imports: [CommonModule, DonorHeaderComponent, SharedModule, HeaderComponent]
+    imports: [CommonModule, SharedModule, HeaderComponent, DonorModule]
 })
 export class InstituicaoComponent implements OnInit {
   abaAtiva: string = 'sobre';

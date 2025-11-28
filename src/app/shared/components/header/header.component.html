@@ -9,7 +9,7 @@
     <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       Como funciona
     </a>
-    <a routerLink="/instituicoes" routerLinkActive="active">Instituições</a>
+    <a routerLink="/instituitions-list" routerLinkActive="active">Instituições</a>
     <a routerLink="/stories" routerLinkActive="active">Histórias</a>
 
     <div class="auth" *ngIf="!isLoggedIn; else loggedIn">
@@ -23,7 +23,7 @@
 
         <div class="dropdown-content" *ngIf="isOpen">
           <a routerLink="/donor/register" (click)="isOpen = false">Sou Doador</a>
-          <a routerLink="/instituicao/register" (click)="isOpen = false">Sou Instituição</a>
+          <a routerLink="/instituition/register" (click)="isOpen = false">Sou Instituição</a>
         </div>
       </div>
     </div>

@@ -38,5 +38,6 @@ import { InstituitionSettingsComponent } from './settings/instituition-settings.
     ReactiveFormsModule,
     InstituitionRoutingModule,
   ],
+  exports: [InstituitionHeaderComponent],
 })
 export class InstituitionModule {}

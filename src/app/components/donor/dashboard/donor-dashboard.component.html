@@ -88,7 +88,7 @@
 <div class="sugestoes-container">
   <h2><strong>Sugestões Próximas</strong></h2>
   <div class="sugestoes-grid" *ngIf="suggestedInstitutions.length; else noSuggestions">
-    <a class="sugestao-card" *ngFor="let inst of suggestedInstitutions" [routerLink]="['/instituicao', inst.slug]">
+    <a class="sugestao-card" *ngFor="let inst of suggestedInstitutions" [routerLink]="['/instituition', inst.slug]">
       <img [src]="inst.image" [alt]="inst.name" />
       <h4><strong>{{ inst.name }}</strong></h4>
       <p>{{ inst.description }}</p>

@@ -60,6 +60,6 @@ export class InstituitionNotificationsComponent {
   }
 
     goBack(): void {
-    this.router.navigate(['/instituicao']);
+    this.router.navigate(['/instituition/dashboard']);
   }
 }

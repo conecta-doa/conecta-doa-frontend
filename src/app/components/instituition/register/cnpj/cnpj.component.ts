@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { MockApiService } from '../../../../core/services/mock-api.service';
 import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
 
@@ -13,7 +14,10 @@ export class CnpjComponent {
 
   cnpj: string = ''; 
 
-  constructor() { }
+  loading = false;
+  cnpjData: any = null;
+
+  constructor(private mockApi: MockApiService) { }
 
   formatCnpj(event: any): void {
     let value = event.target.value.replace(/\D/g, '');
@@ -33,11 +37,28 @@ export class CnpjComponent {
     event.target.value = value;
   }
   onSubmit(): void {
-    
-    if (this.cnpj.length === 18) {
-      this.avancar.emit(this.cnpj); 
-    } else {
+    if (this.cnpj.length !== 18) {
       alert('Por favor, informe um CNPJ válido.');
+      return;
     }
+    this.loading = true;
+    this.mockApi.getCnpjInfo(this.cnpj).subscribe({
+      next: (data) => {
+        this.loading = false;
+        if (!data) {
+          alert('CNPJ não encontrado na base mock. Prosseguindo apenas com o número.');
+          this.avancar.emit(this.cnpj);
+          return;
+        }
+        this.cnpjData = data;
+        // Envia objeto com cnpj + dados estruturados
+        this.avancar.emit(JSON.stringify({ cnpj: this.cnpj, data }));
+      },
+      error: () => {
+        this.loading = false;
+        alert('Erro ao consultar CNPJ. Tente novamente.');
+        this.avancar.emit(this.cnpj);
+      }
+    });
   }
 }

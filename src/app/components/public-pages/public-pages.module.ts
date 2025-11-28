@@ -9,6 +9,7 @@ import { DonorHeaderComponent } from '../donor/donor-header.component/donor-head
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { InstituitionListComponent } from '../../shared/components/instituition-list.component/instituition-list.component';
 import { DonorModule } from '../donor/donor.module';
+import { InstituitionModule } from '../instituition/instituition.module';
 
 @NgModule({
   declarations: [PublicPagesAppComponent, HomeComponent],
@@ -21,6 +22,7 @@ import { DonorModule } from '../donor/donor.module';
     HeaderComponent,
     InstituitionListComponent,
     DonorModule,
+    InstituitionModule,
   ],
 })
 export class PublicPagesModule {}

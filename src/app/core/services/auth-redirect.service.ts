@@ -17,12 +17,12 @@ export class AuthRedirectService {
     let username: string = token?.preferred_username || '';
     username = username.replace(/\D/g, '');
     const currentUrl = this.router.url;
-    if (currentUrl.startsWith('/donor') || currentUrl.startsWith('/instituicao')) {
+    if (currentUrl.startsWith('/donor') || currentUrl.startsWith('/instituition')) {
       return;
     }
 
     if (username.length === 14) {
-      this.router.navigate(['/instituicao']);
+      this.router.navigate(['/instituition']);
     } else if (username.length === 11) {
       this.router.navigate(['/donor']);
     } else {

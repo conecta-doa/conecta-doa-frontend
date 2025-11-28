@@ -37,6 +37,13 @@
     
       <app-success *ngSwitchCase="5">
       </app-success>
+      <div *ngSwitchCase="5" class="mt-6 flex flex-col items-center gap-4">
+        <button class="bg-red-600 text-white font-semibold px-6 py-3 rounded-lg w-full max-w-sm disabled:opacity-60"
+                (click)="finalizeCadastro()" [disabled]="isSaving">
+          {{ isSaving ? 'Salvando...' : 'Finalizar Cadastro e Publicar' }}
+        </button>
+        <p *ngIf="saveError" class="text-sm text-red-600">{{ saveError }}</p>
+      </div>
 
     </div> </main>
 

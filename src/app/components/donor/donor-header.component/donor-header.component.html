@@ -9,13 +9,10 @@
 
     <nav class="main-nav" aria-label="Navegação principal">
       <a routerLink="/home" routerLinkActive="active">Início</a>
-      <a routerLink="/instituicoes" routerLinkActive="active">Instituições</a>
+      <a routerLink="/instituitions-list" routerLinkActive="active">Instituições</a>
       <a routerLink="/donor/donation" routerLinkActive="active">Doações</a>
     </nav>
-
-    <!-- ÍCONES À DIREITA -->
     <div class="right">
-      <!-- Notificações -->
       <button class="icon-btn notification" aria-label="Notificações">
         <svg
           viewBox="0 0 24 24"
@@ -33,8 +30,6 @@
       </button>
 
       <button class="btn logout" (click)="logout()" aria-label="Sair">Sair</button>
-
-      <!-- Perfil -->
       <div class="profile">
         <a routerLink="/donor" aria-label="Ir para o dashboard do doador">
           <img

@@ -40,7 +40,10 @@ export class InstituitionListComponent {
     private router: Router,
     private donationContext: DonationContextService
   ) {
-    this.institutions = this.institutionService.list();
+    this.institutionService.list().subscribe({
+      next: (insts) => (this.institutions = insts),
+      error: (err) => console.error('Falha ao carregar instituições', err),
+    });
   }
 
   get filtered(): InstitutionData[] {
@@ -55,7 +58,7 @@ export class InstituitionListComponent {
   }
 
   navigateToInstitution(inst: InstitutionData) {
-    this.router.navigate(['/instituicao', inst.slug], { state: { institution: inst } });
+    this.router.navigate(['/instituition', inst.slug], { state: { institution: inst } });
   }
 
   donate(inst: InstitutionData) {

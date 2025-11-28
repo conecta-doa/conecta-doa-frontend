@@ -12,11 +12,13 @@
           {{ institutionName }}
         </span>
 
-        <img
-          [src]="avatarUrl"
-          alt="Institution Logo"
-          class="size-9 rounded-full"
-        />
+        <a routerLink="/instituicao" aria-label="Ir para o dashboard da instituição">
+          <img
+            [src]="avatarUrl"
+            alt="Institution Logo"
+            class="size-9 rounded-full cursor-pointer"
+          />
+        </a>
 
         <button
           class="p-2 rounded-full hover:bg-gray-200 text-black"

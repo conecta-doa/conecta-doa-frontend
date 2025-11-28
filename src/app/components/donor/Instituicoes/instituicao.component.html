@@ -10,13 +10,11 @@
   <p>Carregando instituição...</p>
 </div>
 
-<!-- Error State -->
 <div *ngIf="errorMessage && !isLoading" class="error-container">
   <p>{{ errorMessage }}</p>
   <button class="btn-retry" (click)="loadInstitution()">Tentar Novamente</button>
 </div>
 
-<!-- Main Content -->
 <div *ngIf="!isLoading && !errorMessage && institution" class="instituicao-container">
   <div class="instituicao-card">
     <img
@@ -62,7 +60,6 @@
     </div>
 
     <div class="tab-content" *ngIf="isAbaAtiva('necessidades')">
-      <!-- Financial Contributions -->
       <div class="contribuicao-header">
         <span class="emoji">💰</span>
         <h3>Contribuições Financeiras</h3>
@@ -84,8 +81,6 @@
         </div>
         <button class="btn-contribuir" (click)="donate()">💵 Contribuir Financeiramente</button>
       </div>
-
-      <!-- Dynamic Donation Items -->
       <div *ngFor="let category of ['food', 'clothing', 'education']">
         <div class="contribuicao-header" *ngIf="getItemsByCategory(category).length">
           <span class="emoji">{{ getCategoryEmoji(category) }}</span>

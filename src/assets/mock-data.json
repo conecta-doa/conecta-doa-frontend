@@ -205,5 +205,52 @@
       "MG",
       "BA"
     ]
-  }
+  },
+  "cnpjRegistry": [
+    {
+      "cnpj": "11222333000181",
+      "cnpj_formatted": "11.222.333/0001-81",
+      "razaoSocial": "Casa da Esperança",
+      "nomeFantasia": "Casa Esperança",
+      "email": "contato@casadaesperanca.org",
+      "telefone": "+55 11 3333-4444",
+      "endereco": {
+        "street": "Praça da Fé",
+        "number": "45",
+        "city": "São Paulo",
+        "state": "SP",
+        "zip": "02020-000"
+      }
+    },
+    {
+      "cnpj": "55443322000109",
+      "cnpj_formatted": "55.443.322/0001-09",
+      "razaoSocial": "Instituto Futuro Brilhante",
+      "nomeFantasia": "Futuro Brilhante",
+      "email": "contato@futurobrilhante.org",
+      "telefone": "+55 11 5555-8888",
+      "endereco": {
+        "street": "Av. das Nações",
+        "number": "100",
+        "city": "São Paulo",
+        "state": "SP",
+        "zip": "01010-100"
+      }
+    },
+    {
+      "cnpj": "66778899000155",
+      "cnpj_formatted": "66.778.899/0001-55",
+      "razaoSocial": "Associação Sorriso Criança",
+      "nomeFantasia": "Sorriso Criança",
+      "email": "contato@sorrisocrianca.org",
+      "telefone": "+55 21 2222-3333",
+      "endereco": {
+        "street": "Rua Alegre",
+        "number": "200",
+        "city": "Rio de Janeiro",
+        "state": "RJ",
+        "zip": "22020-200"
+      }
+    }
+  ]
 }

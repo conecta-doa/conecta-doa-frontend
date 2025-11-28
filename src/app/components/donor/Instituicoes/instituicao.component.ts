@@ -64,14 +64,26 @@ export class InstituicaoComponent implements OnInit {
 
     if (slug) {
       try {
-        this.institution = this.institutionService.findBySlug(slug);
-        if (!this.institution) {
-          this.router.navigate(['/not-found']);
-          return;
-        }
+        this.isLoading = true;
+        this.institutionService.findBySlug(slug).subscribe({
+          next: (inst) => {
+            if (!inst) {
+              this.router.navigate(['/not-found']);
+              return;
+            }
+            this.institution = inst;
+            this.isLoading = false;
+          },
+          error: (error) => {
+            this.errorMessage = 'Erro ao carregar instituição';
+            console.error('Error loading institution:', error);
+            this.isLoading = false;
+          },
+        });
       } catch (error) {
         this.errorMessage = 'Erro ao carregar instituição';
         console.error('Error loading institution:', error);
+        this.isLoading = false;
       }
     } else {
       const navState = this.router.getCurrentNavigation()?.extras.state as {
@@ -83,9 +95,8 @@ export class InstituicaoComponent implements OnInit {
         this.router.navigate(['/institutions']);
         return;
       }
+      this.isLoading = false;
     }
-
-    this.isLoading = false;
   }
 
   selecionarAba(aba: string): void {

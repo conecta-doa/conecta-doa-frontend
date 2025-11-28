@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 
 export interface InstitutionData {
   slug: string;
@@ -16,7 +18,7 @@ export interface InstitutionData {
 
 @Injectable({ providedIn: 'root' })
 export class InstitutionService {
-  private readonly institutions: InstitutionData[] = [
+  private readonly seedInstitutions: InstitutionData[] = [
     {
       slug: 'lar-da-esperanca',
       name: 'Lar da Esperança',
@@ -75,11 +77,34 @@ export class InstitutionService {
     },
   ];
 
-  list(): InstitutionData[] {
-    return this.institutions;
+  constructor(private http: HttpClient) {}
+
+  list(): Observable<InstitutionData[]> {
+    return this.http.get<any[]>('http://localhost:3000/institutions').pipe(
+      map((remote) => {
+        const mappedRemote: InstitutionData[] = (remote || []).map(r => ({
+          slug: r.slug || r.id || '',
+          name: r.name,
+          description: r.description || '',
+          tags: r.tags || [],
+          image: r.image || 'https://via.placeholder.com/400x300?text=Instituicao',
+          badge: r.badge,
+          icon: r.icon,
+          accentClass: r.accentClass,
+          location: r.address?.city ? `${r.address.city}, ${r.address.state}` : undefined,
+          phone: r.contact?.phone,
+          email: r.contact?.email
+        }));
+        const combined = [...mappedRemote];
+        for (const seed of this.seedInstitutions) {
+          if (!combined.find(c => c.slug === seed.slug)) combined.push(seed);
+        }
+        return combined;
+      })
+    );
   }
 
-  findBySlug(slug: string): InstitutionData | undefined {
-    return this.institutions.find((i) => i.slug === slug);
+  findBySlug(slug: string): Observable<InstitutionData | undefined> {
+    return this.list().pipe(map(list => list.find(i => i.slug === slug)));
   }
 }

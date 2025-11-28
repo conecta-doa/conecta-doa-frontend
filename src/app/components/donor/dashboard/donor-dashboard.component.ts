@@ -48,8 +48,11 @@ export class DonorDashboardComponent implements OnInit, OnDestroy {
       currentUser = null;
     }
 
-    // Carrega instituições do serviço público e limita a 3 para "Sugestões Próximas"
-    this.suggestedInstitutions = this.institutionService.list().slice(0, 3);
+    // Ajuste: serviço agora retorna Observable
+    this.institutionService.list().subscribe({
+      next: (list) => (this.suggestedInstitutions = list.slice(0, 3)),
+      error: (err) => console.error('Falha ao carregar instituições para sugestões', err),
+    });
 
     if (!currentUser || !currentUser.id) {
       this.donations$ = this.donationService.getAll();

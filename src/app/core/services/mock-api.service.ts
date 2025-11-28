@@ -66,6 +66,22 @@ export class MockApiService {
     return this.loadData().pipe(map((d) => d.institutions || []));
   }
 
+  getCnpjInfo(cnpj: string): Observable<any | null> {
+    const doc = this.normalizeDocument(cnpj);
+    return this.loadData().pipe(
+      map((d) => {
+        const list = d.cnpjRegistry || [];
+        const found = list.find((i: any) => i.cnpj === doc || i.cnpj_formatted === cnpj);
+        return found || null;
+      })
+    );
+  }
+
+  addInstitution(inst: any): Observable<any> {
+    // json-server endpoint
+    return this.http.post('http://localhost:3000/institutions', inst);
+  }
+
   getDonations(): Observable<any[]> {
     return this.loadData().pipe(map((d) => d.donations || []));
   }

@@ -15,10 +15,10 @@ export const donorRouterConfig: Routes = [
     children: [
       { path: '', component: DonorDashboardComponent },
       { path: 'register', component: DonorRegisterComponent },
-      { path: 'instituicao', component: InstituicaoComponent },
-      { path: 'instituicao/:slug', component: InstituicaoComponent },
-      { path: 'instituicoes', component: InstituitionListComponent },
-      { path: 'instituicoes-list', redirectTo: 'instituicoes', pathMatch: 'full' },
+      { path: 'instituition', component: InstituicaoComponent },
+      { path: 'instituition/:slug', component: InstituicaoComponent },
+      { path: 'instituitions-list', component: InstituitionListComponent },
+      { path: 'instituitions-list', redirectTo: 'instituitions', pathMatch: 'full' },
       { path: 'donation', component: DonorDonationComponent },
       {
         path: 'donation/confirmed',

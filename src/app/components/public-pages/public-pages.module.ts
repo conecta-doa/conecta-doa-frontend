@@ -20,6 +20,7 @@ import { DonorModule } from '../donor/donor.module';
     SharedModule,
     HeaderComponent,
     InstituitionListComponent,
+    DonorModule,
   ],
 })
 export class PublicPagesModule {}

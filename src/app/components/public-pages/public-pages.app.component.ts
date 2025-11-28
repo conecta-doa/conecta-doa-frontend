@@ -7,8 +7,12 @@ import { AuthRedirectService } from '../../core/services/auth-redirect.service';
   standalone: false,
   selector: 'public-pages-app-root',
   template: `
-
-    <app-header></app-header>
+    <ng-container *ngIf="auth.hasToken(); else publicHeader">
+      <app-donor-header></app-donor-header>
+    </ng-container>
+    <ng-template #publicHeader>
+      <app-header></app-header>
+    </ng-template>
     <router-outlet></router-outlet>
   `,
 })

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './shared/components/login/login.component';
+import { InstituicaoComponent } from './components/donor/Instituicoes/instituicao.component';
 
 // Rotas principais da aplicação.
 // Removidos duplicados de 'instituicao' e links inexistentes para manter consistência.
@@ -8,6 +9,11 @@ export const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./components/public-pages/public-pages.module').then((m) => m.PublicPagesModule),
+  },
+  // Página pública de instituição por slug
+  {
+    path: 'instituicao/:slug',
+    component: InstituicaoComponent,
   },
   {
     path: 'login',

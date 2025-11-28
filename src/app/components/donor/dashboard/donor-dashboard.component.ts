@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { MockApiService } from '../../../core/services/mock-api.service';
+import { InstitutionService, InstitutionData } from '../../../core/services/institution.service';
 import { DonationService } from '../../../core/services/donation.service';
 
 interface Donation {
@@ -27,11 +28,16 @@ export class DonorDashboardComponent implements OnInit, OnDestroy {
 
   donations$!: Observable<any[]>;
   institutions$!: Observable<any[]>;
+  suggestedInstitutions: InstitutionData[] = [];
 
   private donorId: string | null = null;
   private pollSub: Subscription | null = null;
 
-  constructor(private mockApi: MockApiService, private donationService: DonationService) {}
+  constructor(
+    private mockApi: MockApiService,
+    private donationService: DonationService,
+    private institutionService: InstitutionService
+  ) {}
 
   ngOnInit(): void {
     const raw = localStorage.getItem('user');
@@ -42,7 +48,8 @@ export class DonorDashboardComponent implements OnInit, OnDestroy {
       currentUser = null;
     }
 
-    this.institutions$ = this.mockApi.getInstitutions();
+    // Carrega instituições do serviço público e limita a 3 para "Sugestões Próximas"
+    this.suggestedInstitutions = this.institutionService.list().slice(0, 3);
 
     if (!currentUser || !currentUser.id) {
       this.donations$ = this.donationService.getAll();

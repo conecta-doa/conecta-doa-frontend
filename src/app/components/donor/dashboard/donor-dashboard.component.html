@@ -3,7 +3,7 @@
   <h1>Painel do Doador</h1>
 
   <div class="card">
-    <img src="perfil.jpeg" alt="Avatar" class="avatar" />
+    <img src="/perfil.jpeg" alt="Avatar" class="avatar" />
     <div class="info">
       <h2>{{ name }}</h2>
 
@@ -63,7 +63,7 @@
 
   <div class="painel-lateral">
     <div class="ranking-card">
-      <img src="trofeu.jpeg" alt="Troféu" class="ranking-bg" />
+      <img src="/trofeu.jpeg" alt="Troféu" class="ranking-bg" />
       <div class="ranking-content">
         <h3>Ranking de Doadores</h3>
         <p>Você está na <strong style="color: #ffd700">5ª posição</strong> do Top 10 Local!</p>
@@ -72,7 +72,7 @@
     </div>
 
     <div class="recompensas-card">
-      <img src="caixa.jpeg" alt="Caixa" class="recompensas-bg" />
+      <img src="/caixa.jpeg" alt="Caixa" class="recompensas-bg" />
       <div class="recompensas-content">
         <h3>Área de Recompensas</h3>
         <p>
@@ -87,21 +87,14 @@
 
 <div class="sugestoes-container">
   <h2><strong>Sugestões Próximas</strong></h2>
-  <div class="sugestoes-grid">
-    <div class="sugestao-card">
-      <img src="compras.JPG" alt="Lar da Esperança" />
-      <h4><strong>Lar da Esperança</strong></h4>
-      <p>Precisa de alimentos</p>
-    </div>
-    <div class="sugestao-card">
-      <img src="imagem2.JPG" alt="Abrigo Fraterno" />
-      <h4><strong>Abrigo Fraterno</strong></h4>
-      <p>Precisa de roupas</p>
-    </div>
-    <div class="sugestao-card">
-      <img src="imagem3.JPG" alt="Casa do Acolhimento" />
-      <h4><strong>Casa do Acolhimento</strong></h4>
-      <p>Meta financeira</p>
-    </div>
+  <div class="sugestoes-grid" *ngIf="suggestedInstitutions.length; else noSuggestions">
+    <a class="sugestao-card" *ngFor="let inst of suggestedInstitutions" [routerLink]="['/instituicao', inst.slug]">
+      <img [src]="inst.image" [alt]="inst.name" />
+      <h4><strong>{{ inst.name }}</strong></h4>
+      <p>{{ inst.description }}</p>
+    </a>
   </div>
+  <ng-template #noSuggestions>
+    <p>Nenhuma sugestão disponível no momento.</p>
+  </ng-template>
 </div>

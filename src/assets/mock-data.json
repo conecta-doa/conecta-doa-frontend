@@ -20,12 +20,12 @@
     {
       "id": "u_donor_1",
       "role": "donor",
-      "name": "João Silva",
+      "name": "Maria da Silva",
       "cpf": "12345678901",
       "cpf_formatted": "123.456.789-01",
       "password": "senha123",
       "phone": "+55 11 99999-0001",
-      "email": "joao.silva@example.com",
+      "email": "maria.silva@example.com",
       "createdAt": "2025-11-01T09:30:00Z",
       "token": "mock-token-donor-1"
     },
@@ -58,10 +58,10 @@
     {
       "id": "d1",
       "userId": "u_donor_1",
-      "name": "João Silva",
+      "name": "Maria da Silva",
       "cpf": "12345678901",
       "phone": "+55 11 99999-0001",
-      "points": 7070,
+      "points": 300,
       "profileType": "public",
       "address": {
         "street": "Rua das Flores",
@@ -132,64 +132,14 @@
   ],
   "donations": [
     {
-      "id": "don_1",
-      "donorId": "d1",
-      "institutionId": "i1",
-      "type": "in-kind",
-      "items": [
-        {
-          "name": "Arroz",
-          "quantity": 10,
-          "unit": "kg"
-        },
-        {
-          "name": "Feijão",
-          "quantity": 5,
-          "unit": "kg"
-        }
-      ],
-      "pickup": {
-        "date": "2025-10-28T10:00:00Z",
-        "address": {
-          "street": "Rua das Flores",
-          "number": "123",
-          "city": "São Paulo",
-          "state": "SP"
-        }
-      },
-      "status": "delivered",
-      "notes": "Entrega realizada com sucesso",
-      "createdAt": "2025-10-28T08:30:00Z"
-    },
-    {
-      "id": "don_2",
-      "donorId": "d2",
-      "institutionId": "i1",
-      "type": "monetary",
-      "amount": 150,
-      "currency": "BRL",
-      "status": "pending",
-      "createdAt": "2025-10-30T16:00:00Z"
-    },
-    {
       "type": "monetary",
       "status": "pending",
-      "createdAt": "2025-11-27T23:25:05.163Z",
-      "amount": 200,
+      "createdAt": "2025-12-01T13:35:04.383Z",
+      "amount": 299.99,
       "currency": "BRL",
       "institutionName": "Lar da Esperança",
       "donorId": "d1",
-      "id": "G-4bKB_"
-    },
-    {
-      "type": "monetary",
-      "status": "pending",
-      "createdAt": "2025-11-28T00:23:24.333Z",
-      "amount": 100,
-      "currency": "BRL",
-      "institutionName": "Abrigo dos Animais",
-      "donorId": "d1",
-      "id": "UJp9ufJ"
+      "id": 1
     }
   ],
   "settings": {

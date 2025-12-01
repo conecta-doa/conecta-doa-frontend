@@ -20,7 +20,6 @@ import { DonorConfirmedDonationComponent } from './donor-confirmed-donation.comp
     DonorRegisterComponent,
     DonorDonationComponent,
     DonorConfirmedDonationComponent,
-    DonorHeaderComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +27,8 @@ import { DonorConfirmedDonationComponent } from './donor-confirmed-donation.comp
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    DonorHeaderComponent,
   ],
-  exports: [DonorHeaderComponent],
+  exports: [],
 })
 export class DonorModule {}

@@ -1,5 +1,4 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { Auth } from './core/services/auth';
 import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './shared/components/footer/footer.component';

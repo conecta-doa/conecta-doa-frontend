@@ -5,10 +5,9 @@ import { PublicPagesAppComponent } from './public-pages.app.component';
 import { HomeComponent } from './home/home.component';
 import { StoriesComponent } from './stories/stories.component';
 import { SharedModule } from '../../shared/components/shared.module';
-import { DonorHeaderComponent } from '../donor/donor-header.component/donor-header.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { InstituitionListComponent } from '../../shared/components/instituition-list.component/instituition-list.component';
-import { DonorModule } from '../donor/donor.module';
+import { DonorHeaderComponent } from '../donor/donor-header.component/donor-header.component';
 
 @NgModule({
   declarations: [PublicPagesAppComponent, HomeComponent],
@@ -20,7 +19,7 @@ import { DonorModule } from '../donor/donor.module';
     SharedModule,
     HeaderComponent,
     InstituitionListComponent,
-    DonorModule,
+    DonorHeaderComponent,
   ],
 })
 export class PublicPagesModule {}

@@ -35,26 +35,32 @@ function initializeKeycloak(keycloak: KeycloakService ) {
     });
 }
 
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
       deps: [KeycloakService]
     },
+
     KeycloakService,
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: KeycloakBearerInterceptor,
       multi: true
     },
-    provideClientHydration(withEventReplay()),
+
+    // ❌ REMOVIDO - causava erro NG0505
+    // provideClientHydration(withEventReplay()),
+
     { provide: LocationStrategy, useClass: HashLocationStrategy },
+
     provideHttpClient(
       withInterceptors([
         (req: any, next: any) => {

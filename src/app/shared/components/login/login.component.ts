@@ -129,7 +129,7 @@ export class LoginComponent {
         if (res.user?.role === 'donor') {
           this.router.navigate(['/donor']);
         } else if (res.user?.role === 'institution') {
-          this.router.navigate(['/instituition']);
+          this.router.navigate(['/instituicao']);
         } else {
           this.router.navigate(['/']);
         }

@@ -6,7 +6,6 @@ import { Auth } from '../../../core/services/auth';
 import { DonorHeaderComponent } from '../donor-header.component/donor-header.component';
 import { SharedModule } from '../../../shared/components/shared.module';
 import { HeaderComponent } from "../../../shared/components/header/header.component";
-import { DonorModule } from '../donor.module';
 
 interface DonationItem {
   id: string;
@@ -24,7 +23,7 @@ interface DonationItem {
     templateUrl: './instituicao.component.html',
     styleUrls: ['./instituicao.component.css'],
     providers: [DecimalPipe],
-    imports: [CommonModule, SharedModule, HeaderComponent, DonorModule]
+    imports: [CommonModule, SharedModule, HeaderComponent, DonorHeaderComponent]
 })
 export class InstituicaoComponent implements OnInit {
   abaAtiva: string = 'sobre';
@@ -80,7 +79,7 @@ export class InstituicaoComponent implements OnInit {
       this.institution = navState?.institution;
 
       if (!this.institution) {
-        this.router.navigate(['/institutions']);
+        this.router.navigate(['/instituicoes']);
         return;
       }
     }
